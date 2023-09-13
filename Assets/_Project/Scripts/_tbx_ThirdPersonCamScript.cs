@@ -2,6 +2,11 @@ using UnityEngine;
 
 public class _tbx_ThirdPersonCamScript : MonoBehaviour
 {
+    [Header ("Keytbinds")]
+    public KeyCode KeyCamera1;
+    public KeyCode KeyCamera2;
+    public KeyCode KeyCamera3;
+
     [Header("References")]
     public Transform orientation;
     public Transform player;
@@ -34,9 +39,9 @@ public class _tbx_ThirdPersonCamScript : MonoBehaviour
     void Update()
     {
         //Switch Camera Style
-        if (Input.GetKeyDown(KeyCode.Alpha1)) SwitchCameraStyle(CameraStyle.Basic);
-        if (Input.GetKeyDown(KeyCode.Alpha2)) SwitchCameraStyle(CameraStyle.Combat);
-        if (Input.GetKeyDown(KeyCode.Alpha3)) SwitchCameraStyle(CameraStyle.Topdown);
+        if (Input.GetKeyDown(KeyCamera1)) SwitchCameraStyle(CameraStyle.Basic);
+        if (Input.GetKeyDown(KeyCamera2)) SwitchCameraStyle(CameraStyle.Combat);
+        if (Input.GetKeyDown(KeyCamera3)) SwitchCameraStyle(CameraStyle.Topdown);
 
         //Rotate Orientation
         Vector3 viewDir = player.position - new Vector3(transform.position.x, player.position.y, transform.position.z);
