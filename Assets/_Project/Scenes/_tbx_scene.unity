@@ -5591,6 +5591,21 @@ MonoBehaviour:
   ActionKey: 101
   health: 100
   maxHealth: 100
+  imageHab1: {fileID: 0}
+  textHab1: {fileID: 0}
+  cooldownHab1: 5
+  isHab1OnCooldown: 0
+  currentCooldownHab1: 0
+  imageHab2: {fileID: 0}
+  textHab2: {fileID: 0}
+  cooldownHab2: 10
+  isHab2OnCooldown: 0
+  currentCooldownHab2: 0
+  imageHab3: {fileID: 0}
+  textHab3: {fileID: 0}
+  cooldownHab3: 5
+  isHab3OnCooldown: 0
+  currentCooldownHab3: 0
 --- !u!114 &6579007296506385990
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6445,6 +6460,21 @@ MonoBehaviour:
   ActionKey: 101
   health: 10
   maxHealth: 100
+  imageHab1: {fileID: 0}
+  textHab1: {fileID: 0}
+  cooldownHab1: 0
+  isHab1OnCooldown: 0
+  currentCooldownHab1: 0
+  imageHab2: {fileID: 0}
+  textHab2: {fileID: 0}
+  cooldownHab2: 0
+  isHab2OnCooldown: 0
+  currentCooldownHab2: 0
+  imageHab3: {fileID: 0}
+  textHab3: {fileID: 0}
+  cooldownHab3: 0
+  isHab3OnCooldown: 0
+  currentCooldownHab3: 0
 --- !u!1 &7984096324931616354
 GameObject:
   m_ObjectHideFlags: 3
