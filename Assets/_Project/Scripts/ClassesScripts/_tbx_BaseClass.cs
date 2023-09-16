@@ -17,6 +17,8 @@ public class _tbx_BaseClass : MonoBehaviour
     public float maxHealth;
 
     [Header("Habilidad1")]
+    public Sprite spriteHab1;
+    public Image imageHab1Normal;
     public Image imageHab1;
     public TMP_Text textHab1;
     public float cooldownHab1;
@@ -24,6 +26,8 @@ public class _tbx_BaseClass : MonoBehaviour
     [SerializeField] private float currentCooldownHab1;
 
     [Header("Habilidad2")]
+    public Sprite spriteHab2;
+    public Image imageHab2Normal;
     public Image imageHab2;
     public TMP_Text textHab2;
     public float cooldownHab2;
@@ -31,6 +35,8 @@ public class _tbx_BaseClass : MonoBehaviour
     [SerializeField] private float currentCooldownHab2;
 
     [Header("Habilidad3")]
+    public Sprite spriteHab3;
+    public Image imageHab3Normal;
     public Image imageHab3;
     public TMP_Text textHab3;
     public float cooldownHab3;
@@ -53,6 +59,22 @@ public class _tbx_BaseClass : MonoBehaviour
         textHab1.text = "";
         textHab2.text = "";
         textHab3.text = "";
+        
+        if(spriteHab1 != null && imageHab1 != null)
+        {
+            imageHab1.sprite = spriteHab1;
+            imageHab1Normal.sprite = spriteHab1;
+        }
+        if(spriteHab2 != null && imageHab2 != null)
+        {
+            imageHab2.sprite = spriteHab2;
+            imageHab2Normal.sprite = spriteHab2;
+        }
+        if(spriteHab3 != null && imageHab3 != null)
+        {
+            imageHab3.sprite = spriteHab3;
+            imageHab3Normal.sprite = spriteHab3;
+        }
     }
 
     public void TakeDamage(float damage)
