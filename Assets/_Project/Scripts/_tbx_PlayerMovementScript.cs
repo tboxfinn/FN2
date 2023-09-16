@@ -1,9 +1,14 @@
+using TMPro;
 using UnityEngine;
 
 public class _tbx_PlayerMovementScript : MonoBehaviour
 {
     [Header("Movement")]
     public float moveSpeed;
+    public float walkSpeed;
+    public float sprintSpeed;
+
+    public float maxYSpeed;
 
     public float groundDrag;
 
@@ -21,6 +26,11 @@ public class _tbx_PlayerMovementScript : MonoBehaviour
     public LayerMask whatIsGround;
     bool isGrounded;
 
+    [Header("Slope Handling")]
+    public float maxSlopeAngle;
+    private RaycastHit slopeHit;
+    private bool exitingSlope;
+
     public Transform orientation;
 
     float horizontalInput;
@@ -29,6 +39,15 @@ public class _tbx_PlayerMovementScript : MonoBehaviour
     Vector3 moveDirection;
 
     Rigidbody rb;
+
+    public MovementState state;
+    public enum MovementState
+    {
+        Walking,
+        Sprinting,
+        Air,
+        UsingHabilidad
+    }
 
     private void Start()
     {
@@ -45,6 +64,7 @@ public class _tbx_PlayerMovementScript : MonoBehaviour
 
         MyInput();
         SpeedControl();
+        StateHandler();
 
         //Manejar el drag
         if (isGrounded)
@@ -74,13 +94,47 @@ public class _tbx_PlayerMovementScript : MonoBehaviour
         }
     }
 
+    private void StateHandler()
+    {
+
+        if (isGrounded)
+        {
+            float velocityMagnitude = rb.velocity.magnitude;
+
+            if (velocityMagnitude < sprintSpeed)
+            {
+                //Mode - Walking
+                state = MovementState.Walking;
+            }
+            else
+            {
+                //Mode - Sprinting
+                state = MovementState.Sprinting;
+            }
+        }
+        else
+        {
+            //Mode - Air
+            state = MovementState.Air;
+        }
+    }
+
     private void MovePlayer()
     {
         //Calcular direccion de mov
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
 
+        if(OnSlope() && !exitingSlope)
+        {
+            rb.AddForce(GetSlopeMoveDirection() * moveSpeed * 20f, ForceMode.Force);
+
+            if(rb.velocity.y > 0)
+            {
+                rb.AddForce(Vector3.down * 80f, ForceMode.Force);
+            }
+        }
         //On ground
-        if(isGrounded)
+        else if(isGrounded)
         {
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
         }
@@ -89,22 +143,46 @@ public class _tbx_PlayerMovementScript : MonoBehaviour
         {
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force);
         }
+
+        //gravedad OFF en slope
+        rb.useGravity = !OnSlope();
     }
 
     private void SpeedControl()
     {
-        Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
-
-        //Aqui limito la velocidad maxima
-        if (flatVel.magnitude > moveSpeed)
+        //Limitar Vel en slope
+        if (OnSlope() && !exitingSlope)
         {
-            Vector3 limitedVel = flatVel.normalized * moveSpeed;
-            rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
+            if (rb.velocity.magnitude > moveSpeed)
+            {
+                rb.velocity = rb.velocity.normalized * moveSpeed;
+            }
         }
+
+        else
+        {
+            Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+
+            //Aqui limito la velocidad maxima
+            if (flatVel.magnitude > moveSpeed)
+            {
+                Vector3 limitedVel = flatVel.normalized * moveSpeed;
+                rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
+            }
+        }
+
+        //limit y vel
+        if (maxYSpeed !=0 && rb.velocity.y > maxYSpeed)
+        {
+            rb.velocity = new Vector3(rb.velocity.x, maxYSpeed, rb.velocity.z);
+        }
+        
     }
 
     private void Jump()
     {
+        exitingSlope = true;
+
         //reset y velocity
         rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 
@@ -114,5 +192,27 @@ public class _tbx_PlayerMovementScript : MonoBehaviour
     private void ResetJump()
     {
         readyToJump = true;
+
+        exitingSlope = false;
     }
+
+    private bool OnSlope()
+    {
+        if (Physics.Raycast(transform.position, Vector3.down, out slopeHit, playerHeight * 0.5f + 0.3f))
+        {
+            float angle = Vector3.Angle(Vector3.up, slopeHit.normal);
+            return angle < maxSlopeAngle && angle != 0;
+        }
+
+        return false;
+    }
+
+    private Vector3 GetSlopeMoveDirection()
+    {
+        return Vector3.ProjectOnPlane(moveDirection, slopeHit.normal).normalized;
+    }
+
+    public TextMeshProUGUI text_speed;
+    public TextMeshProUGUI text_ySpeed;
+    public TextMeshProUGUI text_mode;
 }
