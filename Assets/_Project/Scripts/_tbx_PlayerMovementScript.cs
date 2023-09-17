@@ -61,6 +61,8 @@ public class _tbx_PlayerMovementScript : MonoBehaviour
     {
         //Ground Check
         isGrounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
+        //Show the raycast on the scene view
+        Debug.DrawRay(transform.position, Vector3.down * (playerHeight * 0.5f + 0.2f), Color.red);
 
         MyInput();
         SpeedControl();
@@ -96,7 +98,6 @@ public class _tbx_PlayerMovementScript : MonoBehaviour
 
     private void StateHandler()
     {
-
         if (isGrounded)
         {
             float velocityMagnitude = rb.velocity.magnitude;
