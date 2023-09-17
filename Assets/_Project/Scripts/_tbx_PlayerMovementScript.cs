@@ -38,6 +38,9 @@ public class _tbx_PlayerMovementScript : MonoBehaviour
 
     Vector3 moveDirection;
 
+    //find the animator component attached to the GameObject you are intending to animate.
+    public Animator anim;
+
     Rigidbody rb;
 
     public MovementState state;
@@ -45,6 +48,7 @@ public class _tbx_PlayerMovementScript : MonoBehaviour
     {
         Walking,
         Sprinting,
+        Idle,
         Air,
         UsingHabilidad
     }
@@ -102,21 +106,28 @@ public class _tbx_PlayerMovementScript : MonoBehaviour
         {
             float velocityMagnitude = rb.velocity.magnitude;
 
-            if (velocityMagnitude < sprintSpeed)
+            if (velocityMagnitude < sprintSpeed && velocityMagnitude >= walkSpeed)
             {
                 //Mode - Walking
                 state = MovementState.Walking;
+                anim.SetBool("isWalking", true);
             }
-            else
+            else if (velocityMagnitude >= sprintSpeed)
             {
                 //Mode - Sprinting
-                state = MovementState.Sprinting;
+                state = MovementState.Sprinting;  
+            }
+            else if(velocityMagnitude < walkSpeed)
+            {
+                //Mode - Idle
+                state = MovementState.Idle;
+                anim.SetBool("isWalking", false);
             }
         }
         else
         {
             //Mode - Air
-            state = MovementState.Air;
+            state = MovementState.Air; 
         }
     }
 
@@ -183,7 +194,7 @@ public class _tbx_PlayerMovementScript : MonoBehaviour
     private void Jump()
     {
         exitingSlope = true;
-
+        anim.SetTrigger("OnJump");
         //reset y velocity
         rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 

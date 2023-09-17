@@ -8087,7 +8087,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1677538914518613388}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.235251, y: 0.15556656, z: -0.038175993, w: 0.95864415}
+  m_LocalRotation: {x: 0.235251, y: 0.15556653, z: -0.038175978, w: 0.95864415}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -8960,7 +8960,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7984096324931616354}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.2549746, y: 0.15474598, z: -0.04137668, w: 0.9535878}
+  m_LocalRotation: {x: 0.2549746, y: 0.154746, z: -0.04137668, w: 0.9535878}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -9380,7 +9380,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 7
-  walkSpeed: 6
+  walkSpeed: 1
   sprintSpeed: 7
   maxYSpeed: 0
   groundDrag: 4
@@ -9394,6 +9394,7 @@ MonoBehaviour:
     m_Bits: 1088
   maxSlopeAngle: 45
   orientation: {fileID: 4507645665261272013}
+  anim: {fileID: 3167949646456083647}
   state: 0
   text_speed: {fileID: 0}
   text_ySpeed: {fileID: 0}
@@ -10391,7 +10392,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &4124723580863405514
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -11459,8 +11460,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2656738899730675419}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.27465674, y: 0.15385643, z: -0.044570647, w: 0.94810617}
-  m_LocalPosition: {x: 0, y: 4, z: -3}
+  m_LocalRotation: {x: 0.27465674, y: 0.15385652, z: -0.04457067, w: 0.94810617}
+  m_LocalPosition: {x: 0, y: 2.3399997, z: -3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -12586,6 +12587,7 @@ MonoBehaviour:
     m_Bits: 1088
   maxSlopeAngle: 45
   orientation: {fileID: 8336063787096507798}
+  anim: {fileID: 0}
   state: 0
   text_speed: {fileID: 0}
   text_ySpeed: {fileID: 0}
@@ -12906,7 +12908,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &8529022829484266623
 GameObject:
   m_ObjectHideFlags: 0
