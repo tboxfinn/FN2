@@ -11734,6 +11734,7 @@ GameObject:
   m_Component:
   - component: {fileID: 352471847632708717}
   - component: {fileID: 3296233010069191167}
+  - component: {fileID: 6557575418853834920}
   - component: {fileID: 6557575418853834919}
   - component: {fileID: 2528987175092424774}
   m_Layer: 7
@@ -11782,6 +11783,19 @@ MonoBehaviour:
   cooldownHab3: 5
   isHab3OnCooldown: 0
   currentCooldownHab3: 0
+--- !u!114 &6557575418853834920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6557575418853834918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ddac7008bee8bf4fa16ad3df459adbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  teamID: 1
 --- !u!114 &6579007296506385990
 MonoBehaviour:
   m_ObjectHideFlags: 0
