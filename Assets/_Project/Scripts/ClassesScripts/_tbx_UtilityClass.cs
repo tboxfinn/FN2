@@ -5,6 +5,11 @@ using UnityEngine.UI;
 
 public class _tbx_UtilityClass : _tbx_BaseClass
 {
+    public override void Start()
+    {
+        
+    }
+
     public override void Habilidad1()
     {
         Debug.Log("Habilidad 1- Utility");

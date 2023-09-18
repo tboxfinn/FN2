@@ -43,7 +43,7 @@ public class _tbx_BaseClass : MonoBehaviour
     [SerializeField] private bool isHab3OnCooldown=false;
     [SerializeField] private float currentCooldownHab3;
     
-    public void Start()
+    public virtual void Start()
     {
         health = maxHealth;
         Hab1 = KeyCode.Alpha1;
