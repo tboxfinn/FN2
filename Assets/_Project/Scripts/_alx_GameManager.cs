@@ -5,10 +5,77 @@ using UnityEngine;
 public class _alx_GameManager : MonoBehaviour
 {
     public static _alx_GameManager singleton;
+    public GameStates gameStates;
+
+    [Header("Lista de clases")]
+    // Esta lista se crea en caso de que en un futuro requiramos más clases
+    public List<GameObject> listaClases = new List<GameObject>();
+
 
     private void Awake()
     {
-        singleton = this;
+        // Esto verifica que nunca se duplique para lograr que el singleton perdure en escenas
+        if (singleton == null)
+        {
+            singleton = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
+    public void SetClassUtility()
+    {
+        for (int i=0;i<listaClases.Count;i++)
+        {
+            // Checa cual es utility
+            if (listaClases[i].gameObject.CompareTag("Utility"))
+            {
+                // Aquí instancia el prefab
+
+            }
+        }
+    }
+
+    public void SetClassAsault()
+    {
+        for (int i = 0; i < listaClases.Count; i++)
+        {
+            // Checa cual es utility
+            if (listaClases[i].gameObject.CompareTag("Asault"))
+            {
+                // Aquí instancia el prefab
+
+            }
+        }
+    }
+
+    public void SetClassSuport()
+    {
+        for (int i = 0; i < listaClases.Count; i++)
+        {
+            // Checa cual es utility
+            if (listaClases[i].gameObject.CompareTag("Suport"))
+            {
+                // Aquí instancia el prefab
+
+            }
+        }
+    }
+
+}
+
+public enum GameStates
+{
+    // Aquí se añaden los estados del juego que se vayan a usar
+    // Requiero ver con Portly como hacer esta parte si quiere que sea unica o netcode
+    mainMenu,
+    pause,
+
+    // Estos tres tal vez de network behaviour
+    playerSelector,
+    defeat,    
+    gameOver
 }
