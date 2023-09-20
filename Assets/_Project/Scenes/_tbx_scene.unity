@@ -4172,6 +4172,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1313167403}
+  - component: {fileID: 1313167404}
   m_Layer: 0
   m_Name: GameManagerProto
   m_TagString: Untagged
@@ -4194,6 +4195,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1727335121}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1313167404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1313167402}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3bb77003004a084b92f8ae7e1628a74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameStates: 0
+  listaClases:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &1379551166
 GameObject:
   m_ObjectHideFlags: 0
@@ -11228,7 +11246,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6513940922493699031}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.23525095, y: 0.15556653, z: -0.03817597, w: 0.9586442}
+  m_LocalRotation: {x: 0.23525095, y: 0.15556654, z: -0.038175978, w: 0.9586442}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
