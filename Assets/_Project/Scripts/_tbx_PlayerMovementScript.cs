@@ -155,6 +155,10 @@ public class _tbx_PlayerMovementScript : MonoBehaviour
         {
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force);
         }
+        else if (OnSlope() && !isGrounded)
+        {
+            rb.AddForce(Vector3.down * 80f, ForceMode.Force);
+        }
 
         //gravedad OFF en slope
         rb.useGravity = !OnSlope();

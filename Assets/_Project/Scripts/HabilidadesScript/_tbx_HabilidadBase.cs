@@ -4,15 +4,9 @@ using UnityEngine;
 
 public class _tbx_HabilidadBase : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public string nombreHabilidad;
+    public float duracionHabilidad;
+    public float tiempoDeVidaHabilidad;
+    public float vidaHabilidad;
+    public float dañoHabilidad;
 }
