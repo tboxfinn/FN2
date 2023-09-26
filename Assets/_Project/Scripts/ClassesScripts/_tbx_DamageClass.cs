@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class _tbc_DamageClass : _tbx_BaseClass
+public class _tbx_DamageClass : _tbx_BaseClass
 {
     public override void Habilidad1()
     {
