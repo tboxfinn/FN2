@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Character Database", menuName = "Characters/Database")]
@@ -20,5 +21,10 @@ public class _tbx_CharacterDataBase : ScriptableObject
         }
 
         return null;
+    }
+
+    public bool IsValidCharacterId(int id)
+    {
+        return characters.Any(x => x.Id == id);
     }
 }

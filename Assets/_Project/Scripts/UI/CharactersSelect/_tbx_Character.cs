@@ -8,10 +8,10 @@ public class _tbx_Character : ScriptableObject
     [SerializeField] private int id = -1;
     [SerializeField] private string displayName = string.Empty;
     [SerializeField] private Sprite icon;
-    //public GameObject characterPrefab;
-    //public RuntimeAnimatorController characterAnimator;
+    [SerializeField] private GameObject introPrefab;
 
     public int Id => id;
     public string DisplayName => displayName;
     public Sprite Icon => icon;
+    public GameObject IntroPrefab => introPrefab;
 }

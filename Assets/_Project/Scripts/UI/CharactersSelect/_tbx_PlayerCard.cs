@@ -25,7 +25,7 @@ public class _tbx_PlayerCard : MonoBehaviour
             characterIconImage.enabled = false;
         }
 
-        playerNameText.text = $"Player {state.ClientId}";
+        playerNameText.text = state.IsLockedIn ? $"Player {state.ClientId}": $"Player {state.ClientId} (Choosing...)";
 
         visuals.SetActive(true);
     }
