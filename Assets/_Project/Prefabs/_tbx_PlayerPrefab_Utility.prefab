@@ -1443,7 +1443,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2746539156653107487}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.2746568, y: 0.1538565, z: -0.044570677, w: 0.94810617}
+  m_LocalRotation: {x: 0.27465674, y: 0.15385643, z: -0.044570647, w: 0.94810617}
   m_LocalPosition: {x: 0, y: 3, z: -3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3021,11 +3021,13 @@ MonoBehaviour:
   cooldownHab3: 5
   isHab3OnCooldown: 0
   currentCooldownHab3: 0
+  fuerzaDeTiro: 10
+  distanciaSpawnHabilidad1: 2
+  habilidad1Objects: []
   prefabHabilidad1: {fileID: 2888834612769116316, guid: 0748781c13fd01240b729f8f5ac16a08, type: 3}
   cantidadMaxHabilidad1: 2
-  habilidad1ObjectSpeed: 0
-  habilidad1ObjectDirection: {x: 0, y: 0, z: 1}
-  player: {fileID: 0}
+  player: {fileID: 5395728519113200101}
+  playerObj: {fileID: 7238975398894358656}
 --- !u!114 &8900586045773917160
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -5,20 +5,23 @@ using UnityEngine.UI;
 
 public class _tbx_UtilityClass : _tbx_BaseClass
 {
+    [Header("Utility Class")]
+    public float fuerzaDeTiro;
+    public float distanciaSpawnHabilidad1;
+
     [Header("Habilidad1")]
     // Reference to the prefab for the ability object
+    public List<GameObject> habilidad1Objects = new List<GameObject>();
     public GameObject prefabHabilidad1;
     // Maximum number of ability objects that can be alive at the same time
     public int cantidadMaxHabilidad1;
     // Current number of ability objects that are alive
     private int cantidadHabilidad1Actual = 0;
-    // Speed of the ability object
-    public float habilidad1ObjectSpeed;
-    // Direction of the ability object
-    public Vector3 habilidad1ObjectDirection = Vector3.forward;
 
+    [Header("References")]
     // Reference to the player object
     public GameObject player;
+    public GameObject playerObj;
 
     public override void Start()
     {
@@ -31,18 +34,39 @@ public class _tbx_UtilityClass : _tbx_BaseClass
     // Spawn a new ability object
     public override void Habilidad1()
     {
+        Debug.Log("Utility - BearTrap");
         // Check if we can spawn a new ability object
         if (cantidadHabilidad1Actual < cantidadMaxHabilidad1)
         {
-            // Spawn a new ability object at the player's position
-            Instantiate(prefabHabilidad1, player.transform.position, Quaternion.identity);
+            // Spawn a new ability object in front of the player
+            GameObject newHabilidad1Object = Instantiate(prefabHabilidad1, playerObj.transform.position + playerObj.transform.forward * distanciaSpawnHabilidad1, Quaternion.identity);
+            Rigidbody newHabilidad1ObjectRigidbody = newHabilidad1Object.GetComponent<Rigidbody>();
+            
+            // Apply force to the ability object
+            newHabilidad1ObjectRigidbody.AddForce(playerObj.transform.forward * fuerzaDeTiro, ForceMode.Impulse);
+
+            // Add the new object to the list of spawned objects
+            habilidad1Objects.Add(newHabilidad1Object);
 
             // Increment the current number of ability objects
             cantidadHabilidad1Actual++;
         }
         else
         {
-            Debug.Log("Maximum number of ability objects reached!");
+            // Destroy the first spawned object of this type and remove it from the list
+            GameObject firstHabilidad1Object = habilidad1Objects[0];
+            habilidad1Objects.RemoveAt(0);
+            Destroy(firstHabilidad1Object);
+
+            // Spawn a new ability object in front of the player
+            GameObject newHabilidad1Object = Instantiate(prefabHabilidad1, playerObj.transform.position + playerObj.transform.forward * distanciaSpawnHabilidad1, Quaternion.identity);
+            Rigidbody newHabilidad1ObjectRigidbody = newHabilidad1Object.GetComponent<Rigidbody>();
+            
+            // Apply force to the ability object
+            newHabilidad1ObjectRigidbody.AddForce(playerObj.transform.forward * fuerzaDeTiro, ForceMode.Impulse);
+
+            // Add the new object to the list of spawned objects
+            habilidad1Objects.Add(newHabilidad1Object);
         }
     }
 
