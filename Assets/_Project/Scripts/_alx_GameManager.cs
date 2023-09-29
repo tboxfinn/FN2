@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Netcode;
 
-public class _alx_GameManager : MonoBehaviour
+public class _alx_GameManager : NetworkBehaviour
 {
     public static _alx_GameManager singleton;
     public GameStates gameStates;
