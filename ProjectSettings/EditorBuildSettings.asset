@@ -9,9 +9,12 @@ EditorBuildSettings:
     path: Assets/_Project/Scenes/_ply_NetcodeScene.unity
     guid: 1dc459698ee67e448a4e0cd2a88b763f
   - enabled: 1
-    path: Assets/_Project/Scenes/_tbx_scene.unity
-    guid: e98fe45c449d243479ff912ee3c77985
-  - enabled: 1
     path: Assets/_Project/Scenes/_tbx_Selection.unity
     guid: 84085fc44e9433946b1bbb7ab8265197
+  - enabled: 1
+    path: Assets/_Project/Scenes/_tbx_CharacterSelect.unity
+    guid: 2b40004cedf888c4db994bd04d336de8
+  - enabled: 1
+    path: Assets/_Project/Scenes/_tbx_GameplayPrueba.unity
+    guid: 66379d0ea906033419a0c006331f25b1
   m_configObjects: {}

@@ -167,6 +167,21 @@ public class _tbx_CharacterSelectDisplay : NetworkBehaviour
             players[i] = new _tbx_CharacterSelectState(players[i].ClientId, players[i].CharacterId,  true);
             
         }
+
+        foreach(var player in players)
+        {
+            if(!player.IsLockedIn)
+            {
+                return;
+            }
+        }
+
+        foreach (var player in players)
+        {
+            _tbx_ServerManager.Instance.SetCharacter(player.ClientId, player.CharacterId);
+        }
+
+        _tbx_ServerManager.Instance.StartGame();
     }
 
     private void HandlePlayersStateChanged(NetworkListEvent<_tbx_CharacterSelectState> changeEvent)

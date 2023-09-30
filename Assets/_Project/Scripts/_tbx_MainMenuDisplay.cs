@@ -6,17 +6,15 @@ using UnityEngine.SceneManagement;
 
 public class _tbx_MainMenuDisplay : MonoBehaviour
 {
-    [SerializeField] private string gameplaySceneName = string.Empty;
     public void StartHost()
     {
-        NetworkManager.Singleton.StartHost();
-        NetworkManager.Singleton.SceneManager.LoadScene(gameplaySceneName, LoadSceneMode.Single);
+        _tbx_ServerManager.Instance.StartHost();
+        
     }
 
     public void StartServer()
     {
-        NetworkManager.Singleton.StartServer();
-        NetworkManager.Singleton.SceneManager.LoadScene(gameplaySceneName, LoadSceneMode.Single);
+        _tbx_ServerManager.Instance.StartServer();
 
     }
 
