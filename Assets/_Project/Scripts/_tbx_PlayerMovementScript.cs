@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using Unity.Netcode;
 
 public class _tbx_PlayerMovementScript : MonoBehaviour
 {
