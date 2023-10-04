@@ -6,6 +6,7 @@ using Unity.Services.Relay.Models;
 using Unity.Services.Relay;
 using Unity.Networking.Transport.Relay;
 using Unity.Netcode.Transports.UTP;
+using System.Threading.Tasks;
 
 public class _tbx_ClientManager : MonoBehaviour
 {
@@ -24,7 +25,7 @@ public class _tbx_ClientManager : MonoBehaviour
         }
     }
 
-    public async void StartClient(string joinCode)
+    public async Task StartClient(string joinCode)
     {
         JoinAllocation allocation;
 

@@ -8,6 +8,8 @@ using Unity.Services.Relay.Models;
 using System;
 using Unity.Networking.Transport.Relay;
 using Unity.Netcode.Transports.UTP;
+using Unity.Services.Lobbies;
+using Unity.Services.Lobbies.Models;
 
 public class _tbx_HostManager : MonoBehaviour
 {
@@ -22,6 +24,8 @@ public class _tbx_HostManager : MonoBehaviour
     public string JoinCode {get; private set;}
 
     private bool gameHasStarted;
+
+    private string lobbyId;
 
     public void Awake()
     {
@@ -67,12 +71,44 @@ public class _tbx_HostManager : MonoBehaviour
 
         NetworkManager.Singleton.GetComponent<UnityTransport>().SetRelayServerData(relayServerData);
 
+        try
+        {
+            var createLobbyOptions = new CreateLobbyOptions();
+            createLobbyOptions.IsPrivate = false;
+            createLobbyOptions.Data = new Dictionary<string, DataObject>()
+            {
+                {
+                    "joinCode", new DataObject(visibility: DataObject.VisibilityOptions.Member, value: JoinCode)
+                    
+                }
+            };
+
+            Lobby lobby = await Lobbies.Instance.CreateLobbyAsync("My Lobby", maxConnections,createLobbyOptions);
+            lobbyId = lobby.Id;
+            StartCoroutine(HeartbeatLobbyCoroutine(15f));
+        }
+        catch (LobbyServiceException e)
+        {
+            Debug.Log($"Failed to create lobby: {e.Message}");
+            throw;
+        }
+
         NetworkManager.Singleton.ConnectionApprovalCallback += ApprovalCheck;
         NetworkManager.Singleton.OnServerStarted += OnNetworkReady;
 
         ClientData = new Dictionary<ulong, _tbx_ClientData>();
 
         NetworkManager.Singleton.StartHost();
+    }
+
+    private IEnumerator HeartbeatLobbyCoroutine(float waitTimeSeconds)
+    {
+        var delay = new WaitForSeconds(waitTimeSeconds);
+        while(true)
+        {
+            Lobbies.Instance.SendHeartbeatPingAsync(lobbyId);
+            yield return delay;
+        }
     }
 
     public void StartServer()

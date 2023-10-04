@@ -45,8 +45,8 @@ public class _tbx_MainMenuDisplay : MonoBehaviour
 
     }
 
-    public void StartClient()
+    public async void StartClient()
     {
-        _tbx_ClientManager.Instance.StartClient(joinCodeInputField.text);
+        await _tbx_ClientManager.Instance.StartClient(joinCodeInputField.text);
     }
 }
