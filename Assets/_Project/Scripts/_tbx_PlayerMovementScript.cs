@@ -1,8 +1,9 @@
 using TMPro;
 using UnityEngine;
 using Unity.Netcode;
+using Unity.Netcode.Components;
 
-public class _tbx_PlayerMovementScript : MonoBehaviour
+public class _tbx_PlayerMovementScript : NetworkBehaviour
 {
     [Header("Movement")]
     public float moveSpeed;
@@ -60,6 +61,15 @@ public class _tbx_PlayerMovementScript : MonoBehaviour
         rb.freezeRotation = true;
 
         readyToJump = true;
+
+        /*if (IsOwner)
+        {
+            GetComponent<NetworkTransform>().enabled = true;
+        }
+        else
+        {
+            GetComponent<NetworkTransform>().enabled = false;
+        }*/
     }
 
     void Update()
@@ -68,6 +78,11 @@ public class _tbx_PlayerMovementScript : MonoBehaviour
         isGrounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
         //Show the raycast on the scene view
         Debug.DrawRay(transform.position, Vector3.down * (playerHeight * 0.5f + 0.2f), Color.red);
+
+        if(!IsOwner)
+        {
+            return;
+        }
 
         MyInput();
         SpeedControl();
@@ -82,6 +97,11 @@ public class _tbx_PlayerMovementScript : MonoBehaviour
 
     void FixedUpdate()
     {
+        if(!IsOwner)
+        {
+            return;
+        }
+        
         MovePlayer();
     }
 
