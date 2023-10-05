@@ -11,6 +11,7 @@ public class _tbx_LobbiesList : MonoBehaviour
 
     private bool isRefreshing;
     private bool isJoining;
+
     private void OnEnable()
     {
         RefreshList();
@@ -32,13 +33,12 @@ public class _tbx_LobbiesList : MonoBehaviour
 
             options.Filters = new List<QueryFilter>()
             {
-                new QueryFilter
-                    (field: QueryFilter.FieldOptions.AvailableSlots,
+                new QueryFilter(
+                    field: QueryFilter.FieldOptions.AvailableSlots,
                     op: QueryFilter.OpOptions.GT,
                     value: "0"),
-
-                new QueryFilter
-                (field: QueryFilter.FieldOptions.IsLocked,
+                new QueryFilter(
+                    field: QueryFilter.FieldOptions.IsLocked,
                     op: QueryFilter.OpOptions.EQ,
                     value: "0")
             };
@@ -50,15 +50,15 @@ public class _tbx_LobbiesList : MonoBehaviour
                 Destroy(child.gameObject);
             }
 
-            foreach(Lobby lobby in lobbies.Results)
+            foreach (Lobby lobby in lobbies.Results)
             {
                 var lobbyInstance = Instantiate(lobbyItemPrefab, lobbyItemParent);
                 lobbyInstance.Initialise(this, lobby);
             }
         }
-        catch(LobbyServiceException e)
+        catch (LobbyServiceException e)
         {
-            Debug.Log($"Failed to query lobbies: {e.Message}");
+            Debug.Log(e);
             isRefreshing = false;
             throw;
         }
@@ -68,7 +68,7 @@ public class _tbx_LobbiesList : MonoBehaviour
 
     public async void JoinAsync(Lobby lobby)
     {
-        if (isJoining){return;}
+        if (isJoining) {return;}
 
         isJoining = true;
 

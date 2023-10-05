@@ -78,8 +78,9 @@ public class _tbx_HostManager : MonoBehaviour
             createLobbyOptions.Data = new Dictionary<string, DataObject>()
             {
                 {
-                    "joinCode", new DataObject(visibility: DataObject.VisibilityOptions.Member, value: JoinCode)
-                    
+                    "JoinCode", new DataObject(
+                        visibility: DataObject.VisibilityOptions.Member, 
+                        value: JoinCode)
                 }
             };
 

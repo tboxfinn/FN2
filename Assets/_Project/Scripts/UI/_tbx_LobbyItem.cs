@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.Services.Lobbies.Models;
 using UnityEngine;
+using Unity.Services.Lobbies;
 
 public class _tbx_LobbyItem : MonoBehaviour
 {
