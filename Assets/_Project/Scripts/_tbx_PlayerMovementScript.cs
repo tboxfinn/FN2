@@ -33,6 +33,10 @@ public class _tbx_PlayerMovementScript : NetworkBehaviour
     private RaycastHit slopeHit;
     private bool exitingSlope;
 
+    [Header("Stun")]
+    public float stunDuration;
+    public bool isStunned;
+
     public Transform orientation;
 
     float horizontalInput;
