@@ -6,7 +6,7 @@ using Unity.Netcode;
 public class _alx_GameManager : NetworkBehaviour
 {
     public static _alx_GameManager singleton;
-    public GameStates gameStates;
+    public GameStates currentGameState;
 
     [Header("Lista de clases")]
     // Esta lista se crea en caso de que en un futuro requiramos más clases
@@ -64,6 +64,19 @@ public class _alx_GameManager : NetworkBehaviour
 
             }
         }
+    }
+
+    // Aqui se puede asignar un nuevo gamestate solo llamando la funcion mediante el singelton
+    public void SetNewGameState(GameStates newGameState)
+    {
+        switch (newGameState)
+        {
+            case GameStates.pause:
+                // Aqui se obtiene el elemento del canvas y se activa en caso de que se pausee
+                break;
+        }
+
+        currentGameState = newGameState;
     }
 
 }
