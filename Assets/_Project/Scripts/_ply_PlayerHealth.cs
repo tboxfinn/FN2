@@ -16,6 +16,15 @@ public class _ply_PlayerHealth : NetworkBehaviour
     private bool isHealthIncreased = false;
     private float healthIncreaseDuration = 5f; // Duración en segundos
 
+    public static _ply_PlayerHealth instance;
+    public float scale;
+    public int healthIncrease;
+
+    private void Awake()
+    {
+        instance = this;
+    }
+
     void Start()
     {
         originalHealth = health;
@@ -62,14 +71,14 @@ public class _ply_PlayerHealth : NetworkBehaviour
             originalHealth = health;
 
             // Aumentar la vida
-            health++;
+            health = healthIncrease;
             isHealthIncreased = true;
 
             // Configurar la duración del aumento de vida
             healthIncreaseDuration = 5f;
 
             // Calcular la nueva escala (por ejemplo, duplicar la escala actual)
-            Vector3 newScale = transform.localScale * 2f;
+            Vector3 newScale = transform.localScale * scale;
 
             // Aplicar la nueva escala al objeto
             transform.localScale = newScale;

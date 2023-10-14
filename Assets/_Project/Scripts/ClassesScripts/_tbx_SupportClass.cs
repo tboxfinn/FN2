@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class _tbx_SupportClass : _tbx_BaseClass
 {
-    private _ply_PlayerHealth playerHealth;
-
     private void Start()
     {
         // ... (Código de búsqueda del objeto _ply_PlayerHealth)
 
-        if (playerHealth != null)
+        if (_ply_PlayerHealth.instance != null)
         {
-            playerHealth.OnHealthChanged += HandleHealthChanged;
+            _ply_PlayerHealth.instance.OnHealthChanged += HandleHealthChanged;
         }
         else
         {
@@ -22,9 +20,9 @@ public class _tbx_SupportClass : _tbx_BaseClass
 
     private void OnDestroy()
     {
-        if (playerHealth != null)
+        if (_ply_PlayerHealth.instance != null)
         {
-            playerHealth.OnHealthChanged -= HandleHealthChanged;
+            _ply_PlayerHealth.instance.OnHealthChanged -= HandleHealthChanged;
         }
     }
 
@@ -42,9 +40,9 @@ public class _tbx_SupportClass : _tbx_BaseClass
     {
         Debug.Log("Habilidad 3- Support");
 
-        if (playerHealth != null)
+        if (_ply_PlayerHealth.instance != null)
         {
-            playerHealth.IncreaseHealth();
+            _ply_PlayerHealth.instance.IncreaseHealth();
         }
     }
 
