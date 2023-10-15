@@ -16,6 +16,9 @@ public class _ply_PlayerHealth : NetworkBehaviour
     private bool isHealthIncreased = false;
     private float healthIncreaseDuration = 5f; // Duración en segundos
 
+    // Variables para la escala original
+    private Vector3 originalScale;
+
     public static _ply_PlayerHealth instance;
     public float scale;
     public int healthIncrease;
@@ -28,6 +31,7 @@ public class _ply_PlayerHealth : NetworkBehaviour
     void Start()
     {
         originalHealth = health;
+        originalScale = transform.localScale;
     }
 
     void Update()
@@ -44,8 +48,11 @@ public class _ply_PlayerHealth : NetworkBehaviour
                 health = originalHealth;
                 isHealthIncreased = false;
 
+                // Restaurar la escala original
+                transform.localScale = originalScale;
+
                 // Notificar a los suscriptores del evento con la vida actual y la escala original
-                OnHealthChanged?.Invoke(health, Vector3.one);
+                OnHealthChanged?.Invoke(health, originalScale);
             }
         }
 
