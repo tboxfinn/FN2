@@ -13,7 +13,7 @@ public class _tbx_CharacterSpawner : NetworkBehaviour
     {
         if (!IsServer){return;}
 
-        foreach (var client in _tbx_ServerManager.Instance.ClientData)
+        foreach (var client in _tbx_HostManager.Instance.ClientData)
         {
             var character = characterDataBase.GetCharacterById(client.Value.characterId);
             if (character != null)

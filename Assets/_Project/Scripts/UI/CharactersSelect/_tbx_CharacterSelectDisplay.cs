@@ -14,6 +14,7 @@ public class _tbx_CharacterSelectDisplay : NetworkBehaviour
     [SerializeField] private GameObject characterInfoPanel;
     [SerializeField] private TMP_Text characterNameText;
     [SerializeField] private Transform introSpawnPoint;
+    [SerializeField] private TMP_Text joinCodeText;
     [SerializeField] private Button lockInButton;
 
     private GameObject introInstance;
@@ -51,6 +52,11 @@ public class _tbx_CharacterSelectDisplay : NetworkBehaviour
             {
                 HandleClientConnected(client.ClientId);
             }
+        }
+
+        if (IsHost)
+        {
+            joinCodeText.text = _tbx_HostManager.Instance.JoinCode;
         }
     }
 
@@ -178,10 +184,10 @@ public class _tbx_CharacterSelectDisplay : NetworkBehaviour
 
         foreach (var player in players)
         {
-            _tbx_ServerManager.Instance.SetCharacter(player.ClientId, player.CharacterId);
+            _tbx_HostManager.Instance.SetCharacter(player.ClientId, player.CharacterId);
         }
 
-        _tbx_ServerManager.Instance.StartGame();
+        _tbx_HostManager.Instance.StartGame();
     }
 
     private void HandlePlayersStateChanged(NetworkListEvent<_tbx_CharacterSelectState> changeEvent)
