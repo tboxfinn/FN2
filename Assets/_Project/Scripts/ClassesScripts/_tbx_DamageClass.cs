@@ -14,6 +14,15 @@ public class _tbx_DamageClass : _tbx_BaseClass
     [SerializeField] private float initialMoveSpeed;
     [SerializeField] private float initialJumpForce;
 
+    [Header("References")]
+    public Transform cam;
+    public Transform attackPoint;
+    public GameObject objectToThrow;
+
+    [Header("Throwing")]
+    public float throwForce;
+    public float throwUpwardForce;
+
     public override void Start()
     {
         // Save the initial values of moveSpeed and jumpForce
@@ -23,15 +32,35 @@ public class _tbx_DamageClass : _tbx_BaseClass
 
     public override void Habilidad1()
     {
-        Debug.Log("Habilidad 1- Damage");
+        Debug.Log("Habilidad 1- Bomba Veneno");
+        // Create a new object
+        GameObject bombaVeneno = Instantiate(objectToThrow, attackPoint.position, cam.rotation);
+
+        // Get the rigidbody of the new object
+        Rigidbody bombaVenRb = bombaVeneno.GetComponent<Rigidbody>();
+
+        //Calculate the direction to throw the object in
+        Vector3 forceDirection = cam.transform.forward;
+
+        RaycastHit hit;
+
+        if (Physics.Raycast(cam.position, cam.forward, out hit,500f))
+        {
+            forceDirection = (hit.point - attackPoint.position).normalized;
+        }
+
+        //Add force to the bombaVeneno
+        Vector3 forceToAdd = forceDirection * throwForce + transform.up * throwUpwardForce;
+
+        bombaVenRb.AddForce(forceToAdd, ForceMode.Impulse);
     }
 
     public override void Habilidad2()
     {
         Debug.Log("Habilidad 2- SpeedBoost");
         // Increase damage, player movement speed, and jump height
-        playerMovementScript.moveSpeed += 3;
-        playerMovementScript.jumpForce += 5;
+        playerMovementScript.moveSpeed += 6;
+        playerMovementScript.jumpForce += 10;
 
         // Start a coroutine to reset the values after a delay
         StartCoroutine(ResetMovementValues());

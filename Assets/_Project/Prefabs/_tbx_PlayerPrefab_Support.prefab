@@ -1207,7 +1207,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3663744925477247426}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.27465674, y: 0.15385643, z: -0.044570647, w: 0.94810617}
+  m_LocalRotation: {x: 0.2746568, y: 0.1538565, z: -0.044570677, w: 0.94810617}
   m_LocalPosition: {x: 0, y: 3, z: -3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1995,6 +1995,10 @@ MonoBehaviour:
   cooldownHab3: 5
   isHab3OnCooldown: 0
   currentCooldownHab3: 0
+  playerMovementScript: {fileID: 0}
+  effectDuration: 0
+  initialMoveSpeed: 0
+  initialJumpForce: 0
 --- !u!114 &7755674064859056182
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2085,6 +2089,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   scale: 1.5
+  healthIncrease: 0
 --- !u!1 &5077803371109578476
 GameObject:
   m_ObjectHideFlags: 0
@@ -3169,7 +3174,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5894410848828065691}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.27465674, y: 0.15385646, z: -0.044570655, w: 0.94810617}
+  m_LocalRotation: {x: 0.27465677, y: 0.15385649, z: -0.044570666, w: 0.94810617}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3691,7 +3696,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6308533059906779643}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.235251, y: 0.15556653, z: -0.038175978, w: 0.95864415}
+  m_LocalRotation: {x: 0.235251, y: 0.15556656, z: -0.038175993, w: 0.95864415}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
