@@ -9,7 +9,6 @@ public class _tbx_SupportClass : _tbx_BaseClass
     public float effectDuration;
 
     [SerializeField] private float initialMoveSpeed;
-    [SerializeField] private float initialJumpForce;
 
     public override void Start()
     {
@@ -21,9 +20,7 @@ public class _tbx_SupportClass : _tbx_BaseClass
         {
             Debug.LogError("El objeto encontrado no tiene el componente _ply_PlayerHealth");
         }
-
         initialMoveSpeed = playerMovementScript.moveSpeed;
-        initialJumpForce = playerMovementScript.jumpForce;
     }
 
     private void OnDestroy()
@@ -48,18 +45,17 @@ public class _tbx_SupportClass : _tbx_BaseClass
     {
         Debug.Log("Habilidad 3- Support");
 
+        Debug.Log("Reduce speed");
+        // Reduce player movement speed
+        playerMovementScript.moveSpeed = playerMovementScript.moveSpeed - 3;
+        // Start a coroutine to reset the values after a delay
+        StartCoroutine(ResetMovementValues());
+
         if (_ply_PlayerHealth.instance != null)
         {
             _ply_PlayerHealth.instance.IncreaseHealth();
         }
 
-        Debug.Log("Habilidad 2- SpeedBoost");
-        // Increase damage, player movement speed, and jump height
-        playerMovementScript.moveSpeed += 3;
-        playerMovementScript.jumpForce += 5;
-
-        // Start a coroutine to reset the values after a delay
-        StartCoroutine(ResetMovementValues());
     }
 
     private void HandleHealthChanged(int newHealth, Vector3 newScale)
@@ -72,8 +68,7 @@ public class _tbx_SupportClass : _tbx_BaseClass
     {
         yield return new WaitForSeconds(effectDuration);
 
-        // Reset the moveSpeed and jumpForce properties of the playerMovementScript
+        // Reset the moveSpeed property of the playerMovementScript
         playerMovementScript.moveSpeed = initialMoveSpeed;
-        playerMovementScript.jumpForce = initialJumpForce;
     }
 }
