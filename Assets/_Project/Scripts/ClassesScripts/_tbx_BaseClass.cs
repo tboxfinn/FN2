@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using Cinemachine;
 
 public class _tbx_BaseClass : MonoBehaviour
 {
@@ -42,9 +43,28 @@ public class _tbx_BaseClass : MonoBehaviour
     public float cooldownHab3;
     [SerializeField] private bool isHab3OnCooldown=false;
     [SerializeField] private float currentCooldownHab3;
+
+    [Header("DisparoBase")]
+    public GameObject bulletPrefab;
+    public Transform firePoint;
+    public float bulletForce;
+    public float bulletDamage;
+    public float fireRate;
+    public int magazineSize;
+    public int actualBullets;
+
+    [Header("Raycast")]
+    public float raycastDistance;
+
+    [Header("BaseReferences")]
+    public Camera cam;
     
     public virtual void Start()
     {
+        //Get Main Cam
+        //virtualCamera = GetComponent<CinemachineVirtualCamera>();
+
+        //Stats
         health = maxHealth;
         Hab1 = KeyCode.Alpha1;
         Hab2 = KeyCode.Alpha2;
@@ -75,6 +95,9 @@ public class _tbx_BaseClass : MonoBehaviour
             imageHab3.sprite = spriteHab3;
             imageHab3Normal.sprite = spriteHab3;
         }
+
+        //Disparo
+        actualBullets = magazineSize;
     }
 
     public void TakeDamage(float damage)
@@ -119,7 +142,7 @@ public class _tbx_BaseClass : MonoBehaviour
             Habilidad2();
         }
 
-        //Hbaility3Input
+        //Hability3Input
         if (Input.GetKeyDown(Hab3) && !isHab3OnCooldown)
         {
             isHab3OnCooldown = true;
@@ -127,10 +150,40 @@ public class _tbx_BaseClass : MonoBehaviour
             Habilidad3();
         }
 
-        //Hability1Cooldown
+        //Basic Shoot
+        if (Input.GetMouseButtonDown(0) && actualBullets > 0)
+        {
+            Shoot();
+        }
+
+        //HabilitiesCooldown
         CooldownHab(ref currentCooldownHab1, cooldownHab1, ref isHab1OnCooldown, imageHab1, textHab1);
         CooldownHab(ref currentCooldownHab2, cooldownHab2, ref isHab2OnCooldown, imageHab2, textHab2);
         CooldownHab(ref currentCooldownHab3, cooldownHab3, ref isHab3OnCooldown, imageHab3, textHab3);
+
+        // Raycast from player to center of camera
+        Vector3 cameraCenter = cam.transform.position;
+        Vector3 direction = (cameraCenter - transform.position).normalized;
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, direction, out hit, raycastDistance))
+        {
+            // Draw debug ray
+            Debug.DrawRay(transform.position, direction * hit.distance, Color.red);
+
+            // Aim gun at hit point
+            Vector3 aimPoint = hit.point;
+            firePoint.LookAt(aimPoint);
+        }
+        else
+        {
+            // Draw debug ray
+            Debug.DrawRay(transform.position, direction * raycastDistance, Color.green);
+
+            // Aim gun at maximum range
+            Vector3 aimPoint = transform.position + direction * raycastDistance;
+            firePoint.LookAt(aimPoint);
+        }
+        
     }
 
     private void CooldownHab(ref float currentCooldown, float maxCooldown, ref bool isOnCooldown, Image skillImage, TMP_Text skillText)
@@ -184,6 +237,11 @@ public class _tbx_BaseClass : MonoBehaviour
     public virtual void Habilidad3()
     {
         Debug.Log("Habilidad 3");
+    }
+
+    public virtual void Shoot()
+    {
+        Debug.Log("Disparo");
     }
 
 }

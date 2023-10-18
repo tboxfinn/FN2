@@ -7,15 +7,15 @@ public class _tbx_DamageClass : _tbx_BaseClass
     // Reference to the player movement script
     public _tbx_PlayerMovementScript playerMovementScript;
 
+    [Header("Cosas Inicio")]
     // Duration of the effect in seconds
     public float effectDuration;
-
     // Initial values of moveSpeed and jumpForce
     [SerializeField] private float initialMoveSpeed;
     [SerializeField] private float initialJumpForce;
 
     [Header("References")]
-    public Transform cam;
+    public Transform camTransform;
     public Transform attackPoint;
     public GameObject objectToThrow;
 
@@ -34,7 +34,7 @@ public class _tbx_DamageClass : _tbx_BaseClass
     {
         Debug.Log("Habilidad 1- Bomba Veneno");
         // Create a new object
-        GameObject bombaVeneno = Instantiate(objectToThrow, attackPoint.position, cam.rotation);
+        GameObject bombaVeneno = Instantiate(objectToThrow, attackPoint.position, camTransform.rotation);
 
         // Get the rigidbody of the new object
         Rigidbody bombaVenRb = bombaVeneno.GetComponent<Rigidbody>();
@@ -44,7 +44,7 @@ public class _tbx_DamageClass : _tbx_BaseClass
 
         RaycastHit hit;
 
-        if (Physics.Raycast(cam.position, cam.forward, out hit,500f))
+        if (Physics.Raycast(camTransform.position, camTransform.forward, out hit,500f))
         {
             forceDirection = (hit.point - attackPoint.position).normalized;
         }
@@ -69,6 +69,22 @@ public class _tbx_DamageClass : _tbx_BaseClass
     public override void Habilidad3()
     {
         Debug.Log("Habilidad 3- Damage");
+    }
+
+    public override void Shoot()
+    {
+        Debug.Log("Disparo");
+
+        // Calculate direction of shot
+        Vector3 cameraCenter = cam.transform.position;
+        Vector3 direction = (cameraCenter - firePoint.position).normalized;
+
+        // Instantiate bullet object
+        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
+
+        // Apply force to bullet object in direction of shot
+        Rigidbody rb = bullet.GetComponent<Rigidbody>();
+        rb.AddForce(direction * bulletForce, ForceMode.Impulse);
     }
 
     // Coroutine to reset the movement values after a delay

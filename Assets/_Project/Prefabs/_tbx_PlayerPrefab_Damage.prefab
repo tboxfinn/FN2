@@ -917,7 +917,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1451348422005149179}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.27465677, y: 0.15385649, z: -0.044570666, w: 0.94810617}
+  m_LocalRotation: {x: 0.27465674, y: 0.15385646, z: -0.044570655, w: 0.94810617}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1835,7 +1835,8 @@ Transform:
   m_LocalPosition: {x: 3.5527137e-15, y: 0.5509222, z: 0.000000014901172}
   m_LocalScale: {x: 0.99999994, y: 1, z: 0.99999994}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 4611216512289557679}
   m_Father: {fileID: 6795187794780855438}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3177272031447066965
@@ -2028,7 +2029,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3494043834218092331}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.25497457, y: 0.15474598, z: -0.04137668, w: 0.9535878}
+  m_LocalRotation: {x: 0.2549746, y: 0.15474601, z: -0.041376684, w: 0.9535878}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2244,6 +2245,94 @@ MonoBehaviour:
   m_FillOrigin: 2
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &3798087340155409941
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4611216512289557679}
+  - component: {fileID: 599417910097625866}
+  - component: {fileID: 3437785970365216704}
+  m_Layer: 0
+  m_Name: spaceSoldierBlaster
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4611216512289557679
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3798087340155409941}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0.97629607, z: 0.21643952, w: 0}
+  m_LocalPosition: {x: -0, y: 0.296, z: -0.398}
+  m_LocalScale: {x: 0.86742, y: 0.86742, z: 0.86742}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 5069190648676736867}
+  m_Father: {fileID: 8684670533109074340}
+  m_LocalEulerAnglesHint: {x: -25, y: 180, z: 0}
+--- !u!33 &599417910097625866
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3798087340155409941}
+  m_Mesh: {fileID: -5575061813973036200, guid: 2d4068152b2d34a43a9834b7b80a7e5a, type: 3}
+--- !u!23 &3437785970365216704
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3798087340155409941}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: -7762452421480856972, guid: 2d4068152b2d34a43a9834b7b80a7e5a, type: 3}
+  - {fileID: -1580535799172915004, guid: 2d4068152b2d34a43a9834b7b80a7e5a, type: 3}
+  - {fileID: -7850210407842851266, guid: 2d4068152b2d34a43a9834b7b80a7e5a, type: 3}
+  - {fileID: 9182697478891599620, guid: 2d4068152b2d34a43a9834b7b80a7e5a, type: 3}
+  - {fileID: -4973734387028869240, guid: 2d4068152b2d34a43a9834b7b80a7e5a, type: 3}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &4171576727350136020
 GameObject:
   m_ObjectHideFlags: 0
@@ -2378,6 +2467,37 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &4307439839420979712
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5069190648676736867}
+  m_Layer: 0
+  m_Name: FirePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5069190648676736867
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4307439839420979712}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0, y: -0, z: 0.421}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4611216512289557679}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4332284719663104012
 GameObject:
   m_ObjectHideFlags: 3
@@ -2846,7 +2966,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5025545192353103337}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.2746568, y: 0.1538565, z: -0.044570677, w: 0.94810617}
+  m_LocalRotation: {x: 0.27465674, y: 0.15385643, z: -0.044570647, w: 0.94810617}
   m_LocalPosition: {x: 0, y: 3, z: -3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3091,11 +3211,20 @@ MonoBehaviour:
   cooldownHab3: 8
   isHab3OnCooldown: 0
   currentCooldownHab3: 0
+  bulletPrefab: {fileID: 0}
+  firePoint: {fileID: 5069190648676736867}
+  bulletForce: 10
+  bulletDamage: 10
+  fireRate: 0
+  magazineSize: 20
+  actualBullets: 0
+  raycastDistance: 500
+  cam: {fileID: 105922113527412202}
   playerMovementScript: {fileID: 7397481260740561987}
   effectDuration: 3
   initialMoveSpeed: 0
   initialJumpForce: 0
-  cam: {fileID: 1273384813363259494}
+  camTransform: {fileID: 1273384813363259494}
   attackPoint: {fileID: 9221322773578777377}
   objectToThrow: {fileID: 2888834612769116316, guid: 0748781c13fd01240b729f8f5ac16a08, type: 3}
   throwForce: 10
