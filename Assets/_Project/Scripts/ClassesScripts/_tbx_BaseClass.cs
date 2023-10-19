@@ -47,8 +47,8 @@ public class _tbx_BaseClass : MonoBehaviour
     [Header("DisparoBase")]
     public GameObject bulletPrefab;
     public Transform firePoint;
-    public float bulletForce;
-    public float bulletDamage;
+    public Transform bulletParent;
+
     public float fireRate;
     public int magazineSize;
     public int actualBullets;
@@ -96,8 +96,6 @@ public class _tbx_BaseClass : MonoBehaviour
             imageHab3Normal.sprite = spriteHab3;
         }
 
-        //Disparo
-        actualBullets = magazineSize;
     }
 
     public void TakeDamage(float damage)
@@ -160,29 +158,6 @@ public class _tbx_BaseClass : MonoBehaviour
         CooldownHab(ref currentCooldownHab1, cooldownHab1, ref isHab1OnCooldown, imageHab1, textHab1);
         CooldownHab(ref currentCooldownHab2, cooldownHab2, ref isHab2OnCooldown, imageHab2, textHab2);
         CooldownHab(ref currentCooldownHab3, cooldownHab3, ref isHab3OnCooldown, imageHab3, textHab3);
-
-        // Raycast from player to center of camera
-        Vector3 cameraCenter = cam.transform.position;
-        Vector3 direction = (cameraCenter - transform.position).normalized;
-        RaycastHit hit;
-        if (Physics.Raycast(transform.position, direction, out hit, raycastDistance))
-        {
-            // Draw debug ray
-            Debug.DrawRay(transform.position, direction * hit.distance, Color.red);
-
-            // Aim gun at hit point
-            Vector3 aimPoint = hit.point;
-            firePoint.LookAt(aimPoint);
-        }
-        else
-        {
-            // Draw debug ray
-            Debug.DrawRay(transform.position, direction * raycastDistance, Color.green);
-
-            // Aim gun at maximum range
-            Vector3 aimPoint = transform.position + direction * raycastDistance;
-            firePoint.LookAt(aimPoint);
-        }
         
     }
 

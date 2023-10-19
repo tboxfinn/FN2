@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Microsoft.Unity.VisualStudio.Editor;
 using UnityEngine;
 
 public class _tbx_DamageClass : _tbx_BaseClass
@@ -23,11 +24,15 @@ public class _tbx_DamageClass : _tbx_BaseClass
     public float throwForce;
     public float throwUpwardForce;
 
+
     public override void Start()
     {
         // Save the initial values of moveSpeed and jumpForce
         initialMoveSpeed = playerMovementScript.moveSpeed;
         initialJumpForce = playerMovementScript.jumpForce;
+
+        //Set the bullets to the magazine size
+        actualBullets = magazineSize;
     }
 
     public override void Habilidad1()
@@ -74,17 +79,26 @@ public class _tbx_DamageClass : _tbx_BaseClass
     public override void Shoot()
     {
         Debug.Log("Disparo");
+        
+        RaycastHit hit;
 
-        // Calculate direction of shot
-        Vector3 cameraCenter = cam.transform.position;
-        Vector3 direction = (cameraCenter - firePoint.position).normalized;
+        GameObject bullet = GameObject.Instantiate(bulletPrefab, firePoint.position, Quaternion.identity, bulletParent);
+        _tbx_BulletController bulletController = bullet.GetComponent<_tbx_BulletController>();
+        
+        if (Physics.Raycast(camTransform.position, camTransform.forward, out hit, Mathf.Infinity))
+        {
+            bulletController.target = hit.point;
+            bulletController.hit = true;
 
-        // Instantiate bullet object
-        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
+            Debug.DrawLine(camTransform.position, hit.point, Color.red, 1f);
+        }
+        else
+        {
+            bulletController.target = camTransform.position + camTransform.forward * 300f;
+            bulletController.hit = false;
 
-        // Apply force to bullet object in direction of shot
-        Rigidbody rb = bullet.GetComponent<Rigidbody>();
-        rb.AddForce(direction * bulletForce, ForceMode.Impulse);
+            Debug.DrawLine(camTransform.position, camTransform.position + camTransform.forward * 300f, Color.green, 1f);
+        }
     }
 
     // Coroutine to reset the movement values after a delay

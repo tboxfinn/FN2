@@ -185,6 +185,81 @@ MonoBehaviour:
   m_BiasX: 0
   m_BiasY: 0
   m_CenterOnActivate: 1
+--- !u!1 &381716084647568827
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3086182289906579819}
+  - component: {fileID: 1861609791335169985}
+  - component: {fileID: 8837316182113827552}
+  m_Layer: 5
+  m_Name: Image - Crosshair
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &3086182289906579819
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 381716084647568827}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.9987856, y: 0.9987856, z: 0.9987856}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2283553807558212998}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 72, y: 72}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &1861609791335169985
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 381716084647568827}
+  m_CullTransparentMesh: 1
+--- !u!114 &8837316182113827552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 381716084647568827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 49b43a9008167f54c9fe3137076748f3, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &647644204749597567
 GameObject:
   m_ObjectHideFlags: 0
@@ -352,7 +427,7 @@ GameObject:
   - component: {fileID: 772483808850645520}
   - component: {fileID: 7054256179756677205}
   - component: {fileID: 7485644439571804313}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PlayerObj(AquiVaElModelo)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -489,7 +564,7 @@ GameObject:
   - component: {fileID: 6125335059617160941}
   - component: {fileID: 1795262126549910405}
   - component: {fileID: 3071171226711212861}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: character_spaceSoldierArmRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -573,7 +648,7 @@ GameObject:
   - component: {fileID: 3636726918104741691}
   - component: {fileID: 2561645492274016534}
   - component: {fileID: 3786534373016421238}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: character_spaceSoldierArmLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -655,7 +730,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6795187794780855438}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: armRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -917,7 +992,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1451348422005149179}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.27465677, y: 0.15385649, z: -0.044570666, w: 0.94810617}
+  m_LocalRotation: {x: 0.27465674, y: 0.15385646, z: -0.044570655, w: 0.94810617}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1530,7 +1605,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8854589859092209417}
   - component: {fileID: 4918801647266553403}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: KayKit Animated Character_v1.2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1785,7 +1860,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 449792609596792042}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: handSlotLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1816,7 +1891,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8684670533109074340}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: handSlotRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2029,7 +2104,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3494043834218092331}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.25497457, y: 0.15474598, z: -0.04137668, w: 0.9535878}
+  m_LocalRotation: {x: 0.2549746, y: 0.15474601, z: -0.041376684, w: 0.9535878}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2094,7 +2169,7 @@ GameObject:
   - component: {fileID: 6410202852244529536}
   - component: {fileID: 6712381474181121269}
   - component: {fileID: 7032161976200677532}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: character_spaceSoldier
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2256,7 +2331,7 @@ GameObject:
   - component: {fileID: 4611216512289557679}
   - component: {fileID: 599417910097625866}
   - component: {fileID: 3437785970365216704}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: spaceSoldierBlaster
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2476,7 +2551,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5069190648676736867}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2492,7 +2567,7 @@ Transform:
   m_GameObject: {fileID: 4307439839420979712}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: -0, z: 0.421}
+  m_LocalPosition: {x: 0, y: -0, z: 0.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2966,7 +3041,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5025545192353103337}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.2746568, y: 0.1538565, z: -0.044570677, w: 0.94810617}
+  m_LocalRotation: {x: 0.27465674, y: 0.15385643, z: -0.044570647, w: 0.94810617}
   m_LocalPosition: {x: 0, y: 3, z: -3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3211,14 +3286,13 @@ MonoBehaviour:
   cooldownHab3: 8
   isHab3OnCooldown: 0
   currentCooldownHab3: 0
-  bulletPrefab: {fileID: 0}
+  bulletPrefab: {fileID: 7462755728064330100, guid: 5ee12180f3c84024ca60b6ab065ca6eb, type: 3}
   firePoint: {fileID: 5069190648676736867}
-  bulletForce: 10
-  bulletDamage: 10
+  bulletParent: {fileID: 5069190648676736867}
   fireRate: 0
   magazineSize: 20
   actualBullets: 0
-  raycastDistance: 500
+  raycastDistance: 900
   cam: {fileID: 105922113527412202}
   playerMovementScript: {fileID: 7397481260740561987}
   effectDuration: 3
@@ -3314,7 +3388,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7813117818352290490}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3476,7 +3550,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4393629190774245235}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3876,6 +3950,7 @@ RectTransform:
   - {fileID: 7387708055524008162}
   - {fileID: 6959634066347934867}
   - {fileID: 7643869022372946432}
+  - {fileID: 3086182289906579819}
   m_Father: {fileID: 1364388512816221323}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -4377,7 +4452,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2820343923330170270}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: armLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4849,7 +4924,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3724178996466150744}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: KayKit Animated Character
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4923,6 +4998,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: d8f807055e995b94daf11d7f97ce6c79, type: 3}
       propertyPath: m_Name
       value: character_spaceSoldierHelmetBreather
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d8f807055e995b94daf11d7f97ce6c79, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
