@@ -58,6 +58,8 @@ public class _tbx_BaseClass : MonoBehaviour
 
     [Header("BaseReferences")]
     public Camera cam;
+    [SerializeField] private LayerMask aimColliderLayerMask = new LayerMask();
+    [SerializeField] private Transform debugTransform;
     
     public virtual void Start()
     {
@@ -149,9 +151,18 @@ public class _tbx_BaseClass : MonoBehaviour
         }
 
         //Basic Shoot
-        if (Input.GetMouseButtonDown(0) && actualBullets > 0)
+        if (Input.GetMouseButton(0) && actualBullets > 0)
         {
             Shoot();
+        }
+
+        //Aim
+        Vector2 screenCenterPoint = new Vector2(Screen.width / 2, Screen.height / 2);
+        Ray ray = Camera.main.ScreenPointToRay(screenCenterPoint);
+        if (Physics.Raycast(ray, out RaycastHit raycastHit, 999f, aimColliderLayerMask))
+        {
+            debugTransform.position = raycastHit.point;
+            Debug.DrawLine(ray.origin, raycastHit.point, Color.red);
         }
 
         //HabilitiesCooldown

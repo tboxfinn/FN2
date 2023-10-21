@@ -79,26 +79,6 @@ public class _tbx_DamageClass : _tbx_BaseClass
     public override void Shoot()
     {
         Debug.Log("Disparo");
-        
-        RaycastHit hit;
-
-        GameObject bullet = GameObject.Instantiate(bulletPrefab, firePoint.position, Quaternion.identity, bulletParent);
-        _tbx_BulletController bulletController = bullet.GetComponent<_tbx_BulletController>();
-        
-        if (Physics.Raycast(camTransform.position, camTransform.forward, out hit, Mathf.Infinity))
-        {
-            bulletController.target = hit.point;
-            bulletController.hit = true;
-
-            Debug.DrawLine(camTransform.position, hit.point, Color.red, 1f);
-        }
-        else
-        {
-            bulletController.target = camTransform.position + camTransform.forward * 300f;
-            bulletController.hit = false;
-
-            Debug.DrawLine(camTransform.position, camTransform.position + camTransform.forward * 300f, Color.green, 1f);
-        }
     }
 
     // Coroutine to reset the movement values after a delay
