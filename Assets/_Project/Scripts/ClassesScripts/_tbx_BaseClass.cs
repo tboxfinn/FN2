@@ -44,23 +44,29 @@ public class _tbx_BaseClass : MonoBehaviour
     [SerializeField] private bool isHab3OnCooldown=false;
     [SerializeField] private float currentCooldownHab3;
 
-    [Header("DisparoBase")]
-    public GameObject bulletPrefab;
-    public Transform firePoint;
-    public Transform bulletParent;
-
     public float fireRate;
     public int magazineSize;
     public int actualBullets;
 
     [Header("Raycast")]
     public float raycastDistance;
+    public Vector3 mouseWorldPosition;
 
     [Header("BaseReferences")]
     public Camera cam;
     [SerializeField] private LayerMask aimColliderLayerMask = new LayerMask();
     [SerializeField] private Transform debugTransform;
-    
+    [SerializeField] private Animator animator;
+     [SerializeField] public Transform pfBulletProjectile;
+    [SerializeField] public Transform spawnBulletPosition;
+
+    public virtual void Awake()
+    {
+        //Get Main Cam
+        cam = Camera.main;
+        //Get Animator
+        animator = GetComponent<Animator>();
+    }
     public virtual void Start()
     {
         //Get Main Cam
@@ -151,9 +157,15 @@ public class _tbx_BaseClass : MonoBehaviour
         }
 
         //Basic Shoot
-        if (Input.GetMouseButton(0) && actualBullets > 0)
+        if (Input.GetMouseButtonDown(0) && actualBullets > 0)
         {
             Shoot();
+            animator.SetLayerWeight(1, Mathf.Lerp(animator.GetLayerWeight(1), 1f, Time.deltaTime * 10f));
+            actualBullets--;
+        }
+        else
+        {
+            animator.SetLayerWeight(1, Mathf.Lerp(animator.GetLayerWeight(1), 0f, Time.deltaTime * 10f));
         }
 
         //Aim
@@ -162,6 +174,7 @@ public class _tbx_BaseClass : MonoBehaviour
         if (Physics.Raycast(ray, out RaycastHit raycastHit, 999f, aimColliderLayerMask))
         {
             debugTransform.position = raycastHit.point;
+            mouseWorldPosition = raycastHit.point;
             Debug.DrawLine(ray.origin, raycastHit.point, Color.red);
         }
 
@@ -228,6 +241,7 @@ public class _tbx_BaseClass : MonoBehaviour
     public virtual void Shoot()
     {
         Debug.Log("Disparo");
+        
     }
 
 }

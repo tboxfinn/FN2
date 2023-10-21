@@ -20,10 +20,16 @@ public class _tbx_DamageClass : _tbx_BaseClass
     public Transform attackPoint;
     public GameObject objectToThrow;
 
+
     [Header("Throwing")]
     public float throwForce;
     public float throwUpwardForce;
 
+    public override void Awake()
+    {
+        // Get the player movement script
+        playerMovementScript = GetComponent<_tbx_PlayerMovementScript>();
+    }
 
     public override void Start()
     {
@@ -78,7 +84,10 @@ public class _tbx_DamageClass : _tbx_BaseClass
 
     public override void Shoot()
     {
-        Debug.Log("Disparo");
+        Debug.Log("Disparo2");
+
+        Vector3 aimDir = mouseWorldPosition - spawnBulletPosition.position;
+        Instantiate(pfBulletProjectile, spawnBulletPosition.position, Quaternion.LookRotation(aimDir, Vector3.up));
     }
 
     // Coroutine to reset the movement values after a delay

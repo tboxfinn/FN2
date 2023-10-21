@@ -674,15 +674,15 @@ ModelImporter:
       name: KayKit Animated Character|Shoot(1h)
       takeName: KayKit Animated Character|Shoot(1h)
       internalID: -1465499701635773613
-      firstFrame: 0
-      lastFrame: 34
+      firstFrame: 3
+      lastFrame: 27
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -769,7 +769,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0

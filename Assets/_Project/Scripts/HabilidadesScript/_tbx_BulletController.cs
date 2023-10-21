@@ -5,33 +5,43 @@ using UnityEngine;
 
 public class _tbx_BulletController : MonoBehaviour
 {
-    [SerializeField] private GameObject bulletDecal;
+    private Rigidbody bulletRb;
 
-    [SerializeField] private float speed;
-    [SerializeField] private float timeToDestroy;
+    [SerializeField] private float projectileLifeTime;
+    [SerializeField] private float speed = 20f;
 
-    public Vector3 target {get;set;}
-    public bool hit {get;set;}
-
-    private void OnEnable()
+    private void Awake()
     {
-        Destroy(gameObject, timeToDestroy);
+        bulletRb = GetComponent<Rigidbody>();
+    }
+
+    private void Start()
+    {
+        bulletRb.velocity = transform.forward * speed;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            Debug.Log("Player hit");
+            Destroy(gameObject);
+        }
+        else if (other.CompareTag("Ground"))
+        {
+            Debug.Log("Ground hit");
+            Destroy(gameObject);
+        }
+        else if (other.CompareTag("Wall"))
+        {
+            Debug.Log("Wall hit");
+            Destroy(gameObject);
+        }
+        
     }
 
     void Update()
     {
-        transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
-        if (!hit && Vector3.Distance(transform.position, target) < 0.01f)
-        {
-            Destroy(gameObject);
-        }
+        Destroy(gameObject, projectileLifeTime);
     }
-
-    private void OnCollisionEnter(Collision other)
-    {
-        ContactPoint contact = other.GetContact(0);
-        GameObject.Instantiate(bulletDecal, contact.point + contact.normal * 0.0001f, Quaternion.LookRotation(contact.normal));
-        Destroy(gameObject);
-    }
-    
 }
