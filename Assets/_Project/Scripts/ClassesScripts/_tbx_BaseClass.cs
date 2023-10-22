@@ -11,6 +11,7 @@ public class _tbx_BaseClass : MonoBehaviour
     public KeyCode Hab1;
     public KeyCode Hab2;
     public KeyCode Hab3;
+    public KeyCode ReloadKey;
     public KeyCode ActionKey;
 
     [Header("Stats")]
@@ -49,6 +50,9 @@ public class _tbx_BaseClass : MonoBehaviour
     public float timeSinceLastShot;
     public int magazineSize;
     public int actualBullets;
+    public float reloadTime;
+    [SerializeField] private float timeSinceReloadStarted;
+    [SerializeField] private bool isReloading;
 
     [Header("Raycast")]
     public float raycastDistance;
@@ -67,7 +71,7 @@ public class _tbx_BaseClass : MonoBehaviour
         //Get Main Cam
         cam = Camera.main;
         //Get Animator
-        animator = GetComponent<Animator>();
+        //animator = GetComponentInChildren<Animator>();
     }
     public virtual void Start()
     {
@@ -79,6 +83,7 @@ public class _tbx_BaseClass : MonoBehaviour
         Hab1 = KeyCode.Alpha1;
         Hab2 = KeyCode.Alpha2;
         Hab3 = KeyCode.Alpha3;
+        ReloadKey = KeyCode.R;
         Debug.Log("Base Class");
 
         //Habilidades
@@ -160,16 +165,40 @@ public class _tbx_BaseClass : MonoBehaviour
 
         timeSinceLastShot += Time.deltaTime;
         //Basic Shoot
-        if (Input.GetMouseButton(0) && actualBullets > 0 && timeSinceLastShot >= fireRate)
+        if (!isReloading && Input.GetMouseButton(0) && actualBullets > 0 && timeSinceLastShot >= fireRate)
         {
+            
             Shoot();
-            animator.SetLayerWeight(1, Mathf.Lerp(animator.GetLayerWeight(1), 1f, Time.deltaTime * 10f));
             actualBullets--;
             timeSinceLastShot = 0f;
+            
+            animator.SetLayerWeight(1, Mathf.Lerp(animator.GetLayerWeight(1), 1f, Time.deltaTime * 10f));
+
+            if (actualBullets <= 0)
+            {
+                Reload();
+            }
         }
         else
         {
             animator.SetLayerWeight(1, Mathf.Lerp(animator.GetLayerWeight(1), 0f, Time.deltaTime * 10f));
+        }
+
+        //ReloadInput
+        if (Input.GetKeyDown(ReloadKey) && actualBullets < magazineSize)
+        {
+            Reload();
+        }
+
+        //Reload
+        if (isReloading)
+        {
+            timeSinceReloadStarted += Time.deltaTime;
+            if (timeSinceReloadStarted >= reloadTime)
+            {
+                actualBullets = magazineSize;
+                isReloading = false;
+            }
         }
 
         //Aim
@@ -187,6 +216,15 @@ public class _tbx_BaseClass : MonoBehaviour
         CooldownHab(ref currentCooldownHab2, cooldownHab2, ref isHab2OnCooldown, imageHab2, textHab2);
         CooldownHab(ref currentCooldownHab3, cooldownHab3, ref isHab3OnCooldown, imageHab3, textHab3);
         
+    }
+
+    public void Reload()
+    {
+        if (!isReloading && actualBullets < magazineSize)
+        {
+            isReloading = true;
+            timeSinceReloadStarted = 0f;
+        }
     }
 
     private void CooldownHab(ref float currentCooldown, float maxCooldown, ref bool isOnCooldown, Image skillImage, TMP_Text skillText)

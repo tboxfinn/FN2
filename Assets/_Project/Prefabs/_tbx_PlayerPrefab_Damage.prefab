@@ -531,7 +531,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 835109980359909768}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 528eaea4c42571f4eb29c85388cdc20e, type: 3}
   m_Name: 
@@ -2347,14 +2347,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3798087340155409941}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.000000028870996, y: 0.8304925, z: 0.55702984, w: 0.0000000372529}
+  m_LocalRotation: {x: -0.011759595, y: 0.81097645, z: 0.5846558, w: -0.01888352}
   m_LocalPosition: {x: 0, y: 0.482, z: -0.044}
   m_LocalScale: {x: 0.86742, y: 0.86742, z: 0.86742}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5069190648676736867}
   m_Father: {fileID: 8684670533109074340}
-  m_LocalEulerAnglesHint: {x: -67.701, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: -71.413, y: 188.003, z: -7.418}
 --- !u!33 &599417910097625866
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -3263,6 +3263,7 @@ MonoBehaviour:
   Hab1: 49
   Hab2: 50
   Hab3: 51
+  ReloadKey: 114
   ActionKey: 101
   health: 100
   maxHealth: 100
@@ -3289,8 +3290,11 @@ MonoBehaviour:
   currentCooldownHab3: 0
   fireRate: 1
   timeSinceLastShot: 0
-  magazineSize: 20
+  magazineSize: 30
   actualBullets: 0
+  reloadTime: 2
+  timeSinceReloadStarted: 0
+  isReloading: 0
   raycastDistance: 900
   mouseWorldPosition: {x: 0, y: 0, z: 0}
   cam: {fileID: 105922113527412202}

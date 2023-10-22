@@ -20,7 +20,11 @@ public class _tbx_SupportClass : _tbx_BaseClass
         {
             Debug.LogError("El objeto encontrado no tiene el componente _ply_PlayerHealth");
         }
+
+        //Save the initial value of moveSpeed
         initialMoveSpeed = playerMovementScript.moveSpeed;
+        //Set the bullets to the magazine size
+        actualBullets = magazineSize;
     }
 
     private void OnDestroy()
@@ -56,6 +60,14 @@ public class _tbx_SupportClass : _tbx_BaseClass
             _ply_PlayerHealth.instance.IncreaseHealth();
         }
 
+    }
+
+    public override void Shoot()
+    {
+        Debug.Log("Disparo3");
+
+        Vector3 aimDir = mouseWorldPosition - spawnBulletPosition.position;
+        Instantiate(pfBulletProjectile, spawnBulletPosition.position, Quaternion.LookRotation(aimDir, Vector3.up));
     }
 
     private void HandleHealthChanged(int newHealth, Vector3 newScale)
