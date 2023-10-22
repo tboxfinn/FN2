@@ -44,7 +44,9 @@ public class _tbx_BaseClass : MonoBehaviour
     [SerializeField] private bool isHab3OnCooldown=false;
     [SerializeField] private float currentCooldownHab3;
 
+    [Header("BasicShoot")]
     public float fireRate;
+    public float timeSinceLastShot;
     public int magazineSize;
     public int actualBullets;
 
@@ -156,12 +158,14 @@ public class _tbx_BaseClass : MonoBehaviour
             Habilidad3();
         }
 
+        timeSinceLastShot += Time.deltaTime;
         //Basic Shoot
-        if (Input.GetMouseButtonDown(0) && actualBullets > 0)
+        if (Input.GetMouseButton(0) && actualBullets > 0 && timeSinceLastShot >= fireRate)
         {
             Shoot();
             animator.SetLayerWeight(1, Mathf.Lerp(animator.GetLayerWeight(1), 1f, Time.deltaTime * 10f));
             actualBullets--;
+            timeSinceLastShot = 0f;
         }
         else
         {

@@ -3287,16 +3287,20 @@ MonoBehaviour:
   cooldownHab3: 8
   isHab3OnCooldown: 0
   currentCooldownHab3: 0
-  fireRate: 0
+  fireRate: 1
+  timeSinceLastShot: 0
   magazineSize: 20
   actualBullets: 0
   raycastDistance: 900
+  mouseWorldPosition: {x: 0, y: 0, z: 0}
   cam: {fileID: 105922113527412202}
   aimColliderLayerMask:
     serializedVersion: 2
     m_Bits: 1217
   debugTransform: {fileID: 7057722361611784192}
   animator: {fileID: 4918801647266553403}
+  pfBulletProjectile: {fileID: 9009434813405135846, guid: 5ee12180f3c84024ca60b6ab065ca6eb, type: 3}
+  spawnBulletPosition: {fileID: 5069190648676736867}
   playerMovementScript: {fileID: 7397481260740561987}
   effectDuration: 3
   initialMoveSpeed: 0
@@ -3304,8 +3308,6 @@ MonoBehaviour:
   camTransform: {fileID: 1273384813363259494}
   attackPoint: {fileID: 9221322773578777377}
   objectToThrow: {fileID: 2888834612769116316, guid: 0748781c13fd01240b729f8f5ac16a08, type: 3}
-  pfBulletProjectile: {fileID: 9009434813405135846, guid: 5ee12180f3c84024ca60b6ab065ca6eb, type: 3}
-  spawnBulletPosition: {fileID: 5069190648676736867}
   throwForce: 10
   throwUpwardForce: 5
 --- !u!114 &7397481260740561987
