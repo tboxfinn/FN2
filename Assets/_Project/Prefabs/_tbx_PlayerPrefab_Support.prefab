@@ -2099,6 +2099,13 @@ MonoBehaviour:
   playerMovementScript: {fileID: 7755674064859056182}
   effectDuration: 5
   initialMoveSpeed: 0
+  fuerzaDeTiro: 0
+  distanciaSpawnHabilidad1: 0
+  habilidad1Objects: []
+  prefabHabilidad1: {fileID: 7149912896524039529, guid: 2eab8157ba986c145b90c6f21c6f6d9d, type: 3}
+  cantidadMaxHabilidad1: 1
+  player: {fileID: 5004195776451064505}
+  playerObj: {fileID: 4065035869718521335}
 --- !u!114 &7755674064859056182
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2190,6 +2197,7 @@ MonoBehaviour:
   health: 100
   scale: 1.5
   healthIncrease: 0
+  maxHealth: 100000
 --- !u!1 &5077803371109578476
 GameObject:
   m_ObjectHideFlags: 0
