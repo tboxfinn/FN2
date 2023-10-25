@@ -13,6 +13,12 @@ public class _alx_NetObjectPolling : NetworkBehaviour
     // Este método se llama cuando se carga la escena.
     void Awake()
     {
+        if (prefab == null)
+        {
+            Debug.LogError("Prefab no asignado en el Inspector de Unity.");
+            return;
+        }
+
         pool = new Queue<NetworkObject>(); // Inicializa la cola.
 
         // Crea las balas y las añade a la cola.
@@ -27,21 +33,31 @@ public class _alx_NetObjectPolling : NetworkBehaviour
     // Este método se utiliza para obtener una bala del grupo.
     public NetworkObject Get()
     {
-        if (pool.Count == 0)
+        if (pool != null && pool.Count > 0)
         {
-            return null; // Si el grupo está vacío, devuelve null.
+            NetworkObject networkObject = pool.Dequeue(); // Obtiene la primera bala de la cola.
+            networkObject.gameObject.SetActive(true); // Activa la bala.
+
+            return networkObject; // Devuelve la bala.
         }
-
-        NetworkObject networkObject = pool.Dequeue(); // Obtiene la primera bala de la cola.
-        networkObject.gameObject.SetActive(true); // Activa la bala.
-
-        return networkObject; // Devuelve la bala.
+        else
+        {
+            Debug.LogWarning("La cola está vacía o no se ha inicializado.");
+            return null;
+        }
     }
 
     // Este método se utiliza para devolver una bala al grupo.
     public void Return(NetworkObject networkObject)
     {
-        networkObject.gameObject.SetActive(false); // Desactiva la bala.
-        pool.Enqueue(networkObject); // Añade la bala de nuevo a la cola.
+        if (networkObject != null)
+        {
+            networkObject.gameObject.SetActive(false); // Desactiva la bala.
+            pool.Enqueue(networkObject); // Añade la bala de nuevo a la cola.
+        }
+        else
+        {
+            Debug.LogWarning("Intentando devolver un objeto nulo al grupo.");
+        }
     }
 }
