@@ -13,48 +13,35 @@ public class _alx_NetObjectPolling : NetworkBehaviour
     // Este método se llama cuando se carga la escena.
     void Awake()
     {
-        if (IsServer)
-        {
-            pool = new Queue<NetworkObject>(); // Inicializa la cola.
+        pool = new Queue<NetworkObject>(); // Inicializa la cola.
 
-            // Crea las balas y las añade a la cola.
-            for (int i = 0; i < size; i++)
-            {
-                NetworkObject networkObject = Instantiate(prefab).GetComponent<NetworkObject>();
-                networkObject.gameObject.SetActive(false); // Desactiva la bala.
-                pool.Enqueue(networkObject); // Añade la bala a la cola.
-            }
+        // Crea las balas y las añade a la cola.
+        for (int i = 0; i < size; i++)
+        {
+            NetworkObject networkObject = Instantiate(prefab).GetComponent<NetworkObject>();
+            networkObject.gameObject.SetActive(false); // Desactiva la bala.
+            pool.Enqueue(networkObject); // Añade la bala a la cola.
         }
     }
 
     // Este método se utiliza para obtener una bala del grupo.
     public NetworkObject Get()
     {
-        if (IsServer)
+        if (pool.Count == 0)
         {
-            if (pool.Count == 0)
-            {
-                return null; // Si el grupo está vacío, devuelve null.
-            }
-
-            NetworkObject networkObject = pool.Dequeue(); // Obtiene la primera bala de la cola.
-            networkObject.gameObject.SetActive(true); // Activa la bala.
-
-            return networkObject; // Devuelve la bala.
+            return null; // Si el grupo está vacío, devuelve null.
         }
-        else
-        {
-            return null;
-        }
+
+        NetworkObject networkObject = pool.Dequeue(); // Obtiene la primera bala de la cola.
+        networkObject.gameObject.SetActive(true); // Activa la bala.
+
+        return networkObject; // Devuelve la bala.
     }
 
     // Este método se utiliza para devolver una bala al grupo.
     public void Return(NetworkObject networkObject)
     {
-        if (IsServer)
-        {
-            networkObject.gameObject.SetActive(false); // Desactiva la bala.
-            pool.Enqueue(networkObject); // Añade la bala de nuevo a la cola.
-        }
+        networkObject.gameObject.SetActive(false); // Desactiva la bala.
+        pool.Enqueue(networkObject); // Añade la bala de nuevo a la cola.
     }
 }
