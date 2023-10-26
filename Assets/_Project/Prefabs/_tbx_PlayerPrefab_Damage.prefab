@@ -1606,6 +1606,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8854589859092209417}
   - component: {fileID: 4918801647266553403}
+  - component: {fileID: 3100064859543083844}
   m_Layer: 7
   m_Name: KayKit Animated Character_v1.2
   m_TagString: Untagged
@@ -1650,6 +1651,34 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &3100064859543083844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2035288391482803591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8d0727d5ae3244e3b569694d3912374, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TransitionStateInfoList:
+  - IsCrossFadeExit: 0
+    Layer: 0
+    OriginatingState: -1380315160
+    DestinationState: -701645589
+    TransitionDuration: 0.01
+    TriggerNameHash: 1326163458
+    TransitionIndex: 1
+  - IsCrossFadeExit: 0
+    Layer: 0
+    OriginatingState: 2135543940
+    DestinationState: -701645589
+    TransitionDuration: 0.01
+    TriggerNameHash: 1326163458
+    TransitionIndex: 1
+  m_Animator: {fileID: 4918801647266553403}
 --- !u!1 &2159313372119289049
 GameObject:
   m_ObjectHideFlags: 0
@@ -4229,7 +4258,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7760640659556373264}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.108955644, y: 0.72165585, z: -0.116731524, w: 0.6735839}
+  m_LocalRotation: {x: 0.108955644, y: 0.7216558, z: -0.116731524, w: 0.673584}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

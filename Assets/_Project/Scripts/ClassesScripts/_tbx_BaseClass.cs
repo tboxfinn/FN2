@@ -4,8 +4,9 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using Cinemachine;
+using Unity.Netcode;
 
-public class _tbx_BaseClass : MonoBehaviour
+public class _tbx_BaseClass : NetworkBehaviour
 {
     [Header("Keybinds")]
     public KeyCode Hab1;
@@ -68,13 +69,15 @@ public class _tbx_BaseClass : MonoBehaviour
 
     public virtual void Awake()
     {
-        //Get Main Cam
-        cam = Camera.main;
         //Get Animator
         //animator = GetComponentInChildren<Animator>();
     }
     public virtual void Start()
     {
+        if (!IsOwner)
+        {
+            return;
+        }
         //Get Main Cam
         //virtualCamera = GetComponent<CinemachineVirtualCamera>();
 
@@ -115,6 +118,11 @@ public class _tbx_BaseClass : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+        if (!IsOwner)
+        {
+            return;
+        }
+
         health -= damage;
         if (health <= 0)
         {
@@ -124,6 +132,11 @@ public class _tbx_BaseClass : MonoBehaviour
 
     public void Heal(float heal)
     {
+        if (!IsOwner)
+        {
+            return;
+        }
+
         health += heal;
         if (health >= maxHealth)
         {
@@ -133,6 +146,11 @@ public class _tbx_BaseClass : MonoBehaviour
 
     public void Update()
     {
+        if (!IsOwner)
+        {
+            return;
+        }
+
         //ActionInput
         if (Input.GetKeyDown(ActionKey))
         {
@@ -220,6 +238,11 @@ public class _tbx_BaseClass : MonoBehaviour
 
     public void Reload()
     {
+        if (!IsOwner)
+        {
+            return;
+        }
+
         if (!isReloading && actualBullets < magazineSize)
         {
             isReloading = true;
@@ -229,6 +252,11 @@ public class _tbx_BaseClass : MonoBehaviour
 
     private void CooldownHab(ref float currentCooldown, float maxCooldown, ref bool isOnCooldown, Image skillImage, TMP_Text skillText)
     {
+        if (!IsOwner)
+        {
+            return;
+        }
+
        if (isOnCooldown)
        {
             currentCooldown -= Time.deltaTime;

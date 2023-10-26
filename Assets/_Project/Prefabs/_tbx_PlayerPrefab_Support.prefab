@@ -1290,7 +1290,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3663744925477247426}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.01286563, y: 0.98704207, z: -0.10610003, w: 0.119688176}
+  m_LocalRotation: {x: 0.012865631, y: 0.98704207, z: -0.10610003, w: 0.119688176}
   m_LocalPosition: {x: -0.0046542017, y: 1.9927161, z: 4.0816693}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1510,6 +1510,7 @@ GameObject:
   - component: {fileID: 8924186915631100582}
   - component: {fileID: 4561183575296159603}
   - component: {fileID: 1986204478760079333}
+  - component: {fileID: 8129522716858554616}
   m_Layer: 0
   m_Name: PlayerObj(AquiVaElModelo)
   m_TagString: Untagged
@@ -1606,6 +1607,36 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: -0.5, z: 0}
+--- !u!114 &8129522716858554616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4065035869718521335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 528eaea4c42571f4eb29c85388cdc20e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SyncPositionX: 0
+  SyncPositionY: 0
+  SyncPositionZ: 0
+  SyncRotAngleX: 1
+  SyncRotAngleY: 1
+  SyncRotAngleZ: 1
+  SyncScaleX: 0
+  SyncScaleY: 0
+  SyncScaleZ: 0
+  PositionThreshold: 0.001
+  RotAngleThreshold: 0.01
+  ScaleThreshold: 0.01
+  UseQuaternionSynchronization: 0
+  UseQuaternionCompression: 0
+  UseHalfFloatPrecision: 0
+  InLocalSpace: 0
+  Interpolate: 1
+  SlerpPosition: 0
 --- !u!1 &4109996042026289384
 GameObject:
   m_ObjectHideFlags: 0
@@ -2642,7 +2673,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5297663482151698622}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.011449693, y: 0.9882275, z: -0.09442311, w: 0.11983192}
+  m_LocalRotation: {x: 0.011449694, y: 0.9882275, z: -0.094423115, w: 0.11983192}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4139,6 +4170,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2402463556928870344}
   - component: {fileID: 5995152513564657329}
+  - component: {fileID: 6604658660167232929}
   m_Layer: 0
   m_Name: KayKit Animated Character_v1.2
   m_TagString: Untagged
@@ -4183,6 +4215,34 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &6604658660167232929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7817663580103013712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8d0727d5ae3244e3b569694d3912374, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TransitionStateInfoList:
+  - IsCrossFadeExit: 0
+    Layer: 0
+    OriginatingState: -1380315160
+    DestinationState: -701645589
+    TransitionDuration: 0.01
+    TriggerNameHash: 1326163458
+    TransitionIndex: 1
+  - IsCrossFadeExit: 0
+    Layer: 0
+    OriginatingState: 2135543940
+    DestinationState: -701645589
+    TransitionDuration: 0.01
+    TriggerNameHash: 1326163458
+    TransitionIndex: 1
+  m_Animator: {fileID: 5995152513564657329}
 --- !u!1 &7834692735544650185
 GameObject:
   m_ObjectHideFlags: 0

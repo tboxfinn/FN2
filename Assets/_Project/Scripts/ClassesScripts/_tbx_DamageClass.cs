@@ -33,6 +33,7 @@ public class _tbx_DamageClass : _tbx_BaseClass
 
     public override void Start()
     {
+        base.Start();
         // Save the initial values of moveSpeed and jumpForce
         initialMoveSpeed = playerMovementScript.moveSpeed;
         initialJumpForce = playerMovementScript.jumpForce;

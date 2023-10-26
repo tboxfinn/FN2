@@ -81,4 +81,11 @@ public class _tbx_UtilityClass : _tbx_BaseClass
     {
         Debug.Log("Habilidad 3 - Utility");
     }
+    public override void Shoot()
+    {
+        Debug.Log("Disparo2");
+
+        Vector3 aimDir = mouseWorldPosition - spawnBulletPosition.position;
+        Instantiate(pfBulletProjectile, spawnBulletPosition.position, Quaternion.LookRotation(aimDir, Vector3.up));
+    }
 }

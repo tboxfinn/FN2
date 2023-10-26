@@ -21,6 +21,8 @@ public class _tbx_SupportClass : _tbx_BaseClass
 
     public override void Start()
     {
+        base.Start();
+        
         if (_ply_PlayerHealth.instance != null)
         {
             _ply_PlayerHealth.instance.OnHealthChanged += HandleHealthChanged;
@@ -36,7 +38,7 @@ public class _tbx_SupportClass : _tbx_BaseClass
         actualBullets = magazineSize;
     }
 
-    private void OnDestroy()
+    private new void OnDestroy()
     {
         if (_ply_PlayerHealth.instance != null)
         {
