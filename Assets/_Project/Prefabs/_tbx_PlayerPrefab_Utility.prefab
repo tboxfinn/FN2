@@ -80,6 +80,7 @@ GameObject:
   - component: {fileID: 682962204859775748}
   - component: {fileID: 4527671325524767905}
   - component: {fileID: 1815357868894896235}
+  - component: {fileID: 7980303173005346607}
   m_Layer: 0
   m_Name: scrap_baton
   m_TagString: Untagged
@@ -158,6 +159,21 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &7980303173005346607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 158063786482164158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 709c0bf0ef2fb164aa813f7c30f376a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gunData: {fileID: 11400000, guid: 7221cb3177204104ea0b0e1eac99303f, type: 2}
+  muzzle: {fileID: 2115294405559217607}
+  tbxBase: {fileID: 1563819051572441187}
 --- !u!1 &300217382675910634
 GameObject:
   m_ObjectHideFlags: 0
@@ -376,7 +392,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 4
-  m_FollowOffset: {x: 0, y: 3, z: -3}
+  m_FollowOffset: {x: 0, y: 2.9838336, z: -3.026815}
   m_XDamping: 0
   m_YDamping: 0
   m_ZDamping: 0
@@ -396,7 +412,7 @@ MonoBehaviour:
     m_LegacyHeadingDefinition: -1
     m_LegacyVelocityFilterStrength: -1
   m_XAxis:
-    Value: 0
+    Value: 61.241676
     m_SpeedMode: 0
     m_MaxSpeed: 300
     m_AccelTime: 0.1
@@ -1511,7 +1527,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2617373380208560353}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.235251, y: 0.15556656, z: -0.038175993, w: 0.95864415}
+  m_LocalRotation: {x: 0.15815698, y: 0.5507928, z: -0.10721753, w: 0.8124765}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1593,8 +1609,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2746539156653107487}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.2746568, y: 0.1538565, z: -0.044570677, w: 0.94810617}
-  m_LocalPosition: {x: 0, y: 3, z: -3}
+  m_LocalRotation: {x: 0.19137904, y: 0.5459267, z: -0.12973936, w: 0.80529857}
+  m_LocalPosition: {x: -2.653478, y: 2.9838336, z: -1.4562496}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3258,6 +3274,7 @@ MonoBehaviour:
   animator: {fileID: 7442458133259294839}
   pfBulletProjectile: {fileID: 9009434813405135846, guid: 5ee12180f3c84024ca60b6ab065ca6eb, type: 3}
   spawnBulletPosition: {fileID: 2115294405559217607}
+  gunData: {fileID: 11400000, guid: 7221cb3177204104ea0b0e1eac99303f, type: 2}
   fuerzaDeTiro: 10
   distanciaSpawnHabilidad1: 2
   habilidad1Objects: []
@@ -3630,7 +3647,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 4
-  m_FollowOffset: {x: 0, y: 3, z: -3}
+  m_FollowOffset: {x: 0, y: 2.9838336, z: -3.026815}
   m_XDamping: 0
   m_YDamping: 0
   m_ZDamping: 0
@@ -3650,7 +3667,7 @@ MonoBehaviour:
     m_LegacyHeadingDefinition: -1
     m_LegacyVelocityFilterStrength: -1
   m_XAxis:
-    Value: 0
+    Value: 61.241676
     m_SpeedMode: 0
     m_MaxSpeed: 300
     m_AccelTime: 0.1
@@ -3723,7 +3740,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6686870302733650991}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.25497457, y: 0.15474598, z: -0.04137668, w: 0.9535878}
+  m_LocalRotation: {x: 0.17488204, y: 0.5484641, z: -0.11855575, w: 0.80904144}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4039,7 +4056,7 @@ Transform:
   m_GameObject: {fileID: 7162850632144610858}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 3, z: -3}
+  m_LocalPosition: {x: -2.653478, y: 2.9838336, z: -1.4562496}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4088,7 +4105,7 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_YAxis:
-    Value: 1
+    Value: 0.993683
     m_SpeedMode: 0
     m_MaxSpeed: 2
     m_AccelTime: 0.2
@@ -4112,7 +4129,7 @@ MonoBehaviour:
     m_LegacyHeadingDefinition: -1
     m_LegacyVelocityFilterStrength: -1
   m_XAxis:
-    Value: 0
+    Value: 61.241676
     m_SpeedMode: 0
     m_MaxSpeed: 300
     m_AccelTime: 0.1
@@ -5035,7 +5052,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 4
-  m_FollowOffset: {x: 0, y: 3, z: -3}
+  m_FollowOffset: {x: 0, y: 2.9838336, z: -3.026815}
   m_XDamping: 0
   m_YDamping: 0
   m_ZDamping: 0
@@ -5055,7 +5072,7 @@ MonoBehaviour:
     m_LegacyHeadingDefinition: -1
     m_LegacyVelocityFilterStrength: -1
   m_XAxis:
-    Value: 0
+    Value: 61.241676
     m_SpeedMode: 0
     m_MaxSpeed: 300
     m_AccelTime: 0.1
@@ -5128,7 +5145,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9189058723912467128}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.27465677, y: 0.15385649, z: -0.044570666, w: 0.94810617}
+  m_LocalRotation: {x: 0.19158962, y: 0.5458928, z: -0.12988213, w: 0.8052485}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

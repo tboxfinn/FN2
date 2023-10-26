@@ -2361,6 +2361,7 @@ GameObject:
   - component: {fileID: 4611216512289557679}
   - component: {fileID: 599417910097625866}
   - component: {fileID: 3437785970365216704}
+  - component: {fileID: 401705831406959386}
   m_Layer: 7
   m_Name: spaceSoldierBlaster
   m_TagString: Untagged
@@ -2438,6 +2439,21 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &401705831406959386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3798087340155409941}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 709c0bf0ef2fb164aa813f7c30f376a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gunData: {fileID: 11400000, guid: 40ca65093b6fb1b4abc609114b2db408, type: 2}
+  muzzle: {fileID: 5069190648676736867}
+  tbxBase: {fileID: 8116627672830649974}
 --- !u!1 &4171576727350136020
 GameObject:
   m_ObjectHideFlags: 0
@@ -3334,6 +3350,7 @@ MonoBehaviour:
   animator: {fileID: 4918801647266553403}
   pfBulletProjectile: {fileID: 9009434813405135846, guid: 5ee12180f3c84024ca60b6ab065ca6eb, type: 3}
   spawnBulletPosition: {fileID: 5069190648676736867}
+  gunData: {fileID: 0}
   playerMovementScript: {fileID: 7397481260740561987}
   effectDuration: 3
   initialMoveSpeed: 0
@@ -4258,7 +4275,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7760640659556373264}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.108955644, y: 0.7216558, z: -0.116731524, w: 0.673584}
+  m_LocalRotation: {x: 0.108955644, y: 0.72165585, z: -0.116731524, w: 0.6735839}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

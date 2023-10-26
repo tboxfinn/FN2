@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine.UI;
 using Cinemachine;
 using Unity.Netcode;
+using System;
 
 public class _tbx_BaseClass : NetworkBehaviour
 {
@@ -66,6 +67,10 @@ public class _tbx_BaseClass : NetworkBehaviour
     [SerializeField] private Animator animator;
      [SerializeField] public Transform pfBulletProjectile;
     [SerializeField] public Transform spawnBulletPosition;
+    [SerializeField] GunData gunData;
+
+    public static Action shootInput;
+    public static Action reloadInput;
 
     public virtual void Awake()
     {
@@ -183,29 +188,19 @@ public class _tbx_BaseClass : NetworkBehaviour
 
         timeSinceLastShot += Time.deltaTime;
         //Basic Shoot
-        if (!isReloading && Input.GetMouseButton(0) && actualBullets > 0 && timeSinceLastShot >= fireRate)
+        if (Input.GetMouseButton(0))
         {
-            
-            Shoot();
-            actualBullets--;
-            timeSinceLastShot = 0f;
-            
+            shootInput?.Invoke();
             animator.SetLayerWeight(1, Mathf.Lerp(animator.GetLayerWeight(1), 1f, Time.deltaTime * 10f));
-
-            if (actualBullets <= 0)
-            {
-                Reload();
-            }
-        }
-        else
+        }else
         {
             animator.SetLayerWeight(1, Mathf.Lerp(animator.GetLayerWeight(1), 0f, Time.deltaTime * 10f));
         }
 
         //ReloadInput
-        if (Input.GetKeyDown(ReloadKey) && actualBullets < magazineSize)
+        if (Input.GetKeyDown(ReloadKey))
         {
-            Reload();
+            reloadInput?.Invoke();
         }
 
         //Reload
@@ -222,11 +217,19 @@ public class _tbx_BaseClass : NetworkBehaviour
         //Aim
         Vector2 screenCenterPoint = new Vector2(Screen.width / 2, Screen.height / 2);
         Ray ray = Camera.main.ScreenPointToRay(screenCenterPoint);
-        if (Physics.Raycast(ray, out RaycastHit raycastHit, 999f, aimColliderLayerMask))
+        if (Physics.Raycast(ray, out RaycastHit raycastHit, gunData.maxDistance, aimColliderLayerMask))
         {
+            //Va directo al punto de colision
             debugTransform.position = raycastHit.point;
             mouseWorldPosition = raycastHit.point;
             Debug.DrawLine(ray.origin, raycastHit.point, Color.red);
+        }
+        else
+        {
+            //Va hasta la distancia maxima y luego lo que dios quiera
+            debugTransform.position = ray.GetPoint(gunData.maxDistance);
+            mouseWorldPosition = ray.GetPoint(gunData.maxDistance);
+            Debug.DrawLine(ray.origin, ray.GetPoint(gunData.maxDistance), Color.green);
         }
 
         //HabilitiesCooldown

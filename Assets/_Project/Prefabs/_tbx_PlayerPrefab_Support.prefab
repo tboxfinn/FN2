@@ -1290,7 +1290,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3663744925477247426}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.012865631, y: 0.98704207, z: -0.10610003, w: 0.119688176}
+  m_LocalRotation: {x: 0.01286563, y: 0.98704207, z: -0.10610003, w: 0.119688176}
   m_LocalPosition: {x: -0.0046542017, y: 1.9927161, z: 4.0816693}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2122,11 +2122,12 @@ MonoBehaviour:
   cam: {fileID: 4694768004846666575}
   aimColliderLayerMask:
     serializedVersion: 2
-    m_Bits: 1217
+    m_Bits: 3265
   debugTransform: {fileID: 3910236614365632655}
   animator: {fileID: 5995152513564657329}
   pfBulletProjectile: {fileID: 9009434813405135846, guid: 5ee12180f3c84024ca60b6ab065ca6eb, type: 3}
   spawnBulletPosition: {fileID: 2091249502445045449}
+  gunData: {fileID: 11400000, guid: f0e9d4d6002180b4eb9cf28ab29dc723, type: 2}
   playerMovementScript: {fileID: 7755674064859056182}
   effectDuration: 5
   initialMoveSpeed: 0
@@ -2673,7 +2674,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5297663482151698622}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.011449694, y: 0.9882275, z: -0.094423115, w: 0.11983192}
+  m_LocalRotation: {x: 0.011449693, y: 0.9882275, z: -0.09442311, w: 0.11983192}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4806,6 +4807,7 @@ GameObject:
   - component: {fileID: 9130192065572848823}
   - component: {fileID: 5267855703137078034}
   - component: {fileID: 7998350692434624472}
+  - component: {fileID: 5085028855926093650}
   m_Layer: 0
   m_Name: gun_single
   m_TagString: Untagged
@@ -4881,6 +4883,21 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &5085028855926093650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8502556281964273165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 709c0bf0ef2fb164aa813f7c30f376a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gunData: {fileID: 11400000, guid: f0e9d4d6002180b4eb9cf28ab29dc723, type: 2}
+  muzzle: {fileID: 2091249502445045449}
+  tbxBase: {fileID: 8775133261987224889}
 --- !u!1 &8658849036891515211
 GameObject:
   m_ObjectHideFlags: 0
