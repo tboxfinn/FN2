@@ -21,7 +21,7 @@ public class _tbx_BaseClass : NetworkBehaviour
     public float maxHealth;
 
     [Header("Habilidad1")]
-    public Sprite spriteHab1;
+    //public Sprite spriteHab1;
     public Image imageHab1Normal;
     public Image imageHab1;
     public TMP_Text textHab1;
@@ -30,7 +30,7 @@ public class _tbx_BaseClass : NetworkBehaviour
     [SerializeField] private float currentCooldownHab1;
 
     [Header("Habilidad2")]
-    public Sprite spriteHab2;
+    //public Sprite spriteHab2;
     public Image imageHab2Normal;
     public Image imageHab2;
     public TMP_Text textHab2;
@@ -39,7 +39,7 @@ public class _tbx_BaseClass : NetworkBehaviour
     [SerializeField] private float currentCooldownHab2;
 
     [Header("Habilidad3")]
-    public Sprite spriteHab3;
+    //public Sprite spriteHab3;
     public Image imageHab3Normal;
     public Image imageHab3;
     public TMP_Text textHab3;
@@ -103,7 +103,7 @@ public class _tbx_BaseClass : NetworkBehaviour
         textHab2.text = "";
         textHab3.text = "";
         
-        if(spriteHab1 != null && imageHab1 != null)
+        /*if(spriteHab1 != null && imageHab1 != null)
         {
             imageHab1.sprite = spriteHab1;
             imageHab1Normal.sprite = spriteHab1;
@@ -117,7 +117,7 @@ public class _tbx_BaseClass : NetworkBehaviour
         {
             imageHab3.sprite = spriteHab3;
             imageHab3Normal.sprite = spriteHab3;
-        }
+        }*/
 
     }
 
@@ -188,7 +188,7 @@ public class _tbx_BaseClass : NetworkBehaviour
 
         timeSinceLastShot += Time.deltaTime;
         //Basic Shoot
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0) && !gunData.reloading)
         {
             shootInput?.Invoke();
             animator.SetLayerWeight(1, Mathf.Lerp(animator.GetLayerWeight(1), 1f, Time.deltaTime * 10f));
@@ -199,6 +199,11 @@ public class _tbx_BaseClass : NetworkBehaviour
 
         //ReloadInput
         if (Input.GetKeyDown(ReloadKey))
+        {
+            reloadInput?.Invoke();
+        }
+
+        if (gunData.currentAmmo <= 0)
         {
             reloadInput?.Invoke();
         }
@@ -239,19 +244,6 @@ public class _tbx_BaseClass : NetworkBehaviour
         
     }
 
-    public void Reload()
-    {
-        if (!IsOwner)
-        {
-            return;
-        }
-
-        if (!isReloading && actualBullets < magazineSize)
-        {
-            isReloading = true;
-            timeSinceReloadStarted = 0f;
-        }
-    }
 
     private void CooldownHab(ref float currentCooldown, float maxCooldown, ref bool isOnCooldown, Image skillImage, TMP_Text skillText)
     {

@@ -19,10 +19,16 @@ public class _tbx_UtilityClass : _tbx_BaseClass
     // Current number of ability objects that are alive
     private int cantidadHabilidad1Actual = 0;
 
+    [Header("Habilidad2")]
+    public float velocidadDeTiroInicial;
+    public float tiempoHabilidad2;
+    
+
     [Header("References")]
     // Reference to the player object
     public GameObject player;
     public GameObject playerObj;
+    public GunData gunData;
 
     public override void Start()
     {
@@ -30,6 +36,7 @@ public class _tbx_UtilityClass : _tbx_BaseClass
 
         // Find the player object in the scene
         player = GameObject.FindGameObjectWithTag("Player");
+        velocidadDeTiroInicial = gunData.fireRate;
     }
 
     // Spawn a new ability object
@@ -75,6 +82,14 @@ public class _tbx_UtilityClass : _tbx_BaseClass
     public override void Habilidad2()
     {
         Debug.Log("Habilidad 2 - Utility");
+        StartCoroutine(ChangeFirerate());
+    }
+
+    private IEnumerator ChangeFirerate()
+    {
+        gunData.fireRate = gunData.fireRate * 1.5f;
+        yield return new WaitForSeconds(tiempoHabilidad2);
+        gunData.fireRate = velocidadDeTiroInicial;
     }
 
     // Perform the third ability
