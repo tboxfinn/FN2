@@ -2134,7 +2134,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3494043834218092331}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.12282627, y: 0.7190945, z: -0.13159207, w: 0.67119324}
+  m_LocalRotation: {x: 0.12282626, y: 0.7190945, z: -0.13159205, w: 0.67119324}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2377,14 +2377,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3798087340155409941}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.011759595, y: 0.81097645, z: 0.5846558, w: -0.01888352}
+  m_LocalRotation: {x: -0.03806076, y: 0.7994637, z: 0.5995072, w: -0.00059265643}
   m_LocalPosition: {x: 0, y: 0.482, z: -0.044}
   m_LocalScale: {x: 0.86742, y: 0.86742, z: 0.86742}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5069190648676736867}
   m_Father: {fileID: 8684670533109074340}
-  m_LocalEulerAnglesHint: {x: -71.413, y: 188.003, z: -7.418}
+  m_LocalEulerAnglesHint: {x: -73.44, y: 189.407, z: -12.475}
 --- !u!33 &599417910097625866
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -3087,7 +3087,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5025545192353103337}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.13510299, y: 0.71656287, z: -0.14474493, w: 0.6688302}
+  m_LocalRotation: {x: 0.13510297, y: 0.71656287, z: -0.14474493, w: 0.6688302}
   m_LocalPosition: {x: -3.2487328, y: 2.8176289, z: 0.29312152}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3309,24 +3309,22 @@ MonoBehaviour:
   Hab2: 50
   Hab3: 51
   ReloadKey: 114
+  CancelReloadKey: 0
   ActionKey: 101
   health: 100
   maxHealth: 100
-  spriteHab1: {fileID: 21300000, guid: 2c31b46065aa6b442a9f63a8073056b4, type: 3}
   imageHab1Normal: {fileID: 4368231213721528491}
   imageHab1: {fileID: 3615267189815868941}
   textHab1: {fileID: 6870756230916225222}
   cooldownHab1: 9
   isHab1OnCooldown: 0
   currentCooldownHab1: 0
-  spriteHab2: {fileID: 21300000, guid: 843c7409cf4f01f47a9e4bda6e6b7727, type: 3}
   imageHab2Normal: {fileID: 8940366340416476636}
   imageHab2: {fileID: 1702365780535094552}
   textHab2: {fileID: 7821404585702734083}
   cooldownHab2: 15
   isHab2OnCooldown: 0
   currentCooldownHab2: 0
-  spriteHab3: {fileID: 21300000, guid: 4c712e940e0a8c448ae5e7aac627ecab, type: 3}
   imageHab3Normal: {fileID: 6259868866367763948}
   imageHab3: {fileID: 2506119425987824223}
   textHab3: {fileID: 1619692441083426634}
@@ -4275,7 +4273,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7760640659556373264}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.108955644, y: 0.7216558, z: -0.116731524, w: 0.673584}
+  m_LocalRotation: {x: 0.108955644, y: 0.72165585, z: -0.116731524, w: 0.6735839}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

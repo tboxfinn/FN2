@@ -58,14 +58,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 158063786482164158}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0.00000010430813, y: -0.000000014901161, z: 0.07001111, w: 0.99754626}
   m_LocalPosition: {x: 0.009, y: 0.065, z: -0.008}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2115294405559217607}
   m_Father: {fileID: 5285193564515308560}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 8.029}
 --- !u!33 &4527671325524767905
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1676,7 +1676,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2746539156653107487}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.00064097106, y: 0.99161386, z: -0.12914108, w: -0.0049217166}
+  m_LocalRotation: {x: -0.0006409745, y: 0.99161386, z: -0.12914108, w: -0.004921743}
   m_LocalPosition: {x: 1.0383413, y: 2.0917218, z: 3.8623421}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2971,6 +2971,7 @@ MonoBehaviour:
   Hab2: 50
   Hab3: 51
   ReloadKey: 0
+  CancelReloadKey: 0
   ActionKey: 101
   health: 100
   maxHealth: 100
@@ -3494,7 +3495,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6686870302733650991}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.00057953136, y: 0.99314755, z: -0.11676215, w: -0.004929338}
+  m_LocalRotation: {x: -0.00057953235, y: 0.99314755, z: -0.11676215, w: -0.004929347}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
