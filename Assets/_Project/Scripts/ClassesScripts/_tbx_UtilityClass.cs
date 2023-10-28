@@ -25,6 +25,10 @@ public class _tbx_UtilityClass : _tbx_BaseClass
     [Header("Habilidad2")]
     public float velocidadDeTiroInicial;
     public float tiempoHabilidad2;
+
+    [Header("Habilidad3")]
+    public GameObject prefabHabilidad3;
+    public float tiempoHabilidad3;
     
 
     [Header("References")]
@@ -116,7 +120,17 @@ public class _tbx_UtilityClass : _tbx_BaseClass
     public override void Habilidad3()
     {
         Debug.Log("Habilidad 3 - Utility");
+        StartCoroutine(EscudoGiratorio());
     }
+
+    private IEnumerator EscudoGiratorio()
+    {
+        GameObject newHabilidad3Object = Instantiate(prefabHabilidad3, playerObj.transform.position, Quaternion.identity);
+        newHabilidad3Object.transform.parent = playerObj.transform;
+        yield return new WaitForSeconds(tiempoHabilidad3);
+        Destroy(newHabilidad3Object);
+    }
+
     public override void Shoot()
     {
         if (Hab1Selected && gunData.currentAmmo == 1)

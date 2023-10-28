@@ -1594,7 +1594,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2617373380208560353}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.00047773085, y: 0.99534464, z: -0.096251965, w: -0.0049402304}
+  m_LocalRotation: {x: -0.00047773428, y: 0.99534464, z: -0.09625197, w: -0.0049402653}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2990,7 +2990,7 @@ MonoBehaviour:
   imageHab3Normal: {fileID: 2395609516317195069}
   imageHab3: {fileID: 2905711736571142206}
   textHab3: {fileID: 3311315590745662868}
-  cooldownHab3: 5
+  cooldownHab3: 30
   isHab3OnCooldown: 0
   currentCooldownHab3: 0
   fireRate: 0.5
@@ -3018,6 +3018,8 @@ MonoBehaviour:
   tiempoHabilidad1: 5
   velocidadDeTiroInicial: 0
   tiempoHabilidad2: 4
+  prefabHabilidad3: {fileID: 5017820872573659632, guid: 6a023a53a46548f4898c8f530ab5c77e, type: 3}
+  tiempoHabilidad3: 7
   player: {fileID: 5395728519113200101}
   playerObj: {fileID: 7238975398894358656}
 --- !u!114 &8900586045773917160
