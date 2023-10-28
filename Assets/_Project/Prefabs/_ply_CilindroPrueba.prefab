@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 6540614705554739209}
   - component: {fileID: 794540930183308339}
   - component: {fileID: 5591709809141127467}
+  - component: {fileID: 4856738700451716079}
+  - component: {fileID: 8571716685673666151}
   m_Layer: 0
   m_Name: _ply_CilindroPrueba
   m_TagString: ZonaCurativa
@@ -157,3 +159,45 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 3, y: 2.2974086, z: 3.0000002}
   m_Center: {x: 0.00000011920929, y: 0.14870441, z: -0.00000011920929}
+--- !u!114 &4856738700451716079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7149912896524039529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 528eaea4c42571f4eb29c85388cdc20e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SyncPositionX: 1
+  SyncPositionY: 1
+  SyncPositionZ: 1
+  SyncRotAngleX: 1
+  SyncRotAngleY: 1
+  SyncRotAngleZ: 1
+  SyncScaleX: 1
+  SyncScaleY: 1
+  SyncScaleZ: 1
+  PositionThreshold: 0.001
+  RotAngleThreshold: 0.01
+  ScaleThreshold: 0.01
+  UseQuaternionSynchronization: 0
+  UseQuaternionCompression: 0
+  UseHalfFloatPrecision: 0
+  InLocalSpace: 0
+  Interpolate: 1
+  SlerpPosition: 0
+--- !u!114 &8571716685673666151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7149912896524039529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6c0be61502bb534f922ebb746851216, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
