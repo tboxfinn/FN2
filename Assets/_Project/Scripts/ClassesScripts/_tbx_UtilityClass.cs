@@ -12,12 +12,15 @@ public class _tbx_UtilityClass : _tbx_BaseClass
 
     [Header("Habilidad1")]
     // Reference to the prefab for the ability object
-    public List<GameObject> habilidad1Objects = new List<GameObject>();
-    public GameObject prefabHabilidad1;
+    //public List<GameObject> habilidad1Objects = new List<GameObject>();
+    //public GameObject prefabHabilidad1;
     // Maximum number of ability objects that can be alive at the same time
-    public int cantidadMaxHabilidad1;
+   // public int cantidadMaxHabilidad1;
     // Current number of ability objects that are alive
-    private int cantidadHabilidad1Actual = 0;
+    //private int cantidadHabilidad1Actual = 0;
+    public Transform PrefabBalaStun;
+    public bool Hab1Selected;
+    public float tiempoHabilidad1;
 
     [Header("Habilidad2")]
     public float velocidadDeTiroInicial;
@@ -28,15 +31,15 @@ public class _tbx_UtilityClass : _tbx_BaseClass
     // Reference to the player object
     public GameObject player;
     public GameObject playerObj;
-    public GunData gunData;
 
     public override void Start()
     {
         base.Start();
-
+        gunData.fireRate = 300;
         // Find the player object in the scene
         player = GameObject.FindGameObjectWithTag("Player");
         velocidadDeTiroInicial = gunData.fireRate;
+        
     }
 
     // Spawn a new ability object
@@ -44,7 +47,9 @@ public class _tbx_UtilityClass : _tbx_BaseClass
     {
         Debug.Log("Utility - BearTrap");
         // Check if we can spawn a new ability object
-        if (cantidadHabilidad1Actual < cantidadMaxHabilidad1)
+        StartCoroutine(StunBullets());
+        
+        /*if (cantidadHabilidad1Actual < cantidadMaxHabilidad1)
         {
             // Spawn a new ability object in front of the player
             GameObject newHabilidad1Object = Instantiate(prefabHabilidad1, playerObj.transform.position + playerObj.transform.forward * distanciaSpawnHabilidad1, Quaternion.identity);
@@ -75,19 +80,34 @@ public class _tbx_UtilityClass : _tbx_BaseClass
 
             // Add the new object to the list of spawned objects
             habilidad1Objects.Add(newHabilidad1Object);
-        }
+        }*/
+    }
+
+    private IEnumerator StunBullets()
+    {
+        
+        gunData.currentAmmo = 1;
+        //gunData.fireRate = 10f;
+        Hab1Selected = true;
+
+        yield return new WaitForSeconds(gunData.reloadTime-0.1f);
+
+        Hab1Selected = false;
+        gunData.fireRate = velocidadDeTiroInicial;
+        
     }
 
     // Perform the second ability
     public override void Habilidad2()
     {
-        Debug.Log("Habilidad 2 - Utility");
+        Debug.Log("Habilidad 2 - AumentoVelDisparo");
         StartCoroutine(ChangeFirerate());
+        cancelReloadInput?.Invoke();
     }
 
     private IEnumerator ChangeFirerate()
     {
-        gunData.fireRate = gunData.fireRate * 1.5f;
+        gunData.fireRate *= 2f;
         yield return new WaitForSeconds(tiempoHabilidad2);
         gunData.fireRate = velocidadDeTiroInicial;
     }
@@ -99,9 +119,21 @@ public class _tbx_UtilityClass : _tbx_BaseClass
     }
     public override void Shoot()
     {
-        Debug.Log("Disparo2");
+        if (Hab1Selected && gunData.currentAmmo == 1)
+        {
+            Debug.Log("Disparo2");
 
-        Vector3 aimDir = mouseWorldPosition - spawnBulletPosition.position;
-        Instantiate(pfBulletProjectile, spawnBulletPosition.position, Quaternion.LookRotation(aimDir, Vector3.up));
+            Vector3 aimDir = mouseWorldPosition - spawnBulletPosition.position;
+            Instantiate(PrefabBalaStun, spawnBulletPosition.position, Quaternion.LookRotation(aimDir, Vector3.up));
+        }
+        else
+        {
+            Debug.Log("Disparo1");
+
+            Vector3 aimDir = mouseWorldPosition - spawnBulletPosition.position;
+            Instantiate(pfBulletProjectile, spawnBulletPosition.position, Quaternion.LookRotation(aimDir, Vector3.up));
+        }
+
+        
     }
 }

@@ -14,6 +14,7 @@ public class _tbx_BaseClass : NetworkBehaviour
     public KeyCode Hab2;
     public KeyCode Hab3;
     public KeyCode ReloadKey;
+    public KeyCode CancelReloadKey;
     public KeyCode ActionKey;
 
     [Header("Stats")]
@@ -67,10 +68,11 @@ public class _tbx_BaseClass : NetworkBehaviour
     [SerializeField] private Animator animator;
      [SerializeField] public Transform pfBulletProjectile;
     [SerializeField] public Transform spawnBulletPosition;
-    [SerializeField] GunData gunData;
+    [SerializeField] public GunData gunData;
 
     public static Action shootInput;
     public static Action reloadInput;
+    public static Action cancelReloadInput;
 
     public virtual void Awake()
     {
@@ -92,6 +94,7 @@ public class _tbx_BaseClass : NetworkBehaviour
         Hab2 = KeyCode.Alpha2;
         Hab3 = KeyCode.Alpha3;
         ReloadKey = KeyCode.R;
+        CancelReloadKey = KeyCode.T;
         Debug.Log("Base Class");
 
         //Habilidades
@@ -208,15 +211,9 @@ public class _tbx_BaseClass : NetworkBehaviour
             reloadInput?.Invoke();
         }
 
-        //Reload
-        if (isReloading)
+        if (Input.GetKeyDown(CancelReloadKey))
         {
-            timeSinceReloadStarted += Time.deltaTime;
-            if (timeSinceReloadStarted >= reloadTime)
-            {
-                actualBullets = magazineSize;
-                isReloading = false;
-            }
+            cancelReloadInput?.Invoke();
         }
 
         //Aim

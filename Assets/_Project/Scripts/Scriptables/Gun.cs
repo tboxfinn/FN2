@@ -16,6 +16,7 @@ public class Gun : MonoBehaviour
     {
         _tbx_BaseClass.shootInput += Shoot;
         _tbx_BaseClass.reloadInput += StartReload;
+        _tbx_BaseClass.cancelReloadInput += CancelReload;
 
         gunData.currentAmmo = gunData.magSize;
         gunData.reloading = false;
@@ -38,6 +39,16 @@ public class Gun : MonoBehaviour
         gunData.currentAmmo = gunData.magSize;
 
         gunData.reloading = false;
+
+    }
+
+    public void CancelReload()
+    {
+        if (gunData.reloading)
+        {
+            StopCoroutine(Reload());
+            gunData.reloading = false;
+        }
     }
 
     private bool CanShoot() => !gunData.reloading && timeSinceLastShot >= 1 / (gunData.fireRate / 60);
