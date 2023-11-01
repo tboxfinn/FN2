@@ -74,6 +74,9 @@ public class _alx_GameManager : NetworkBehaviour
             case GameStates.pause:
                 // Aqui se obtiene el elemento del canvas y se activa en caso de que se pausee
                 break;
+            case GameStates.mainMenu: 
+                
+                break;
         }
 
         currentGameState = newGameState;
