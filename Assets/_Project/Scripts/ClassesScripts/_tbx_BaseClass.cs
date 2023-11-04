@@ -63,6 +63,7 @@ public class _tbx_BaseClass : NetworkBehaviour
 
     [Header("BaseReferences")]
     public Camera cam;
+    public int teamID;
     [SerializeField] private LayerMask aimColliderLayerMask = new LayerMask();
     [SerializeField] private Transform debugTransform;
     [SerializeField] private Animator animator;
@@ -81,7 +82,7 @@ public class _tbx_BaseClass : NetworkBehaviour
     }
     public virtual void Start()
     {
-        if (!IsOwner)
+        if (!IsLocalPlayer)
         {
             return;
         }
@@ -106,27 +107,12 @@ public class _tbx_BaseClass : NetworkBehaviour
         textHab2.text = "";
         textHab3.text = "";
         
-        /*if(spriteHab1 != null && imageHab1 != null)
-        {
-            imageHab1.sprite = spriteHab1;
-            imageHab1Normal.sprite = spriteHab1;
-        }
-        if(spriteHab2 != null && imageHab2 != null)
-        {
-            imageHab2.sprite = spriteHab2;
-            imageHab2Normal.sprite = spriteHab2;
-        }
-        if(spriteHab3 != null && imageHab3 != null)
-        {
-            imageHab3.sprite = spriteHab3;
-            imageHab3Normal.sprite = spriteHab3;
-        }*/
 
     }
 
     public void TakeDamage(float damage)
     {
-        if (!IsOwner)
+        if (!IsLocalPlayer)
         {
             return;
         }
@@ -140,7 +126,7 @@ public class _tbx_BaseClass : NetworkBehaviour
 
     public void Heal(float heal)
     {
-        if (!IsOwner)
+        if (!IsLocalPlayer)
         {
             return;
         }
@@ -154,7 +140,7 @@ public class _tbx_BaseClass : NetworkBehaviour
 
     public void Update()
     {
-        if (!IsOwner)
+        if (!IsLocalPlayer)
         {
             return;
         }
@@ -244,7 +230,7 @@ public class _tbx_BaseClass : NetworkBehaviour
 
     private void CooldownHab(ref float currentCooldown, float maxCooldown, ref bool isOnCooldown, Image skillImage, TMP_Text skillText)
     {
-        if (!IsOwner)
+        if (!IsLocalPlayer)
         {
             return;
         }
