@@ -26,6 +26,8 @@ public class _tbx_SupportClass : _tbx_BaseClass
     public int cantidadMaxHabilidad1;
     private int cantidadHabilidad1Actual = 0;
 
+    public _ply_PlayerHealth playerHealth;
+
     public override void Start()
     {
         base.Start();
@@ -55,7 +57,7 @@ public class _tbx_SupportClass : _tbx_BaseClass
 
     public override void Habilidad1()
     {
-        Debug.Log("Habilidad 1- Support");
+        Debug.Log("Lanzar bomba de humo");
         if (cantidadHabilidad1Actual < cantidadMaxHabilidad1)
         {
             // Spawn a new ability object in front of the player
@@ -71,6 +73,11 @@ public class _tbx_SupportClass : _tbx_BaseClass
             // Increment the current number of ability objects
             cantidadHabilidad1Actual++;
             Destroy(newHabilidad1Object, 5f);
+
+            // Increase player movement speed
+            playerMovementScript.moveSpeed += 6;
+            // Start a coroutine to reset the values after a delay
+            StartCoroutine(ResetMovementValues());
         }
         else
         {
@@ -88,12 +95,17 @@ public class _tbx_SupportClass : _tbx_BaseClass
 
             // Add the new object to the list of spawned objects
             habilidad2Objects.Add(newHabilidad1Object);
+
+            // Increase player movement speed
+            playerMovementScript.moveSpeed += 6;
+            // Start a coroutine to reset the values after a delay
+            StartCoroutine(ResetMovementValues());
         }
     }
 
     public override void Habilidad2()
     {
-        Debug.Log("Habilidad 2- Support");
+        Debug.Log("Spawnear Baliza de curación");
         if (cantidadHabilidad2Actual < cantidadMaxHabilidad2)
         {
             // Spawn a new ability object in front of the player
@@ -131,19 +143,16 @@ public class _tbx_SupportClass : _tbx_BaseClass
 
     public override void Habilidad3()
     {
-        Debug.Log("Habilidad 3- Support");
+        Debug.Log("Agrandar");
 
         Debug.Log("Reduce speed");
         // Reduce player movement speed
-        playerMovementScript.moveSpeed = playerMovementScript.moveSpeed - 3;
+        playerMovementScript.moveSpeed -= 4;
         // Start a coroutine to reset the values after a delay
         StartCoroutine(ResetMovementValues());
 
-        if (_ply_PlayerHealth.instance != null)
-        {
-            _ply_PlayerHealth.instance.IncreaseHealth();
-        }
-
+        //Increase health and scale
+        playerHealth.IncreaseHealth();
     }
 
     public override void Shoot()
