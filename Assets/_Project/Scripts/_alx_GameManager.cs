@@ -7,6 +7,8 @@ public class _alx_GameManager : NetworkBehaviour
 {
     public static _alx_GameManager singleton;
     public GameStates currentGameState;
+    [Header("Elementos UI")]
+    public GameObject pause;
 
     [Header("Lista de clases")]
     // Esta lista se crea en caso de que en un futuro requiramos m�s clases
@@ -24,6 +26,26 @@ public class _alx_GameManager : NetworkBehaviour
         else
         {
             Destroy(gameObject);
+        }
+
+        pause.SetActive(false);
+    }
+
+    private void Update() 
+    {
+        if (currentGameState == GameStates.inGame)
+        {
+            if(Input.GetKeyDown(KeyCode.Escape))
+            {
+                SetNewGameState(GameStates.pause);
+            }
+        }
+        else if (currentGameState == GameStates.pause)
+        {
+            if(Input.GetKeyDown(KeyCode.Escape))
+            {
+                SetNewGameState(GameStates.inGame);
+            }
         }
     }
 
