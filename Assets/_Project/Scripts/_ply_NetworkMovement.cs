@@ -43,17 +43,21 @@ public class _ply_NetworkMovement : NetworkBehaviour
 
     void Update()
     {
-        //Ground Check
-        isGrounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
+        // Unicamente se ejecuta cuando este en estado juego, si cauza problemas, quitar este if
+        if(_alx_GameManager.singleton.currentGameState == GameStates.inGame)
+        {
+            //Ground Check
+            isGrounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
 
-        MyInput();
-        SpeedControl();
+            MyInput();
+            SpeedControl();
 
-        //Manejar el drag
-        if (isGrounded)
-            rb.drag = groundDrag;
-        else
-            rb.drag = 0f;
+            //Manejar el drag
+            if (isGrounded)
+                rb.drag = groundDrag;
+            else
+                rb.drag = 0f;
+        }
     }
 
     void FixedUpdate()

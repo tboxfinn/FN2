@@ -9,7 +9,7 @@ public class _alx_GameManager : NetworkBehaviour
     public GameStates currentGameState;
 
     [Header("Lista de clases")]
-    // Esta lista se crea en caso de que en un futuro requiramos más clases
+    // Esta lista se crea en caso de que en un futuro requiramos mï¿½s clases
     public List<GameObject> listaClases = new List<GameObject>();
 
 
@@ -34,7 +34,7 @@ public class _alx_GameManager : NetworkBehaviour
             // Checa cual es utility
             if (listaClases[i].gameObject.CompareTag("Utility"))
             {
-                // Aquí instancia el prefab
+                // Aquï¿½ instancia el prefab
 
             }
         }
@@ -47,7 +47,7 @@ public class _alx_GameManager : NetworkBehaviour
             // Checa cual es utility
             if (listaClases[i].gameObject.CompareTag("Asault"))
             {
-                // Aquí instancia el prefab
+                // Aquï¿½ instancia el prefab
 
             }
         }
@@ -60,7 +60,7 @@ public class _alx_GameManager : NetworkBehaviour
             // Checa cual es utility
             if (listaClases[i].gameObject.CompareTag("Suport"))
             {
-                // Aquí instancia el prefab
+                // Aquï¿½ instancia el prefab
 
             }
         }
@@ -86,10 +86,11 @@ public class _alx_GameManager : NetworkBehaviour
 
 public enum GameStates
 {
-    // Aquí se añaden los estados del juego que se vayan a usar
+    // Aquï¿½ se aï¿½aden los estados del juego que se vayan a usar
     // Requiero ver con Portly como hacer esta parte si quiere que sea unica o netcode
     mainMenu,
     pause,
+    inGame,
 
     // Estos tres tal vez de network behaviour
     playerSelector,
