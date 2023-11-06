@@ -1,38 +1,53 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.UIElements;
 using UnityEngine.EventSystems;
 
 public class _chr_OnHoverBtns : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    [SerializeField] bool IsOnHover;
+    public ButtonType BtnType;
+
+    [Header("Normal Buttons (Resume, Quit, Config, Etc)")]
+    [SerializeField] private UnityEngine.UI.Image AuraNormalBtn;
+
+    [Header("Character Buttons")]
+    [SerializeField] private UnityEngine.UI.Image AuraCharacterBtn;
     // Start is called before the first frame update
     void Start()
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OnPointerEnter(PointerEventData eventData)
     {
-        switch(IsOnHover){
-            case true:
-            transform.localScale = new Vector3(1.5f, 1.5f, 0);
+        switch(BtnType){
+            case ButtonType.Normal:
+            AuraNormalBtn.color = new Color(AuraNormalBtn.color.r, AuraNormalBtn.color.g, AuraNormalBtn.color.b, 1f);
             break;
 
-            case false:
-            transform.localScale = new Vector3(1, 1, 0);
+            case ButtonType.Character:
+            AuraCharacterBtn.color = new Color(AuraNormalBtn.color.r, AuraNormalBtn.color.g, AuraNormalBtn.color.b, 1f);
             break;
         }
     }
 
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        IsOnHover = true;
-    }
-
     public void OnPointerExit(PointerEventData eventData)
     {
-        IsOnHover = false;
+            switch(BtnType){
+            case ButtonType.Normal:
+            AuraNormalBtn.color = new Color(AuraNormalBtn.color.r, AuraNormalBtn.color.g, AuraNormalBtn.color.b, 0.5f);
+            break;
+
+            case ButtonType.Character:
+            AuraCharacterBtn.color = new Color(AuraNormalBtn.color.r, AuraNormalBtn.color.g, AuraNormalBtn.color.b, 0f);
+            break;
+        }
     }
+}
+
+public enum ButtonType{
+    Normal,
+    Character
 }
