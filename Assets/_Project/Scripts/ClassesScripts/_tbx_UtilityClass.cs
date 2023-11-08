@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,14 +12,7 @@ public class _tbx_UtilityClass : _tbx_BaseClass
     public float distanciaSpawnHabilidad1;
 
     [Header("Habilidad1")]
-    // Reference to the prefab for the ability object
-    //public List<GameObject> habilidad1Objects = new List<GameObject>();
-    //public GameObject prefabHabilidad1;
-    // Maximum number of ability objects that can be alive at the same time
-   // public int cantidadMaxHabilidad1;
-    // Current number of ability objects that are alive
-    //private int cantidadHabilidad1Actual = 0;
-    public Transform PrefabBalaStun;
+    public GameObject PrefabBalaStun;
     public bool Hab1Selected;
     public float tiempoHabilidad1;
 
@@ -36,6 +30,8 @@ public class _tbx_UtilityClass : _tbx_BaseClass
     public GameObject player;
     public GameObject playerObj;
 
+    public bool ClientID { get; private set; }
+
     public override void Start()
     {
         if (!IsLocalPlayer) return;
@@ -43,7 +39,7 @@ public class _tbx_UtilityClass : _tbx_BaseClass
         base.Start();
         gunData.fireRate = 300;
         // Find the player object in the scene
-        player = GameObject.FindGameObjectWithTag("Player");
+        //player = GameObject.FindGameObjectWithTag("Player");
         velocidadDeTiroInicial = gunData.fireRate;
         
     }
@@ -216,10 +212,14 @@ public class _tbx_UtilityClass : _tbx_BaseClass
 
     private IEnumerator EscudoGiratorio()
     {
-        GameObject newHabilidad3Object = Instantiate(prefabHabilidad3, playerObj.transform.position, Quaternion.identity);
-        newHabilidad3Object.transform.parent = playerObj.transform;
+        GameObject Escudo = Instantiate(prefabHabilidad3, playerObj.transform.position, Quaternion.identity);
+        Escudo.GetComponent<NetworkObject>().Spawn(ClientID);
+
+        //Escudo.transform.parent = playerObj.transform;
+        Escudo.transform.position = playerObj.transform.position;
+
         yield return new WaitForSeconds(tiempoHabilidad3);
-        Destroy(newHabilidad3Object);
+        Destroy(Escudo);
     }
 
     public override void Shoot()
@@ -229,14 +229,20 @@ public class _tbx_UtilityClass : _tbx_BaseClass
             Debug.Log("Disparo2");
 
             Vector3 aimDir = mouseWorldPosition - spawnBulletPosition.position;
-            Instantiate(PrefabBalaStun, spawnBulletPosition.position, Quaternion.LookRotation(aimDir, Vector3.up));
+            //Instantiate(PrefabBalaStun, spawnBulletPosition.position, Quaternion.LookRotation(aimDir, Vector3.up));
+            //NetworkPrefab
+            GameObject bullet = Instantiate(PrefabBalaStun, spawnBulletPosition.position, Quaternion.LookRotation(aimDir, Vector3.up));
+            bullet.GetComponent<NetworkObject>().Spawn(ClientID);
         }
         else
         {
             Debug.Log("Disparo1");
 
             Vector3 aimDir = mouseWorldPosition - spawnBulletPosition.position;
-            Instantiate(pfBulletProjectile, spawnBulletPosition.position, Quaternion.LookRotation(aimDir, Vector3.up));
+            //Instantiate(pfBulletProjectile, spawnBulletPosition.position, Quaternion.LookRotation(aimDir, Vector3.up));
+            //NetworkPrefab
+            GameObject bullet = Instantiate(pfBulletProjectile, spawnBulletPosition.position, Quaternion.LookRotation(aimDir, Vector3.up));
+            bullet.GetComponent<NetworkObject>().Spawn(ClientID);
         }
 
         

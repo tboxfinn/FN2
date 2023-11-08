@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 
 public class _tbx_SupportClass : _tbx_BaseClass
@@ -27,6 +28,8 @@ public class _tbx_SupportClass : _tbx_BaseClass
     private int cantidadHabilidad1Actual = 0;
 
     public _ply_PlayerHealth playerHealth;
+
+    public bool ClientID { get; private set; }
 
     public override void Start()
     {
@@ -153,6 +156,8 @@ public class _tbx_SupportClass : _tbx_BaseClass
         {
             // Spawn a new ability object in front of the player
             GameObject newHabilidad1Object = Instantiate(prefabHabilidad1, playerObj.transform.position + playerObj.transform.forward * distanciaSpawnHabilidad1, Quaternion.identity);
+            newHabilidad1Object.GetComponent<NetworkObject>().Spawn(ClientID); //NetworkPrefab
+
             Rigidbody newHabilidad1ObjectRigidbody = newHabilidad1Object.GetComponent<Rigidbody>();
 
             // Apply force to the ability object
@@ -179,6 +184,8 @@ public class _tbx_SupportClass : _tbx_BaseClass
 
             // Spawn a new ability object in front of the player
             GameObject newHabilidad1Object = Instantiate(prefabHabilidad1, playerObj.transform.position + playerObj.transform.forward * distanciaSpawnHabilidad1, Quaternion.identity);
+            newHabilidad1Object.GetComponent<NetworkObject>().Spawn(ClientID); //NetworkPrefab
+
             Rigidbody newHabilidad1ObjectRigidbody = newHabilidad1Object.GetComponent<Rigidbody>();
 
             // Apply force to the ability object
@@ -201,6 +208,8 @@ public class _tbx_SupportClass : _tbx_BaseClass
         {
             // Spawn a new ability object in front of the player
             GameObject newHabilidad2Object = Instantiate(prefabHabilidad2, playerObj.transform.position + playerObj.transform.forward * distanciaSpawnHabilidad2, Quaternion.identity);
+            newHabilidad2Object.GetComponent<NetworkObject>().Spawn(ClientID); //NetworkPrefab
+
             Rigidbody newHabilidad1ObjectRigidbody = newHabilidad2Object.GetComponent<Rigidbody>();
 
             // Apply force to the ability object
@@ -222,6 +231,8 @@ public class _tbx_SupportClass : _tbx_BaseClass
 
             // Spawn a new ability object in front of the player
             GameObject newHabilidad2Object = Instantiate(prefabHabilidad2, playerObj.transform.position + playerObj.transform.forward * distanciaSpawnHabilidad2, Quaternion.identity);
+            newHabilidad2Object.GetComponent<NetworkObject>().Spawn(ClientID); //NetworkPrefab
+
             Rigidbody newHabilidad2ObjectRigidbody = newHabilidad2Object.GetComponent<Rigidbody>();
 
             // Apply force to the ability object
@@ -251,7 +262,10 @@ public class _tbx_SupportClass : _tbx_BaseClass
         Debug.Log("Disparo3");
 
         Vector3 aimDir = mouseWorldPosition - spawnBulletPosition.position;
-        Instantiate(pfBulletProjectile, spawnBulletPosition.position, Quaternion.LookRotation(aimDir, Vector3.up));
+        //Instantiate(pfBulletProjectile, spawnBulletPosition.position, Quaternion.LookRotation(aimDir, Vector3.up));
+        //NetworkPrefab
+        GameObject bullet = Instantiate(pfBulletProjectile, spawnBulletPosition.position, Quaternion.LookRotation(aimDir, Vector3.up));
+        bullet.GetComponent<NetworkObject>().Spawn(ClientID);
     }
 
     private void HandleHealthChanged(int newHealth, Vector3 newScale)

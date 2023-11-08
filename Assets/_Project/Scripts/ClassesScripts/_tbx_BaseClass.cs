@@ -67,7 +67,7 @@ public class _tbx_BaseClass : NetworkBehaviour
     [SerializeField] public LayerMask aimColliderLayerMask = new LayerMask();
     [SerializeField] public Transform debugTransform;
     [SerializeField] public Animator animator;
-     [SerializeField] public Transform pfBulletProjectile;
+     [SerializeField] public GameObject pfBulletProjectile;
     [SerializeField] public Transform spawnBulletPosition;
     [SerializeField] public GunData gunData;
 

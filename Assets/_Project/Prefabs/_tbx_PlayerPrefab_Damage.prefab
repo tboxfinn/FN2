@@ -326,7 +326,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1877206786, guid: 28572c393c02e64428d08d0513aa77ce, type: 3}
+  m_Sprite: {fileID: -1347186754, guid: 28572c393c02e64428d08d0513aa77ce, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2134,7 +2134,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3494043834218092331}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.12282626, y: 0.7190945, z: -0.13159205, w: 0.67119324}
+  m_LocalRotation: {x: 0.12282627, y: 0.7190945, z: -0.13159207, w: 0.67119324}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2340,7 +2340,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1877206786, guid: 28572c393c02e64428d08d0513aa77ce, type: 3}
+  m_Sprite: {fileID: -1347186754, guid: 28572c393c02e64428d08d0513aa77ce, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3087,7 +3087,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5025545192353103337}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.13510297, y: 0.71656287, z: -0.14474493, w: 0.6688302}
+  m_LocalRotation: {x: 0.13510299, y: 0.71656287, z: -0.14474493, w: 0.6688302}
   m_LocalPosition: {x: -3.2487328, y: 2.8176289, z: 0.29312152}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3341,12 +3341,13 @@ MonoBehaviour:
   raycastDistance: 900
   mouseWorldPosition: {x: 0, y: 0, z: 0}
   cam: {fileID: 105922113527412202}
+  teamID: 0
   aimColliderLayerMask:
     serializedVersion: 2
     m_Bits: 4294967295
   debugTransform: {fileID: 7057722361611784192}
   animator: {fileID: 4918801647266553403}
-  pfBulletProjectile: {fileID: 9009434813405135846, guid: 5ee12180f3c84024ca60b6ab065ca6eb, type: 3}
+  pfBulletProjectile: {fileID: 7462755728064330100, guid: 5ee12180f3c84024ca60b6ab065ca6eb, type: 3}
   spawnBulletPosition: {fileID: 5069190648676736867}
   gunData: {fileID: 11400000, guid: 40ca65093b6fb1b4abc609114b2db408, type: 2}
   playerMovementScript: {fileID: 7397481260740561987}
@@ -3725,7 +3726,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -1347186754, guid: 28572c393c02e64428d08d0513aa77ce, type: 3}
+  m_Sprite: {fileID: 1877206786, guid: 28572c393c02e64428d08d0513aa77ce, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4273,7 +4274,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7760640659556373264}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.108955644, y: 0.72165585, z: -0.116731524, w: 0.6735839}
+  m_LocalRotation: {x: 0.108955644, y: 0.7216558, z: -0.116731524, w: 0.673584}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4758,7 +4759,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -1347186754, guid: 28572c393c02e64428d08d0513aa77ce, type: 3}
+  m_Sprite: {fileID: 1877206786, guid: 28572c393c02e64428d08d0513aa77ce, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1

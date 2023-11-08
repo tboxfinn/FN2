@@ -2257,7 +2257,7 @@ MonoBehaviour:
     m_Bits: 4294967295
   debugTransform: {fileID: 3910236614365632655}
   animator: {fileID: 5995152513564657329}
-  pfBulletProjectile: {fileID: 9009434813405135846, guid: 5ee12180f3c84024ca60b6ab065ca6eb, type: 3}
+  pfBulletProjectile: {fileID: 7462755728064330100, guid: 5ee12180f3c84024ca60b6ab065ca6eb, type: 3}
   spawnBulletPosition: {fileID: 2091249502445045449}
   gunData: {fileID: 11400000, guid: f0e9d4d6002180b4eb9cf28ab29dc723, type: 2}
   playerMovementScript: {fileID: 7755674064859056182}

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Microsoft.Unity.VisualStudio.Editor;
+using Unity.Netcode;
 using UnityEngine;
 
 public class _tbx_DamageClass : _tbx_BaseClass
@@ -24,6 +25,8 @@ public class _tbx_DamageClass : _tbx_BaseClass
     [Header("Throwing")]
     public float throwForce;
     public float throwUpwardForce;
+
+    public bool ClientID { get; private set; }
 
     public override void Awake()
     {
@@ -138,6 +141,7 @@ public class _tbx_DamageClass : _tbx_BaseClass
         Debug.Log("Habilidad 1- Bomba Veneno");
         // Create a new object
         GameObject bombaVeneno = Instantiate(objectToThrow, attackPoint.position, camTransform.rotation);
+        bombaVeneno.GetComponent<NetworkObject>().Spawn(ClientID);
 
         // Get the rigidbody of the new object
         Rigidbody bombaVenRb = bombaVeneno.GetComponent<Rigidbody>();
@@ -179,7 +183,11 @@ public class _tbx_DamageClass : _tbx_BaseClass
         Debug.Log("Disparo2");
 
         Vector3 aimDir = mouseWorldPosition - spawnBulletPosition.position;
-        Instantiate(pfBulletProjectile, spawnBulletPosition.position, Quaternion.LookRotation(aimDir, Vector3.up));
+
+        //Instantiate(pfBulletProjectile, spawnBulletPosition.position, Quaternion.LookRotation(aimDir, Vector3.up));
+        //NetworkPrefab
+        GameObject bullet = Instantiate(pfBulletProjectile, spawnBulletPosition.position, Quaternion.LookRotation(aimDir, Vector3.up));
+        bullet.GetComponent<NetworkObject>().Spawn(ClientID);
     }
 
     // Coroutine to reset the movement values after a delay
