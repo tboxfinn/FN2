@@ -27,8 +27,8 @@ public class _tbx_BaseClass : NetworkBehaviour
     public Image imageHab1;
     public TMP_Text textHab1;
     public float cooldownHab1;
-    [SerializeField] private bool isHab1OnCooldown=false;
-    [SerializeField] private float currentCooldownHab1;
+    [SerializeField] public bool isHab1OnCooldown=false;
+    [SerializeField] public float currentCooldownHab1;
 
     [Header("Habilidad2")]
     //public Sprite spriteHab2;
@@ -36,8 +36,8 @@ public class _tbx_BaseClass : NetworkBehaviour
     public Image imageHab2;
     public TMP_Text textHab2;
     public float cooldownHab2;
-    [SerializeField] private bool isHab2OnCooldown=false;
-    [SerializeField] private float currentCooldownHab2;
+    [SerializeField] public bool isHab2OnCooldown=false;
+    [SerializeField] public float currentCooldownHab2;
 
     [Header("Habilidad3")]
     //public Sprite spriteHab3;
@@ -45,8 +45,8 @@ public class _tbx_BaseClass : NetworkBehaviour
     public Image imageHab3;
     public TMP_Text textHab3;
     public float cooldownHab3;
-    [SerializeField] private bool isHab3OnCooldown=false;
-    [SerializeField] private float currentCooldownHab3;
+    [SerializeField] public bool isHab3OnCooldown=false;
+    [SerializeField] public float currentCooldownHab3;
 
     [Header("BasicShoot")]
     public float fireRate;
@@ -54,8 +54,8 @@ public class _tbx_BaseClass : NetworkBehaviour
     public int magazineSize;
     public int actualBullets;
     public float reloadTime;
-    [SerializeField] private float timeSinceReloadStarted;
-    [SerializeField] private bool isReloading;
+    [SerializeField] public float timeSinceReloadStarted;
+    [SerializeField] public bool isReloading;
 
     [Header("Raycast")]
     public float raycastDistance;
@@ -64,9 +64,9 @@ public class _tbx_BaseClass : NetworkBehaviour
     [Header("BaseReferences")]
     public Camera cam;
     public int teamID;
-    [SerializeField] private LayerMask aimColliderLayerMask = new LayerMask();
-    [SerializeField] private Transform debugTransform;
-    [SerializeField] private Animator animator;
+    [SerializeField] public LayerMask aimColliderLayerMask = new LayerMask();
+    [SerializeField] public Transform debugTransform;
+    [SerializeField] public Animator animator;
      [SerializeField] public Transform pfBulletProjectile;
     [SerializeField] public Transform spawnBulletPosition;
     [SerializeField] public GunData gunData;
@@ -138,7 +138,7 @@ public class _tbx_BaseClass : NetworkBehaviour
         }
     }
 
-    public void Update()
+    /*public void Update()
     {
         if (!IsLocalPlayer)
         {
@@ -225,10 +225,10 @@ public class _tbx_BaseClass : NetworkBehaviour
         CooldownHab(ref currentCooldownHab2, cooldownHab2, ref isHab2OnCooldown, imageHab2, textHab2);
         CooldownHab(ref currentCooldownHab3, cooldownHab3, ref isHab3OnCooldown, imageHab3, textHab3);
         
-    }
+    }*/
 
 
-    private void CooldownHab(ref float currentCooldown, float maxCooldown, ref bool isOnCooldown, Image skillImage, TMP_Text skillText)
+    public void CooldownHab(ref float currentCooldown, float maxCooldown, ref bool isOnCooldown, Image skillImage, TMP_Text skillText)
     {
         if (!IsLocalPlayer)
         {
