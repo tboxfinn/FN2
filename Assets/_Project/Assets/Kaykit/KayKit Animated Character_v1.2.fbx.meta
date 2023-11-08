@@ -674,8 +674,8 @@ ModelImporter:
       name: KayKit Animated Character|Shoot(1h)
       takeName: KayKit Animated Character|Shoot(1h)
       internalID: -1465499701635773613
-      firstFrame: 3
-      lastFrame: 27
+      firstFrame: 5
+      lastFrame: 21
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

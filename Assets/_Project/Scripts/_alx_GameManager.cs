@@ -7,9 +7,11 @@ public class _alx_GameManager : NetworkBehaviour
 {
     public static _alx_GameManager singleton;
     public GameStates currentGameState;
+    [Header("Elementos UI")]
+    public GameObject pausePanel;
 
     [Header("Lista de clases")]
-    // Esta lista se crea en caso de que en un futuro requiramos más clases
+    // Esta lista se crea en caso de que en un futuro requiramos mï¿½s clases
     public List<GameObject> listaClases = new List<GameObject>();
 
 
@@ -27,6 +29,29 @@ public class _alx_GameManager : NetworkBehaviour
         }
     }
 
+    private void Start() 
+    {
+        SetNewGameState(GameStates.inGame);    
+    }
+
+    private void Update() 
+    {
+        if (currentGameState == GameStates.inGame)
+        {
+            if(Input.GetKeyDown(KeyCode.Escape))
+            {
+                SetNewGameState(GameStates.pause);
+            }
+        }
+        else if (currentGameState == GameStates.pause)
+        {
+            if(Input.GetKeyDown(KeyCode.Escape))
+            {
+                SetNewGameState(GameStates.inGame);
+            }
+        }
+    }
+
     public void SetClassUtility()
     {
         for (int i=0;i<listaClases.Count;i++)
@@ -34,7 +59,7 @@ public class _alx_GameManager : NetworkBehaviour
             // Checa cual es utility
             if (listaClases[i].gameObject.CompareTag("Utility"))
             {
-                // Aquí instancia el prefab
+                // Aquï¿½ instancia el prefab
 
             }
         }
@@ -47,7 +72,7 @@ public class _alx_GameManager : NetworkBehaviour
             // Checa cual es utility
             if (listaClases[i].gameObject.CompareTag("Asault"))
             {
-                // Aquí instancia el prefab
+                // Aquï¿½ instancia el prefab
 
             }
         }
@@ -60,7 +85,7 @@ public class _alx_GameManager : NetworkBehaviour
             // Checa cual es utility
             if (listaClases[i].gameObject.CompareTag("Suport"))
             {
-                // Aquí instancia el prefab
+                // Aquï¿½ instancia el prefab
 
             }
         }
@@ -71,9 +96,16 @@ public class _alx_GameManager : NetworkBehaviour
     {
         switch (newGameState)
         {
+            case GameStates.inGame:
+                pausePanel.SetActive(false);
+            break;
             case GameStates.pause:
-                // Aqui se obtiene el elemento del canvas y se activa en caso de que se pausee
-                break;
+                // Aqui se obtiene el elemento del canvas y se activa en caso de que se ponga en pausa
+                pausePanel.SetActive(true);
+            break;
+            case GameStates.mainMenu: 
+                
+            break;
         }
 
         currentGameState = newGameState;
@@ -83,10 +115,11 @@ public class _alx_GameManager : NetworkBehaviour
 
 public enum GameStates
 {
-    // Aquí se añaden los estados del juego que se vayan a usar
+    // Aquï¿½ se aï¿½aden los estados del juego que se vayan a usar
     // Requiero ver con Portly como hacer esta parte si quiere que sea unica o netcode
     mainMenu,
     pause,
+    inGame,
 
     // Estos tres tal vez de network behaviour
     playerSelector,

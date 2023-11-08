@@ -4,14 +4,17 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using Cinemachine;
+using Unity.Netcode;
+using System;
 
-public class _tbx_BaseClass : MonoBehaviour
+public class _tbx_BaseClass : NetworkBehaviour
 {
     [Header("Keybinds")]
     public KeyCode Hab1;
     public KeyCode Hab2;
     public KeyCode Hab3;
     public KeyCode ReloadKey;
+    public KeyCode CancelReloadKey;
     public KeyCode ActionKey;
 
     [Header("Stats")]
@@ -19,31 +22,31 @@ public class _tbx_BaseClass : MonoBehaviour
     public float maxHealth;
 
     [Header("Habilidad1")]
-    public Sprite spriteHab1;
+    //public Sprite spriteHab1;
     public Image imageHab1Normal;
     public Image imageHab1;
     public TMP_Text textHab1;
     public float cooldownHab1;
-    [SerializeField] private bool isHab1OnCooldown=false;
-    [SerializeField] private float currentCooldownHab1;
+    [SerializeField] public bool isHab1OnCooldown=false;
+    [SerializeField] public float currentCooldownHab1;
 
     [Header("Habilidad2")]
-    public Sprite spriteHab2;
+    //public Sprite spriteHab2;
     public Image imageHab2Normal;
     public Image imageHab2;
     public TMP_Text textHab2;
     public float cooldownHab2;
-    [SerializeField] private bool isHab2OnCooldown=false;
-    [SerializeField] private float currentCooldownHab2;
+    [SerializeField] public bool isHab2OnCooldown=false;
+    [SerializeField] public float currentCooldownHab2;
 
     [Header("Habilidad3")]
-    public Sprite spriteHab3;
+    //public Sprite spriteHab3;
     public Image imageHab3Normal;
     public Image imageHab3;
     public TMP_Text textHab3;
     public float cooldownHab3;
-    [SerializeField] private bool isHab3OnCooldown=false;
-    [SerializeField] private float currentCooldownHab3;
+    [SerializeField] public bool isHab3OnCooldown=false;
+    [SerializeField] public float currentCooldownHab3;
 
     [Header("BasicShoot")]
     public float fireRate;
@@ -51,8 +54,8 @@ public class _tbx_BaseClass : MonoBehaviour
     public int magazineSize;
     public int actualBullets;
     public float reloadTime;
-    [SerializeField] private float timeSinceReloadStarted;
-    [SerializeField] private bool isReloading;
+    [SerializeField] public float timeSinceReloadStarted;
+    [SerializeField] public bool isReloading;
 
     [Header("Raycast")]
     public float raycastDistance;
@@ -60,21 +63,29 @@ public class _tbx_BaseClass : MonoBehaviour
 
     [Header("BaseReferences")]
     public Camera cam;
-    [SerializeField] private LayerMask aimColliderLayerMask = new LayerMask();
-    [SerializeField] private Transform debugTransform;
-    [SerializeField] private Animator animator;
-     [SerializeField] public Transform pfBulletProjectile;
+    public int teamID;
+    [SerializeField] public LayerMask aimColliderLayerMask = new LayerMask();
+    [SerializeField] public Transform debugTransform;
+    [SerializeField] public Animator animator;
+     [SerializeField] public GameObject pfBulletProjectile;
     [SerializeField] public Transform spawnBulletPosition;
+    [SerializeField] public GunData gunData;
+
+    public static Action shootInput;
+    public static Action reloadInput;
+    public static Action cancelReloadInput;
 
     public virtual void Awake()
     {
-        //Get Main Cam
-        cam = Camera.main;
         //Get Animator
         //animator = GetComponentInChildren<Animator>();
     }
     public virtual void Start()
     {
+        if (!IsLocalPlayer)
+        {
+            return;
+        }
         //Get Main Cam
         //virtualCamera = GetComponent<CinemachineVirtualCamera>();
 
@@ -84,6 +95,7 @@ public class _tbx_BaseClass : MonoBehaviour
         Hab2 = KeyCode.Alpha2;
         Hab3 = KeyCode.Alpha3;
         ReloadKey = KeyCode.R;
+        CancelReloadKey = KeyCode.T;
         Debug.Log("Base Class");
 
         //Habilidades
@@ -95,26 +107,16 @@ public class _tbx_BaseClass : MonoBehaviour
         textHab2.text = "";
         textHab3.text = "";
         
-        if(spriteHab1 != null && imageHab1 != null)
-        {
-            imageHab1.sprite = spriteHab1;
-            imageHab1Normal.sprite = spriteHab1;
-        }
-        if(spriteHab2 != null && imageHab2 != null)
-        {
-            imageHab2.sprite = spriteHab2;
-            imageHab2Normal.sprite = spriteHab2;
-        }
-        if(spriteHab3 != null && imageHab3 != null)
-        {
-            imageHab3.sprite = spriteHab3;
-            imageHab3Normal.sprite = spriteHab3;
-        }
 
     }
 
     public void TakeDamage(float damage)
     {
+        if (!IsLocalPlayer)
+        {
+            return;
+        }
+
         health -= damage;
         if (health <= 0)
         {
@@ -124,6 +126,11 @@ public class _tbx_BaseClass : MonoBehaviour
 
     public void Heal(float heal)
     {
+        if (!IsLocalPlayer)
+        {
+            return;
+        }
+
         health += heal;
         if (health >= maxHealth)
         {
@@ -131,8 +138,13 @@ public class _tbx_BaseClass : MonoBehaviour
         }
     }
 
-    public void Update()
+    /*public void Update()
     {
+        if (!IsLocalPlayer)
+        {
+            return;
+        }
+
         //ActionInput
         if (Input.GetKeyDown(ActionKey))
         {
@@ -165,50 +177,47 @@ public class _tbx_BaseClass : MonoBehaviour
 
         timeSinceLastShot += Time.deltaTime;
         //Basic Shoot
-        if (!isReloading && Input.GetMouseButton(0) && actualBullets > 0 && timeSinceLastShot >= fireRate)
+        if (Input.GetMouseButton(0) && !gunData.reloading)
         {
-            
-            Shoot();
-            actualBullets--;
-            timeSinceLastShot = 0f;
-            
+            shootInput?.Invoke();
             animator.SetLayerWeight(1, Mathf.Lerp(animator.GetLayerWeight(1), 1f, Time.deltaTime * 10f));
-
-            if (actualBullets <= 0)
-            {
-                Reload();
-            }
-        }
-        else
+        }else
         {
             animator.SetLayerWeight(1, Mathf.Lerp(animator.GetLayerWeight(1), 0f, Time.deltaTime * 10f));
         }
 
         //ReloadInput
-        if (Input.GetKeyDown(ReloadKey) && actualBullets < magazineSize)
+        if (Input.GetKeyDown(ReloadKey))
         {
-            Reload();
+            reloadInput?.Invoke();
         }
 
-        //Reload
-        if (isReloading)
+        if (gunData.currentAmmo <= 0)
         {
-            timeSinceReloadStarted += Time.deltaTime;
-            if (timeSinceReloadStarted >= reloadTime)
-            {
-                actualBullets = magazineSize;
-                isReloading = false;
-            }
+            reloadInput?.Invoke();
+        }
+
+        if (Input.GetKeyDown(CancelReloadKey))
+        {
+            cancelReloadInput?.Invoke();
         }
 
         //Aim
         Vector2 screenCenterPoint = new Vector2(Screen.width / 2, Screen.height / 2);
         Ray ray = Camera.main.ScreenPointToRay(screenCenterPoint);
-        if (Physics.Raycast(ray, out RaycastHit raycastHit, 999f, aimColliderLayerMask))
+        if (Physics.Raycast(ray, out RaycastHit raycastHit, gunData.maxDistance, aimColliderLayerMask))
         {
+            //Va directo al punto de colision
             debugTransform.position = raycastHit.point;
             mouseWorldPosition = raycastHit.point;
             Debug.DrawLine(ray.origin, raycastHit.point, Color.red);
+        }
+        else
+        {
+            //Va hasta la distancia maxima y luego lo que dios quiera
+            debugTransform.position = ray.GetPoint(gunData.maxDistance);
+            mouseWorldPosition = ray.GetPoint(gunData.maxDistance);
+            Debug.DrawLine(ray.origin, ray.GetPoint(gunData.maxDistance), Color.green);
         }
 
         //HabilitiesCooldown
@@ -216,19 +225,16 @@ public class _tbx_BaseClass : MonoBehaviour
         CooldownHab(ref currentCooldownHab2, cooldownHab2, ref isHab2OnCooldown, imageHab2, textHab2);
         CooldownHab(ref currentCooldownHab3, cooldownHab3, ref isHab3OnCooldown, imageHab3, textHab3);
         
-    }
+    }*/
 
-    public void Reload()
+
+    public void CooldownHab(ref float currentCooldown, float maxCooldown, ref bool isOnCooldown, Image skillImage, TMP_Text skillText)
     {
-        if (!isReloading && actualBullets < magazineSize)
+        if (!IsLocalPlayer)
         {
-            isReloading = true;
-            timeSinceReloadStarted = 0f;
+            return;
         }
-    }
 
-    private void CooldownHab(ref float currentCooldown, float maxCooldown, ref bool isOnCooldown, Image skillImage, TMP_Text skillText)
-    {
        if (isOnCooldown)
        {
             currentCooldown -= Time.deltaTime;

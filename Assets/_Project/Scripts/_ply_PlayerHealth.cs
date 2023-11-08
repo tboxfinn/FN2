@@ -23,6 +23,8 @@ public class _ply_PlayerHealth : NetworkBehaviour
     public float scale;
     public int healthIncrease;
 
+    public int maxHealth;
+
     private void Awake()
     {
         instance = this;
@@ -96,6 +98,25 @@ public class _ply_PlayerHealth : NetworkBehaviour
         else
         {
             Debug.Log("La vida ya está aumentada");
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("ZonaCurativa"))
+        {
+            StartCoroutine(HealOnZone());
+            Debug.Log("Está en zona de cuarción");
+        }
+    }
+
+    private IEnumerator HealOnZone()
+    {
+        yield return new WaitForSeconds(1f);
+        if (health < maxHealth)
+        {
+            health += 10;
+            Debug.Log("Curar");
         }
     }
 }

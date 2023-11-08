@@ -35,7 +35,7 @@ public class _chr_GUIManager : MonoBehaviour
 
     void Start()
     {
-        TelonAmim.Play();
+        
     }
 
     void Update()
