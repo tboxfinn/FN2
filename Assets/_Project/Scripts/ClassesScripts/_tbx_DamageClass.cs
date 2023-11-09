@@ -66,7 +66,7 @@ public class _tbx_DamageClass : _tbx_BaseClass
         textHab3.text = "";
     }
 
-    public void Update()
+    /*public void Update()
     {
         if (!IsLocalPlayer)
         {
@@ -153,7 +153,7 @@ public class _tbx_DamageClass : _tbx_BaseClass
         CooldownHab(ref currentCooldownHab2, cooldownHab2, ref isHab2OnCooldown, imageHab2, textHab2);
         CooldownHab(ref currentCooldownHab3, cooldownHab3, ref isHab3OnCooldown, imageHab3, textHab3);
         
-    }
+    }*/
 
     
 

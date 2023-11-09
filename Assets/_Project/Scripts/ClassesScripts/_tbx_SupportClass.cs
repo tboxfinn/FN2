@@ -71,7 +71,7 @@ public class _tbx_SupportClass : _tbx_BaseClass
         textHab3.text = "";
     }
 
-    public void Update()
+    /*public void Update()
     {
         if (!IsLocalPlayer)
         {
@@ -158,7 +158,7 @@ public class _tbx_SupportClass : _tbx_BaseClass
         CooldownHab(ref currentCooldownHab2, cooldownHab2, ref isHab2OnCooldown, imageHab2, textHab2);
         CooldownHab(ref currentCooldownHab3, cooldownHab3, ref isHab3OnCooldown, imageHab3, textHab3);
         
-    }
+    }*/
 
     private new void OnDestroy()
     {
@@ -268,7 +268,7 @@ public class _tbx_SupportClass : _tbx_BaseClass
 
         Debug.Log("Reduce speed");
         // Reduce player movement speed
-        playerMovementScript.moveSpeed -= 4;
+        playerMovementScript.moveSpeed -= 2;
         // Start a coroutine to reset the values after a delay
         StartCoroutine(ResetMovementValues());
 

@@ -62,7 +62,7 @@ public class _tbx_UtilityClass : _tbx_BaseClass
         textHab3.text = "";
     }
 
-    public void Update()
+    /*public void Update()
     {
         if (!IsLocalPlayer)
         {
@@ -149,12 +149,12 @@ public class _tbx_UtilityClass : _tbx_BaseClass
         CooldownHab(ref currentCooldownHab2, cooldownHab2, ref isHab2OnCooldown, imageHab2, textHab2);
         CooldownHab(ref currentCooldownHab3, cooldownHab3, ref isHab3OnCooldown, imageHab3, textHab3);
         
-    }
+    }*/
 
     // Spawn a new ability object
     public override void Habilidad1()
     {
-        Debug.Log("Utility - BearTrap");
+        Debug.Log("Utility - StunBullet");
         // Check if we can spawn a new ability object
         StartCoroutine(StunBullets());
         
@@ -224,7 +224,7 @@ public class _tbx_UtilityClass : _tbx_BaseClass
     // Perform the third ability
     public override void Habilidad3()
     {
-        Debug.Log("Habilidad 3 - Utility");
+        Debug.Log("Habilidad 3 - Barrera");
         StartCoroutine(EscudoGiratorio());
     }
 

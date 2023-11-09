@@ -114,11 +114,6 @@ public class _tbx_BaseClass : NetworkBehaviour
     [ServerRpc (RequireOwnership = false)]
     public void TakeDamage_ServerRpc(float damage)
     {
-        if (!IsLocalPlayer)
-        {
-            return;
-        }
-
         health -= damage;
         if (health <= 0)
         {
@@ -129,11 +124,6 @@ public class _tbx_BaseClass : NetworkBehaviour
     [ServerRpc (RequireOwnership = false)]
     public void Heal_ServerRpc(float heal)
     {
-        if (!IsLocalPlayer)
-        {
-            return;
-        }
-
         health += heal;
         if (health >= maxHealth)
         {
@@ -141,7 +131,7 @@ public class _tbx_BaseClass : NetworkBehaviour
         }
     }
 
-    /*public void Update()
+    public void Update()
     {
         if (!IsLocalPlayer)
         {
@@ -228,7 +218,7 @@ public class _tbx_BaseClass : NetworkBehaviour
         CooldownHab(ref currentCooldownHab2, cooldownHab2, ref isHab2OnCooldown, imageHab2, textHab2);
         CooldownHab(ref currentCooldownHab3, cooldownHab3, ref isHab3OnCooldown, imageHab3, textHab3);
         
-    }*/
+    }
 
 
     public void CooldownHab(ref float currentCooldown, float maxCooldown, ref bool isOnCooldown, Image skillImage, TMP_Text skillText)
