@@ -6,6 +6,8 @@ using Unity.Netcode;
 public class _alx_GameManager : NetworkBehaviour
 {
     public static _alx_GameManager singleton;
+
+    [Header("Estado actual")]
     public GameStates currentGameState;
     [Header("Elementos UI")]
     public GameObject pausePanel;

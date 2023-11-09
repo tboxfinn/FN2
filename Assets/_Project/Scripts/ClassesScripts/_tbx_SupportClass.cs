@@ -50,9 +50,28 @@ public class _tbx_SupportClass : _tbx_BaseClass
         initialMoveSpeed = playerMovementScript.moveSpeed;
         //Set the bullets to the magazine size
         actualBullets = magazineSize;
+
+        //Stats
+        health = maxHealth;
+        
+        Hab1 = KeyCode.Alpha1;
+        Hab2 = KeyCode.Alpha2;
+        Hab3 = KeyCode.Alpha3;
+        ReloadKey = KeyCode.R;
+        CancelReloadKey = KeyCode.T;
+        Debug.Log("Base Class");
+
+        //Habilidades
+        imageHab1.fillAmount = 0;
+        imageHab2.fillAmount = 0;
+        imageHab3.fillAmount = 0;
+
+        textHab1.text = "";
+        textHab2.text = "";
+        textHab3.text = "";
     }
 
-    public void Update()
+    /*public void Update()
     {
         if (!IsLocalPlayer)
         {
@@ -139,7 +158,7 @@ public class _tbx_SupportClass : _tbx_BaseClass
         CooldownHab(ref currentCooldownHab2, cooldownHab2, ref isHab2OnCooldown, imageHab2, textHab2);
         CooldownHab(ref currentCooldownHab3, cooldownHab3, ref isHab3OnCooldown, imageHab3, textHab3);
         
-    }
+    }*/
 
     private new void OnDestroy()
     {
@@ -249,7 +268,7 @@ public class _tbx_SupportClass : _tbx_BaseClass
 
         Debug.Log("Reduce speed");
         // Reduce player movement speed
-        playerMovementScript.moveSpeed -= 4;
+        playerMovementScript.moveSpeed -= 2;
         // Start a coroutine to reset the values after a delay
         StartCoroutine(ResetMovementValues());
 
@@ -257,7 +276,8 @@ public class _tbx_SupportClass : _tbx_BaseClass
         playerHealth.IncreaseHealth();
     }
 
-    public override void Shoot()
+    [ServerRpc(RequireOwnership = false)]
+    public override void Shoot_ServerRpc()
     {
         Debug.Log("Disparo3");
 

@@ -42,9 +42,27 @@ public class _tbx_UtilityClass : _tbx_BaseClass
         //player = GameObject.FindGameObjectWithTag("Player");
         velocidadDeTiroInicial = gunData.fireRate;
         
+        //Stats
+        health = maxHealth;
+        
+        Hab1 = KeyCode.Alpha1;
+        Hab2 = KeyCode.Alpha2;
+        Hab3 = KeyCode.Alpha3;
+        ReloadKey = KeyCode.R;
+        CancelReloadKey = KeyCode.T;
+        Debug.Log("Base Class");
+
+        //Habilidades
+        imageHab1.fillAmount = 0;
+        imageHab2.fillAmount = 0;
+        imageHab3.fillAmount = 0;
+
+        textHab1.text = "";
+        textHab2.text = "";
+        textHab3.text = "";
     }
 
-    public void Update()
+    /*public void Update()
     {
         if (!IsLocalPlayer)
         {
@@ -131,12 +149,12 @@ public class _tbx_UtilityClass : _tbx_BaseClass
         CooldownHab(ref currentCooldownHab2, cooldownHab2, ref isHab2OnCooldown, imageHab2, textHab2);
         CooldownHab(ref currentCooldownHab3, cooldownHab3, ref isHab3OnCooldown, imageHab3, textHab3);
         
-    }
+    }*/
 
     // Spawn a new ability object
     public override void Habilidad1()
     {
-        Debug.Log("Utility - BearTrap");
+        Debug.Log("Utility - StunBullet");
         // Check if we can spawn a new ability object
         StartCoroutine(StunBullets());
         
@@ -206,7 +224,7 @@ public class _tbx_UtilityClass : _tbx_BaseClass
     // Perform the third ability
     public override void Habilidad3()
     {
-        Debug.Log("Habilidad 3 - Utility");
+        Debug.Log("Habilidad 3 - Barrera");
         StartCoroutine(EscudoGiratorio());
     }
 
@@ -222,7 +240,8 @@ public class _tbx_UtilityClass : _tbx_BaseClass
         Destroy(Escudo);
     }
 
-    public override void Shoot()
+    [ServerRpc(RequireOwnership = false)]
+    public override void Shoot_ServerRpc()
     {
         if (Hab1Selected && gunData.currentAmmo == 1)
         {
