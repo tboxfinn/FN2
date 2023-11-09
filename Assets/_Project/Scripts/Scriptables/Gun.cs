@@ -65,7 +65,7 @@ public class Gun : MonoBehaviour
                     
                 }
                 
-                tbxBase.Shoot();
+                tbxBase.Shoot_ServerRpc();
                 gunData.currentAmmo--;
                 timeSinceLastShot = 0;
                 OnGunShot();

@@ -90,7 +90,8 @@ public class _tbx_BaseClass : NetworkBehaviour
         //virtualCamera = GetComponent<CinemachineVirtualCamera>();
 
         //Stats
-        health = maxHealth;
+        /*health = maxHealth;
+        
         Hab1 = KeyCode.Alpha1;
         Hab2 = KeyCode.Alpha2;
         Hab3 = KeyCode.Alpha3;
@@ -106,11 +107,12 @@ public class _tbx_BaseClass : NetworkBehaviour
         textHab1.text = "";
         textHab2.text = "";
         textHab3.text = "";
-        
+        */
 
     }
 
-    public void TakeDamage(float damage)
+    [ServerRpc (RequireOwnership = false)]
+    public void TakeDamage_ServerRpc(float damage)
     {
         if (!IsLocalPlayer)
         {
@@ -124,7 +126,8 @@ public class _tbx_BaseClass : NetworkBehaviour
         }
     }
 
-    public void Heal(float heal)
+    [ServerRpc (RequireOwnership = false)]
+    public void Heal_ServerRpc(float heal)
     {
         if (!IsLocalPlayer)
         {
@@ -286,7 +289,8 @@ public class _tbx_BaseClass : NetworkBehaviour
         Debug.Log("Habilidad 3");
     }
 
-    public virtual void Shoot()
+    [ServerRpc(RequireOwnership = false)]
+    public virtual void Shoot_ServerRpc()
     {
         Debug.Log("Disparo");
         

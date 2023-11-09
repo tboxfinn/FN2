@@ -45,6 +45,25 @@ public class _tbx_DamageClass : _tbx_BaseClass
 
         //Set the bullets to the magazine size
         actualBullets = magazineSize;
+
+        //Stats
+        health = maxHealth;
+        
+        Hab1 = KeyCode.Alpha1;
+        Hab2 = KeyCode.Alpha2;
+        Hab3 = KeyCode.Alpha3;
+        ReloadKey = KeyCode.R;
+        CancelReloadKey = KeyCode.T;
+        Debug.Log("Base Class");
+
+        //Habilidades
+        imageHab1.fillAmount = 0;
+        imageHab2.fillAmount = 0;
+        imageHab3.fillAmount = 0;
+
+        textHab1.text = "";
+        textHab2.text = "";
+        textHab3.text = "";
     }
 
     public void Update()
@@ -136,6 +155,8 @@ public class _tbx_DamageClass : _tbx_BaseClass
         
     }
 
+    
+
     public override void Habilidad1()
     {
         Debug.Log("Habilidad 1- Bomba Veneno");
@@ -178,7 +199,8 @@ public class _tbx_DamageClass : _tbx_BaseClass
         Debug.Log("Habilidad 3- Damage");
     }
 
-    public override void Shoot()
+    [ServerRpc(RequireOwnership = false)]
+    public override void Shoot_ServerRpc()
     {
         Debug.Log("Disparo2");
 
