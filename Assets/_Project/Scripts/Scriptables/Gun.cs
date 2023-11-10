@@ -16,7 +16,7 @@ public class Gun : MonoBehaviour
     {
         //_tbx_BaseClass.shootInput += Shoot;
         //_tbx_BaseClass.reloadInput += StartReload;
-        _tbx_BaseClass.cancelReloadInput += CancelReload;
+        //cancelReloadInput += CancelReload;
 
         gunData.currentAmmo = gunData.magSize;
         gunData.reloading = false;

@@ -383,7 +383,6 @@ public class _tbx_UtilityClass : NetworkBehaviour
                 if (Physics.Raycast(gun.muzzle.position, gun.muzzle.forward, out RaycastHit hitInfo, gunData.maxDistance))
                 {
                     Debug.Log(hitInfo.transform.name);
-
                 }
 
                 Shoot();

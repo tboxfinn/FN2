@@ -1595,7 +1595,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2617373380208560353}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.07012257, y: 0.6144938, z: -0.054970425, w: 0.78387403}
+  m_LocalRotation: {x: 0.07012258, y: 0.6144937, z: -0.05497041, w: 0.783874}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1677,7 +1677,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2746539156653107487}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.097047776, y: 0.61223906, z: -0.07607761, w: 0.7809977}
+  m_LocalRotation: {x: 0.09704775, y: 0.61223906, z: -0.076077595, w: 0.7809977}
   m_LocalPosition: {x: -3.6569982, y: 2.2813644, z: -1.1449758}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3000,7 +3000,7 @@ MonoBehaviour:
   reloadTime: 1
   timeSinceReloadStarted: 0
   isReloading: 0
-  raycastDistance: 0
+  raycastDistance: 500
   mouseWorldPosition: {x: 0, y: 0, z: 0}
   cam: {fileID: 8443353088963581389}
   teamID: 0
@@ -5226,7 +5226,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9189058723912467128}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.10244866, y: 0.61169803, z: -0.080311455, w: 0.78030753}
+  m_LocalRotation: {x: 0.10244864, y: 0.61169803, z: -0.08031144, w: 0.78030753}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
