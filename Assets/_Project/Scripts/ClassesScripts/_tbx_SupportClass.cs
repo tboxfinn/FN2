@@ -101,7 +101,7 @@ public class _tbx_SupportClass : NetworkBehaviour
 
     public _ply_PlayerHealth playerHealth;
 
-    public bool ClientID { get; private set; }
+    public ulong ClientID { get; private set; }
 
     public void Start()
     {
@@ -284,7 +284,7 @@ public class _tbx_SupportClass : NetworkBehaviour
         {
             // Spawn a new ability object in front of the player
             GameObject newHabilidad1Object = Instantiate(prefabHabilidad1, playerObj.transform.position + playerObj.transform.forward * distanciaSpawnHabilidad1, Quaternion.identity);
-            newHabilidad1Object.GetComponent<NetworkObject>().Spawn(ClientID); //NetworkPrefab
+            newHabilidad1Object.GetComponent<NetworkObject>().SpawnWithOwnership(ClientID); //NetworkPrefab
 
             Rigidbody newHabilidad1ObjectRigidbody = newHabilidad1Object.GetComponent<Rigidbody>();
 
@@ -313,7 +313,7 @@ public class _tbx_SupportClass : NetworkBehaviour
 
             // Spawn a new ability object in front of the player
             GameObject newHabilidad1Object = Instantiate(prefabHabilidad1, playerObj.transform.position + playerObj.transform.forward * distanciaSpawnHabilidad1, Quaternion.identity);
-            newHabilidad1Object.GetComponent<NetworkObject>().Spawn(ClientID); //NetworkPrefab
+            newHabilidad1Object.GetComponent<NetworkObject>().SpawnWithOwnership(ClientID); //NetworkPrefab
 
             Rigidbody newHabilidad1ObjectRigidbody = newHabilidad1Object.GetComponent<Rigidbody>();
 
@@ -337,7 +337,7 @@ public class _tbx_SupportClass : NetworkBehaviour
         {
             // Spawn a new ability object in front of the player
             GameObject newHabilidad2Object = Instantiate(prefabHabilidad2, playerObj.transform.position + playerObj.transform.forward * distanciaSpawnHabilidad2, Quaternion.identity);
-            newHabilidad2Object.GetComponent<NetworkObject>().Spawn(ClientID); //NetworkPrefab
+            newHabilidad2Object.GetComponent<NetworkObject>().SpawnWithOwnership(ClientID); //NetworkPrefab
 
             Rigidbody newHabilidad1ObjectRigidbody = newHabilidad2Object.GetComponent<Rigidbody>();
 
@@ -360,7 +360,7 @@ public class _tbx_SupportClass : NetworkBehaviour
 
             // Spawn a new ability object in front of the player
             GameObject newHabilidad2Object = Instantiate(prefabHabilidad2, playerObj.transform.position + playerObj.transform.forward * distanciaSpawnHabilidad2, Quaternion.identity);
-            newHabilidad2Object.GetComponent<NetworkObject>().Spawn(ClientID); //NetworkPrefab
+            newHabilidad2Object.GetComponent<NetworkObject>().SpawnWithOwnership(ClientID); //NetworkPrefab
 
             Rigidbody newHabilidad2ObjectRigidbody = newHabilidad2Object.GetComponent<Rigidbody>();
 
@@ -394,7 +394,7 @@ public class _tbx_SupportClass : NetworkBehaviour
         //Instantiate(pfBulletProjectile, spawnBulletPosition.position, Quaternion.LookRotation(aimDir, Vector3.up));
         //NetworkPrefab
         GameObject bullet = Instantiate(pfBulletProjectile, spawnBulletPosition.position, Quaternion.LookRotation(aimDir, Vector3.up));
-        bullet.GetComponent<NetworkObject>().Spawn(ClientID);
+        bullet.GetComponent<NetworkObject>().SpawnWithOwnership(ClientID);
     }
 
     private void HandleHealthChanged(int newHealth, Vector3 newScale)

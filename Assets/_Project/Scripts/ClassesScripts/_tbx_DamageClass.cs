@@ -17,8 +17,8 @@ public class _tbx_DamageClass : NetworkBehaviour
     public KeyCode ActionKey;
 
     [Header("Stats")]
-    public float health;
-    public float maxHealth;
+    [SerializeField] private NetworkVariable<float> health = new NetworkVariable<float>(100f, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    [SerializeField] private NetworkVariable<float> maxHealth = new NetworkVariable<float>(150f, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
     [Header("Habilidad1")]
     //public Sprite spriteHab1;
@@ -96,7 +96,7 @@ public class _tbx_DamageClass : NetworkBehaviour
     public float throwForce;
     public float throwUpwardForce;
 
-    public bool ClientID { get; private set; }
+    public ulong ClientID { get; private set; }
 
     public void Awake()
     {
@@ -118,7 +118,7 @@ public class _tbx_DamageClass : NetworkBehaviour
         actualBullets = magazineSize;
 
         //Stats
-        health = maxHealth;
+        health.Value = maxHealth.Value;
         
         Hab1 = KeyCode.Alpha1;
         Hab2 = KeyCode.Alpha2;
@@ -149,14 +149,18 @@ public class _tbx_DamageClass : NetworkBehaviour
         }
 
         //ActionInput
-        
+        if (Input.GetKeyDown(ActionKey))
+        {
+            TestClientRpc();
+            TestClientRpc();
+        }
 
         //Hability1Input
         if (Input.GetKeyDown(Hab1) && !isHab1OnCooldown)
         {
             isHab1OnCooldown = true;
             currentCooldownHab1 = cooldownHab1;
-            Habilidad1();
+            Habilidad1ServerRpc();
         }
 
         //Hability2Input
@@ -175,7 +179,6 @@ public class _tbx_DamageClass : NetworkBehaviour
             Habilidad3();
         }
 
-        timeSinceLastShot += Time.deltaTime;
         //Basic Shoot
         if (Input.GetMouseButton(0) && !gunData.reloading)
         {
@@ -266,13 +269,13 @@ public class _tbx_DamageClass : NetworkBehaviour
     }
 
 
-
-    public void Habilidad1()
+    [ServerRpc]
+    public void Habilidad1ServerRpc()
     {
         Debug.Log("Habilidad 1- Bomba Veneno");
         // Create a new object
         GameObject bombaVeneno = Instantiate(objectToThrow, attackPoint.position, camTransform.rotation);
-        bombaVeneno.GetComponent<NetworkObject>().Spawn(ClientID);
+        bombaVeneno.GetComponent<NetworkObject>().SpawnWithOwnership(ClientID);
 
         // Get the rigidbody of the new object
         Rigidbody bombaVenRb = bombaVeneno.GetComponent<Rigidbody>();
@@ -309,7 +312,8 @@ public class _tbx_DamageClass : NetworkBehaviour
         Debug.Log("Habilidad 3- Damage");
     }
 
-    public void Shoot()
+    [ServerRpc]
+    public void ShootServerRpc()
     {
         Debug.Log("Disparo2");
 
@@ -318,7 +322,7 @@ public class _tbx_DamageClass : NetworkBehaviour
         //Instantiate(pfBulletProjectile, spawnBulletPosition.position, Quaternion.LookRotation(aimDir, Vector3.up));
         //NetworkPrefab
         GameObject bullet = Instantiate(pfBulletProjectile, spawnBulletPosition.position, Quaternion.LookRotation(aimDir, Vector3.up));
-        bullet.GetComponent<NetworkObject>().Spawn(ClientID);
+        bullet.GetComponent<NetworkObject>().SpawnWithOwnership(ClientID);
     }
 
     // Coroutine to reset the movement values after a delay
@@ -343,7 +347,7 @@ public class _tbx_DamageClass : NetworkBehaviour
 
                 }
 
-                Shoot();
+                ShootServerRpc();
                 gunData.currentAmmo--;
                 gun.timeSinceLastShot = 0;
                 gun.OnGunShot();
@@ -366,5 +370,17 @@ public class _tbx_DamageClass : NetworkBehaviour
             StopCoroutine(gun.Reload());
             gunData.reloading = false;
         }
+    }
+
+    [ServerRpc]
+    private void TestServerRpc()
+    {
+        Debug.Log("TestServerRpc");
+    }
+
+    [ClientRpc]
+    private void TestClientRpc()
+    {
+        Debug.Log("TestClientRpc");
     }
 }

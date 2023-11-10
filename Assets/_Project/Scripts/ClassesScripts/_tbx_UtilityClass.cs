@@ -99,7 +99,7 @@ public class _tbx_UtilityClass : NetworkBehaviour
     public GameObject playerObj;
     public Canvas canvas;
 
-    public bool ClientID { get; private set; }
+    public ulong ClientID { get; private set; }
 
     public void Start()
     {
@@ -166,7 +166,7 @@ public class _tbx_UtilityClass : NetworkBehaviour
         {
             isHab3OnCooldown = true;
             currentCooldownHab3 = cooldownHab3;
-            Habilidad3();
+            Habilidad3ServerRpc();
         }
 
         
@@ -330,7 +330,8 @@ public class _tbx_UtilityClass : NetworkBehaviour
     }
 
     // Perform the third ability
-    public void Habilidad3()
+    [ServerRpc]
+    public void Habilidad3ServerRpc()
     {
         Debug.Log("Habilidad 3 - Barrera");
         StartCoroutine(EscudoGiratorio());
@@ -339,8 +340,7 @@ public class _tbx_UtilityClass : NetworkBehaviour
     private IEnumerator EscudoGiratorio()
     {
         GameObject Escudo = Instantiate(prefabHabilidad3, playerObj.transform.position, Quaternion.identity);
-        Escudo.GetComponent<NetworkObject>().Spawn(ClientID);
-
+        Escudo.GetComponent<NetworkObject>().SpawnWithOwnership(ClientID);
         //Escudo.transform.parent = playerObj.transform;
         Escudo.transform.position = playerObj.transform.position;
 
@@ -348,7 +348,8 @@ public class _tbx_UtilityClass : NetworkBehaviour
         Destroy(Escudo);
     }
 
-    public void Shoot()
+    [ServerRpc]
+    public void ShootServerRpc()
     {
         if (Hab1Selected && gunData.currentAmmo == 1)
         {
@@ -358,7 +359,7 @@ public class _tbx_UtilityClass : NetworkBehaviour
             //Instantiate(PrefabBalaStun, spawnBulletPosition.position, Quaternion.LookRotation(aimDir, Vector3.up));
             //NetworkPrefab
             GameObject bullet = Instantiate(PrefabBalaStun, spawnBulletPosition.position, Quaternion.LookRotation(aimDir, Vector3.up));
-            bullet.GetComponent<NetworkObject>().Spawn(ClientID);
+            bullet.GetComponent<NetworkObject>().SpawnWithOwnership(ClientID);
         }
         else
         {
@@ -368,7 +369,7 @@ public class _tbx_UtilityClass : NetworkBehaviour
             //Instantiate(pfBulletProjectile, spawnBulletPosition.position, Quaternion.LookRotation(aimDir, Vector3.up));
             //NetworkPrefab
             GameObject bullet = Instantiate(pfBulletProjectile, spawnBulletPosition.position, Quaternion.LookRotation(aimDir, Vector3.up));
-            bullet.GetComponent<NetworkObject>().Spawn(ClientID);
+            bullet.GetComponent<NetworkObject>().SpawnWithOwnership(ClientID);
         }
 
         
@@ -385,7 +386,7 @@ public class _tbx_UtilityClass : NetworkBehaviour
                     Debug.Log(hitInfo.transform.name);
                 }
 
-                Shoot();
+                ShootServerRpc();
                 gunData.currentAmmo--;
                 gun.timeSinceLastShot = 0;
                 gun.OnGunShot();
