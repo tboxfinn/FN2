@@ -84,7 +84,7 @@ public class _tbx_HostManager : MonoBehaviour
                 }
             };
 
-            Lobby lobby = await Lobbies.Instance.CreateLobbyAsync("My Lobby", maxConnections,createLobbyOptions);
+            Lobby lobby = await Lobbies.Instance.CreateLobbyAsync(JoinCode, maxConnections,createLobbyOptions);
             lobbyId = lobby.Id;
             StartCoroutine(HeartbeatLobbyCoroutine(15f));
         }

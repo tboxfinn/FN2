@@ -7,30 +7,30 @@ public class Gun : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] GunData gunData;
-    [SerializeField] private Transform muzzle;
+    [SerializeField] public Transform muzzle;
     [SerializeField] public _tbx_BaseClass tbxBase;
 
-    float timeSinceLastShot;
+    public float timeSinceLastShot;
 
     private void Start()
     {
-        _tbx_BaseClass.shootInput += Shoot;
-        _tbx_BaseClass.reloadInput += StartReload;
-        _tbx_BaseClass.cancelReloadInput += CancelReload;
+        //_tbx_BaseClass.shootInput += Shoot;
+        //_tbx_BaseClass.reloadInput += StartReload;
+        //cancelReloadInput += CancelReload;
 
         gunData.currentAmmo = gunData.magSize;
         gunData.reloading = false;
     }
 
-    public void StartReload()
+    /*public void StartReload()
     {
         if (!gunData.reloading)
         {
             StartCoroutine(Reload());
         }
-    }
+    }*/
 
-    private IEnumerator Reload()
+    public IEnumerator Reload()
     {
         gunData.reloading = true;
 
@@ -51,9 +51,9 @@ public class Gun : MonoBehaviour
         }
     }
 
-    private bool CanShoot() => !gunData.reloading && timeSinceLastShot >= 1 / (gunData.fireRate / 60);
+    public bool CanShoot() => !gunData.reloading && timeSinceLastShot >= 1 / (gunData.fireRate / 60);
 
-    public void Shoot()
+    /*public void Shoot()
     {
         if (gunData.currentAmmo >0)
         {
@@ -71,14 +71,14 @@ public class Gun : MonoBehaviour
                 OnGunShot();
             }
         }
-    }
+    }*/
 
     private void Update()
     {
         timeSinceLastShot += Time.deltaTime;
     }
 
-    private void OnGunShot()
+    public void OnGunShot()
     {
         Debug.Log("GunShot");
     }

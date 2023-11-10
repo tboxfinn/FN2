@@ -131,7 +131,7 @@ public class _tbx_BaseClass : NetworkBehaviour
         }
     }
 
-    public void Update()
+    /*public void Update()
     {
         if (!IsLocalPlayer)
         {
@@ -218,10 +218,10 @@ public class _tbx_BaseClass : NetworkBehaviour
         CooldownHab(ref currentCooldownHab2, cooldownHab2, ref isHab2OnCooldown, imageHab2, textHab2);
         CooldownHab(ref currentCooldownHab3, cooldownHab3, ref isHab3OnCooldown, imageHab3, textHab3);
         
-    }
+    }*/
 
 
-    public void CooldownHab(ref float currentCooldown, float maxCooldown, ref bool isOnCooldown, Image skillImage, TMP_Text skillText)
+    /*public void CooldownHab(ref float currentCooldown, float maxCooldown, ref bool isOnCooldown, Image skillImage, TMP_Text skillText)
     {
         if (!IsLocalPlayer)
         {
@@ -257,7 +257,7 @@ public class _tbx_BaseClass : NetworkBehaviour
                 }
             }
        }
-    }
+    }*/
 
     public virtual void MakeAction()
     {

@@ -15,8 +15,8 @@ MonoBehaviour:
   name: Blaster
   damage: 3
   maxDistance: 100
-  currentAmmo: 25
+  currentAmmo: 18
   magSize: 25
-  fireRate: 700
+  fireRate: 500
   reloadTime: 1.4
   reloading: 0

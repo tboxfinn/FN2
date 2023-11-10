@@ -2453,7 +2453,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunData: {fileID: 11400000, guid: 40ca65093b6fb1b4abc609114b2db408, type: 2}
   muzzle: {fileID: 5069190648676736867}
-  tbxBase: {fileID: 8116627672830649974}
+  tbxBase: {fileID: 0}
+  timeSinceLastShot: 0
 --- !u!1 &4171576727350136020
 GameObject:
   m_ObjectHideFlags: 0
@@ -3350,6 +3351,7 @@ MonoBehaviour:
   pfBulletProjectile: {fileID: 7462755728064330100, guid: 5ee12180f3c84024ca60b6ab065ca6eb, type: 3}
   spawnBulletPosition: {fileID: 5069190648676736867}
   gunData: {fileID: 11400000, guid: 40ca65093b6fb1b4abc609114b2db408, type: 2}
+  gun: {fileID: 401705831406959386}
   playerMovementScript: {fileID: 7397481260740561987}
   effectDuration: 3
   initialMoveSpeed: 0
@@ -3357,6 +3359,7 @@ MonoBehaviour:
   camTransform: {fileID: 1273384813363259494}
   attackPoint: {fileID: 9221322773578777377}
   objectToThrow: {fileID: 2888834612769116316, guid: 0748781c13fd01240b729f8f5ac16a08, type: 3}
+  canvas: {fileID: 6909258562585734378}
   throwForce: 10
   throwUpwardForce: 5
 --- !u!114 &7397481260740561987
@@ -4021,7 +4024,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7416777093959225327}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
