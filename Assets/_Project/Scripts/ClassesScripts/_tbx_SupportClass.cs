@@ -81,6 +81,7 @@ public class _tbx_SupportClass : NetworkBehaviour
 
     [SerializeField] private float initialMoveSpeed;
 
+    [Header("References")]
     public float fuerzaDeTiroH2;
     public float distanciaSpawnHabilidad2;
     public List<GameObject> habilidad2Objects = new List<GameObject>();
@@ -89,6 +90,7 @@ public class _tbx_SupportClass : NetworkBehaviour
     private int cantidadHabilidad2Actual = 0;
     public GameObject player;
     public GameObject playerObj;
+    public Canvas canvas;
 
     public float fuerzaDeTiroH1;
     public float distanciaSpawnHabilidad1;
@@ -105,7 +107,8 @@ public class _tbx_SupportClass : NetworkBehaviour
     {
         if (!IsLocalPlayer) return;
 
-        
+        canvas.GetComponent<Canvas>().enabled = true;
+
         if (_ply_PlayerHealth.instance != null)
         {
             _ply_PlayerHealth.instance.OnHealthChanged += HandleHealthChanged;
@@ -147,13 +150,10 @@ public class _tbx_SupportClass : NetworkBehaviour
 
     public void Update()
     {
-        if (!IsLocalPlayer)
-        {
-            return;
-        }
+        if (!IsLocalPlayer) return;
 
         //ActionInput
-        
+
 
         //Hability1Input
         if (Input.GetKeyDown(Hab1) && !isHab1OnCooldown)

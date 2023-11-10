@@ -97,6 +97,7 @@ public class _tbx_UtilityClass : NetworkBehaviour
     // Reference to the player object
     public GameObject player;
     public GameObject playerObj;
+    public Canvas canvas;
 
     public bool ClientID { get; private set; }
 
@@ -104,7 +105,8 @@ public class _tbx_UtilityClass : NetworkBehaviour
     {
         if (!IsLocalPlayer) return;
 
-        
+        canvas.GetComponent<Canvas>().enabled = true;
+
         gunData.fireRate = 300;
         // Find the player object in the scene
         //player = GameObject.FindGameObjectWithTag("Player");
@@ -132,6 +134,8 @@ public class _tbx_UtilityClass : NetworkBehaviour
         shootInput += Shooting;
         reloadInput += StartReload;
         cancelReloadInput += CancelReload;
+
+
     }
 
     public void Update()
@@ -344,7 +348,6 @@ public class _tbx_UtilityClass : NetworkBehaviour
         Destroy(Escudo);
     }
 
-    [ServerRpc(RequireOwnership = false)]
     public void Shoot()
     {
         if (Hab1Selected && gunData.currentAmmo == 1)

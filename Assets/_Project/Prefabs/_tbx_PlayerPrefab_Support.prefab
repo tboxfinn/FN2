@@ -2271,6 +2271,7 @@ MonoBehaviour:
   cantidadMaxHabilidad2: 1
   player: {fileID: 5004195776451064505}
   playerObj: {fileID: 4065035869718521335}
+  canvas: {fileID: 2366385873589762533}
   fuerzaDeTiroH1: 0
   distanciaSpawnHabilidad1: 0
   habilidad1Objects: []
@@ -2418,7 +2419,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5051221893465550925}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
@@ -3463,7 +3464,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5894410848828065691}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.34285635, y: 0.24385482, z: 0.09264551, w: 0.9024418}
+  m_LocalRotation: {x: -0.34285638, y: 0.24385484, z: 0.092645526, w: 0.9024418}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4733,6 +4734,7 @@ MonoBehaviour:
   gunData: {fileID: 11400000, guid: f0e9d4d6002180b4eb9cf28ab29dc723, type: 2}
   muzzle: {fileID: 2091249502445045449}
   tbxBase: {fileID: 0}
+  timeSinceLastShot: 0
 --- !u!1 &8553435546870806084
 GameObject:
   m_ObjectHideFlags: 0

@@ -136,6 +136,7 @@ MonoBehaviour:
   gunData: {fileID: 11400000, guid: 7221cb3177204104ea0b0e1eac99303f, type: 2}
   muzzle: {fileID: 2115294405559217607}
   tbxBase: {fileID: 0}
+  timeSinceLastShot: 0
 --- !u!1 &224411525875490425
 GameObject:
   m_ObjectHideFlags: 0
@@ -387,7 +388,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 511298057538758166}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
@@ -1676,7 +1677,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2746539156653107487}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.09704775, y: 0.61223906, z: -0.076077595, w: 0.7809977}
+  m_LocalRotation: {x: 0.097047776, y: 0.61223906, z: -0.07607761, w: 0.7809977}
   m_LocalPosition: {x: -3.6569982, y: 2.2813644, z: -1.1449758}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2994,7 +2995,6 @@ MonoBehaviour:
   isHab3OnCooldown: 0
   currentCooldownHab3: 0
   fireRate: 0.5
-  timeSinceLastShot: 0
   magazineSize: 20
   actualBullets: 0
   reloadTime: 1
@@ -3024,6 +3024,7 @@ MonoBehaviour:
   tiempoHabilidad3: 7
   player: {fileID: 5395728519113200101}
   playerObj: {fileID: 7238975398894358656}
+  canvas: {fileID: 2403277039491720400}
 --- !u!114 &8900586045773917160
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5225,7 +5226,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9189058723912467128}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.10244864, y: 0.61169803, z: -0.08031144, w: 0.78030753}
+  m_LocalRotation: {x: 0.10244866, y: 0.61169803, z: -0.080311455, w: 0.78030753}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

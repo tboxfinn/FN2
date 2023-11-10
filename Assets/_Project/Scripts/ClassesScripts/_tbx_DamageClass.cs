@@ -89,6 +89,7 @@ public class _tbx_DamageClass : NetworkBehaviour
     public Transform camTransform;
     public Transform attackPoint;
     public GameObject objectToThrow;
+    public Canvas canvas;
 
 
     [Header("Throwing")]
@@ -107,7 +108,8 @@ public class _tbx_DamageClass : NetworkBehaviour
     {
         if (!IsLocalPlayer) return;
 
-       
+        canvas.GetComponent<Canvas>().enabled = true;
+
         // Save the initial values of moveSpeed and jumpForce
         initialMoveSpeed = playerMovementScript.moveSpeed;
         initialJumpForce = playerMovementScript.jumpForce;
