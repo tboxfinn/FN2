@@ -2453,7 +2453,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunData: {fileID: 11400000, guid: 40ca65093b6fb1b4abc609114b2db408, type: 2}
   muzzle: {fileID: 5069190648676736867}
-  tbxBase: {fileID: 8116627672830649974}
+  tbxBase: {fileID: 0}
 --- !u!1 &4171576727350136020
 GameObject:
   m_ObjectHideFlags: 0
@@ -3350,6 +3350,7 @@ MonoBehaviour:
   pfBulletProjectile: {fileID: 7462755728064330100, guid: 5ee12180f3c84024ca60b6ab065ca6eb, type: 3}
   spawnBulletPosition: {fileID: 5069190648676736867}
   gunData: {fileID: 11400000, guid: 40ca65093b6fb1b4abc609114b2db408, type: 2}
+  gun: {fileID: 401705831406959386}
   playerMovementScript: {fileID: 7397481260740561987}
   effectDuration: 3
   initialMoveSpeed: 0

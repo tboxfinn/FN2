@@ -2219,7 +2219,7 @@ MonoBehaviour:
   Hab2: 50
   Hab3: 51
   ReloadKey: 114
-  CancelReloadKey: 0
+  CancelReloadKey: 116
   ActionKey: 101
   health: 10
   maxHealth: 100
@@ -2260,6 +2260,7 @@ MonoBehaviour:
   pfBulletProjectile: {fileID: 7462755728064330100, guid: 5ee12180f3c84024ca60b6ab065ca6eb, type: 3}
   spawnBulletPosition: {fileID: 2091249502445045449}
   gunData: {fileID: 11400000, guid: f0e9d4d6002180b4eb9cf28ab29dc723, type: 2}
+  gun: {fileID: 5085028855926093650}
   playerMovementScript: {fileID: 7755674064859056182}
   effectDuration: 5
   initialMoveSpeed: 7
@@ -4731,7 +4732,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunData: {fileID: 11400000, guid: f0e9d4d6002180b4eb9cf28ab29dc723, type: 2}
   muzzle: {fileID: 2091249502445045449}
-  tbxBase: {fileID: 8775133261987224889}
+  tbxBase: {fileID: 0}
 --- !u!1 &8553435546870806084
 GameObject:
   m_ObjectHideFlags: 0

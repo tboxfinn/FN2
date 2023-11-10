@@ -1,11 +1,80 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using Microsoft.Unity.VisualStudio.Editor;
 using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
-public class _tbx_DamageClass : _tbx_BaseClass
+public class _tbx_DamageClass : NetworkBehaviour
 {
+    [Header("Keybinds")]
+    public KeyCode Hab1;
+    public KeyCode Hab2;
+    public KeyCode Hab3;
+    public KeyCode ReloadKey;
+    public KeyCode CancelReloadKey;
+    public KeyCode ActionKey;
+
+    [Header("Stats")]
+    public float health;
+    public float maxHealth;
+
+    [Header("Habilidad1")]
+    //public Sprite spriteHab1;
+    public Image imageHab1Normal;
+    public Image imageHab1;
+    public TMP_Text textHab1;
+    public float cooldownHab1;
+    [SerializeField] public bool isHab1OnCooldown = false;
+    [SerializeField] public float currentCooldownHab1;
+
+    [Header("Habilidad2")]
+    //public Sprite spriteHab2;
+    public Image imageHab2Normal;
+    public Image imageHab2;
+    public TMP_Text textHab2;
+    public float cooldownHab2;
+    [SerializeField] public bool isHab2OnCooldown = false;
+    [SerializeField] public float currentCooldownHab2;
+
+    [Header("Habilidad3")]
+    //public Sprite spriteHab3;
+    public Image imageHab3Normal;
+    public Image imageHab3;
+    public TMP_Text textHab3;
+    public float cooldownHab3;
+    [SerializeField] public bool isHab3OnCooldown = false;
+    [SerializeField] public float currentCooldownHab3;
+
+    [Header("BasicShoot")]
+    public float fireRate;
+    public float timeSinceLastShot;
+    public int magazineSize;
+    public int actualBullets;
+    public float reloadTime;
+    [SerializeField] public float timeSinceReloadStarted;
+    [SerializeField] public bool isReloading;
+
+    [Header("Raycast")]
+    public float raycastDistance;
+    public Vector3 mouseWorldPosition;
+
+    [Header("BaseReferences")]
+    public Camera cam;
+    public int teamID;
+    [SerializeField] public LayerMask aimColliderLayerMask = new LayerMask();
+    [SerializeField] public Transform debugTransform;
+    [SerializeField] public Animator animator;
+    [SerializeField] public GameObject pfBulletProjectile;
+    [SerializeField] public Transform spawnBulletPosition;
+    [SerializeField] public GunData gunData;
+    [SerializeField] public Gun gun;
+
+    public static Action shootInput;
+    public static Action reloadInput;
+    public static Action cancelReloadInput;
+
     // Reference to the player movement script
     public _tbx_PlayerMovementScript playerMovementScript;
 
@@ -28,17 +97,17 @@ public class _tbx_DamageClass : _tbx_BaseClass
 
     public bool ClientID { get; private set; }
 
-    public override void Awake()
+    public void Awake()
     {
         // Get the player movement script
         playerMovementScript = GetComponent<_tbx_PlayerMovementScript>();
     }
 
-    public override void Start()
+    public void Start()
     {
         if (!IsLocalPlayer) return;
 
-        base.Start();
+       
         // Save the initial values of moveSpeed and jumpForce
         initialMoveSpeed = playerMovementScript.moveSpeed;
         initialJumpForce = playerMovementScript.jumpForce;
@@ -64,9 +133,13 @@ public class _tbx_DamageClass : _tbx_BaseClass
         textHab1.text = "";
         textHab2.text = "";
         textHab3.text = "";
+
+        shootInput += Shooting;
+        reloadInput += StartReload;
+        cancelReloadInput += CancelReload;
     }
 
-    /*public void Update()
+    public void Update()
     {
         if (!IsLocalPlayer)
         {
@@ -74,10 +147,7 @@ public class _tbx_DamageClass : _tbx_BaseClass
         }
 
         //ActionInput
-        if (Input.GetKeyDown(ActionKey))
-        {
-            MakeAction();
-        }
+        
 
         //Hability1Input
         if (Input.GetKeyDown(Hab1) && !isHab1OnCooldown)
@@ -153,11 +223,49 @@ public class _tbx_DamageClass : _tbx_BaseClass
         CooldownHab(ref currentCooldownHab2, cooldownHab2, ref isHab2OnCooldown, imageHab2, textHab2);
         CooldownHab(ref currentCooldownHab3, cooldownHab3, ref isHab3OnCooldown, imageHab3, textHab3);
         
-    }*/
+    }
 
-    
+    public void CooldownHab(ref float currentCooldown, float maxCooldown, ref bool isOnCooldown, Image skillImage, TMP_Text skillText)
+    {
+        if (!IsLocalPlayer)
+        {
+            return;
+        }
 
-    public override void Habilidad1()
+        if (isOnCooldown)
+        {
+            currentCooldown -= Time.deltaTime;
+
+            if (currentCooldown <= 0)
+            {
+                currentCooldown = 0;
+                isOnCooldown = false;
+                if (skillImage != null)
+                {
+                    skillImage.fillAmount = 0;
+                }
+                if (skillText != null)
+                {
+                    skillText.text = "";
+                }
+            }
+            else
+            {
+                if (skillImage != null)
+                {
+                    skillImage.fillAmount = currentCooldown / maxCooldown;
+                }
+                if (skillText != null)
+                {
+                    skillText.text = Mathf.Ceil(currentCooldown).ToString();
+                }
+            }
+        }
+    }
+
+
+
+    public void Habilidad1()
     {
         Debug.Log("Habilidad 1- Bomba Veneno");
         // Create a new object
@@ -183,7 +291,7 @@ public class _tbx_DamageClass : _tbx_BaseClass
         bombaVenRb.AddForce(forceToAdd, ForceMode.Impulse);
     }
 
-    public override void Habilidad2()
+    public void Habilidad2()
     {
         Debug.Log("Habilidad 2- SpeedBoost");
         // Increase damage, player movement speed, and jump height
@@ -194,13 +302,12 @@ public class _tbx_DamageClass : _tbx_BaseClass
         StartCoroutine(ResetMovementValues());
     }
 
-    public override void Habilidad3()
+    public void Habilidad3()
     {
         Debug.Log("Habilidad 3- Damage");
     }
 
-    [ServerRpc(RequireOwnership = false)]
-    public override void Shoot_ServerRpc()
+    public void Shoot()
     {
         Debug.Log("Disparo2");
 
@@ -220,5 +327,42 @@ public class _tbx_DamageClass : _tbx_BaseClass
         // Reset the moveSpeed and jumpForce properties of the playerMovementScript
         playerMovementScript.moveSpeed = initialMoveSpeed;
         playerMovementScript.jumpForce = initialJumpForce;
+    }
+
+    public void Shooting()
+    {
+        if (gunData.currentAmmo > 0)
+        {
+            if (gun.CanShoot())
+            {
+                if (Physics.Raycast(gun.muzzle.position, gun.muzzle.forward, out RaycastHit hitInfo, gunData.maxDistance))
+                {
+                    Debug.Log(hitInfo.transform.name);
+
+                }
+
+                Shoot();
+                gunData.currentAmmo--;
+                gun.timeSinceLastShot = 0;
+                gun.OnGunShot();
+            }
+        }
+    }
+
+    public void StartReload()
+    {
+        if (!gunData.reloading)
+        {
+            StartCoroutine(gun.Reload());
+        }
+    }
+
+    public void CancelReload()
+    {
+        if (gunData.reloading)
+        {
+            StopCoroutine(gun.Reload());
+            gunData.reloading = false;
+        }
     }
 }
