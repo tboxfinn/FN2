@@ -105,7 +105,7 @@ public class _tbx_SupportClass : NetworkBehaviour
 
     public void Start()
     {
-        if (!IsLocalPlayer) return;
+        if (!IsOwner) return;
 
         canvas.GetComponent<Canvas>().enabled = true;
 
@@ -142,7 +142,7 @@ public class _tbx_SupportClass : NetworkBehaviour
         textHab2.text = "";
         textHab3.text = "";
 
-        shootInput += Shooting;
+        shootInput += ShootingServerRpc;
         reloadInput += StartReload;
         cancelReloadInput += CancelReload;
     }
@@ -150,7 +150,7 @@ public class _tbx_SupportClass : NetworkBehaviour
 
     public void Update()
     {
-        if (!IsLocalPlayer) return;
+        if (!IsOwner) return;
 
         //ActionInput
 
@@ -386,7 +386,8 @@ public class _tbx_SupportClass : NetworkBehaviour
         playerHealth.IncreaseHealth();
     }
 
-    public void Shoot()
+    [ServerRpc]
+    public void ShootServerRpc()
     {
         Debug.Log("Disparo3");
 
@@ -411,7 +412,8 @@ public class _tbx_SupportClass : NetworkBehaviour
         playerMovementScript.moveSpeed = initialMoveSpeed;
     }
 
-    public void Shooting()
+    [ServerRpc]
+    public void ShootingServerRpc()
     {
         if (gunData.currentAmmo > 0)
         {
@@ -423,7 +425,7 @@ public class _tbx_SupportClass : NetworkBehaviour
 
                 }
 
-                Shoot();
+                ShootServerRpc();
                 gunData.currentAmmo--;
                 gun.timeSinceLastShot = 0;
                 gun.OnGunShot();

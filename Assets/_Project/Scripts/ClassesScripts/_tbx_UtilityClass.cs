@@ -103,7 +103,7 @@ public class _tbx_UtilityClass : NetworkBehaviour
 
     public void Start()
     {
-        if (!IsLocalPlayer) return;
+        if (!IsOwner) return;
 
         canvas.GetComponent<Canvas>().enabled = true;
 

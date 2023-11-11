@@ -5,21 +5,22 @@ using UnityEngine;
 
 public class _tbx_BulletController : NetworkBehaviour
 {
+    private Rigidbody bulletRb;
+
     [SerializeField] private float projectileLifeTime;
     [SerializeField] private float speed = 20f;
 
     public int teamID;
 
-    public override void OnNetworkSpawn()
+    private void Awake()
     {
-        base.OnNetworkSpawn();
+        bulletRb = GetComponent<Rigidbody>();
 
-        if (IsOwner)
-        {
-            teamID = GetComponentInParent<_tbx_BaseClass>().teamID;
-        }
+    }
 
-        GetComponent<Rigidbody>().velocity = this.transform.forward * speed;
+    private void Start()
+    {
+        bulletRb.velocity = transform.forward * speed;
     }
 
     private void OnTriggerEnter(Collider other)

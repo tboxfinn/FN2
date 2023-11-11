@@ -157,7 +157,7 @@ public class _tbx_DamageClass : NetworkBehaviour
         {
             isHab1OnCooldown = true;
             currentCooldownHab1 = cooldownHab1;
-            Habilidad1ServerRpc();
+            Habilidad1();
         }
 
         //Hability2Input
@@ -266,8 +266,8 @@ public class _tbx_DamageClass : NetworkBehaviour
     }
 
 
-    [ServerRpc]
-    public void Habilidad1ServerRpc()
+    
+    public void Habilidad1()
     {
         Debug.Log("Habilidad 1- Bomba Veneno");
         // Create a new object
