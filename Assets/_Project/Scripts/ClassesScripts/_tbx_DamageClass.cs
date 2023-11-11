@@ -106,7 +106,7 @@ public class _tbx_DamageClass : NetworkBehaviour
 
     public void Start()
     {
-        if (!IsLocalPlayer) return;
+        if (!IsOwner) return;
 
         canvas.GetComponent<Canvas>().enabled = true;
 
@@ -136,17 +136,14 @@ public class _tbx_DamageClass : NetworkBehaviour
         textHab2.text = "";
         textHab3.text = "";
 
-        shootInput += Shooting;
+        shootInput += ShootingServerRpc;
         reloadInput += StartReload;
         cancelReloadInput += CancelReload;
     }
 
     public void Update()
     {
-        if (!IsLocalPlayer)
-        {
-            return;
-        }
+        if (!IsOwner) return;
 
         //ActionInput
         if (Input.GetKeyDown(ActionKey))
@@ -335,7 +332,8 @@ public class _tbx_DamageClass : NetworkBehaviour
         playerMovementScript.jumpForce = initialJumpForce;
     }
 
-    public void Shooting()
+    [ServerRpc]
+    public void ShootingServerRpc()
     {
         if (gunData.currentAmmo > 0)
         {
