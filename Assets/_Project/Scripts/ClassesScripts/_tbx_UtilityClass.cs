@@ -131,7 +131,7 @@ public class _tbx_UtilityClass : NetworkBehaviour
         textHab2.text = "";
         textHab3.text = "";
 
-        shootInput += Shooting;
+        shootInput += ShootingServerRpc;
         reloadInput += StartReload;
         cancelReloadInput += CancelReload;
 
@@ -140,10 +140,7 @@ public class _tbx_UtilityClass : NetworkBehaviour
 
     public void Update()
     {
-        if (!IsLocalPlayer)
-        {
-            return;
-        }
+        if (!IsOwner) return;
 
         //Hability1Input
         if (Input.GetKeyDown(Hab1) && !isHab1OnCooldown)
@@ -375,7 +372,8 @@ public class _tbx_UtilityClass : NetworkBehaviour
         
     }
 
-    public void Shooting()
+    [ServerRpc]
+    public void ShootingServerRpc()
     {
         if (gunData.currentAmmo > 0)
         {
