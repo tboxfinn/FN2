@@ -132,8 +132,8 @@ public class _tbx_UtilityClass : NetworkBehaviour
         textHab3.text = "";
 
         shootInput += ShootingServerRpc;
-        reloadInput += StartReload;
-        cancelReloadInput += CancelReload;
+        reloadInput += StartReloadServerRpc;
+        cancelReloadInput += CancelReloadServerRpc;
 
 
     }
@@ -345,8 +345,7 @@ public class _tbx_UtilityClass : NetworkBehaviour
         Destroy(Escudo);
     }
 
-    [ServerRpc]
-    public void ShootServerRpc()
+    public void Shoot()
     {
         if (Hab1Selected && gunData.currentAmmo == 1)
         {
@@ -384,7 +383,7 @@ public class _tbx_UtilityClass : NetworkBehaviour
                     Debug.Log(hitInfo.transform.name);
                 }
 
-                ShootServerRpc();
+                Shoot();
                 gunData.currentAmmo--;
                 gun.timeSinceLastShot = 0;
                 gun.OnGunShot();
@@ -392,7 +391,8 @@ public class _tbx_UtilityClass : NetworkBehaviour
         }
     }
 
-    public void StartReload()
+    [ServerRpc]
+    public void StartReloadServerRpc()
     {
         if (!gunData.reloading)
         {
@@ -400,7 +400,8 @@ public class _tbx_UtilityClass : NetworkBehaviour
         }
     }
 
-    public void CancelReload()
+    [ServerRpc]
+    public void CancelReloadServerRpc()
     {
         if (gunData.reloading)
         {

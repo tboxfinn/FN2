@@ -1595,7 +1595,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2617373380208560353}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.07012258, y: 0.6144937, z: -0.05497041, w: 0.783874}
+  m_LocalRotation: {x: 0.07012257, y: 0.6144938, z: -0.054970425, w: 0.78387403}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2972,7 +2972,7 @@ MonoBehaviour:
   Hab2: 50
   Hab3: 51
   ReloadKey: 114
-  CancelReloadKey: 0
+  CancelReloadKey: 116
   ActionKey: 101
   health: 100
   maxHealth: 100

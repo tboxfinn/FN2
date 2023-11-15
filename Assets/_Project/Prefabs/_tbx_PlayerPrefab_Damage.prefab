@@ -3310,10 +3310,12 @@ MonoBehaviour:
   Hab2: 50
   Hab3: 51
   ReloadKey: 114
-  CancelReloadKey: 0
+  CancelReloadKey: 116
   ActionKey: 101
-  health: 100
-  maxHealth: 100
+  health:
+    m_InternalValue: 100
+  maxHealth:
+    m_InternalValue: 150
   imageHab1Normal: {fileID: 4368231213721528491}
   imageHab1: {fileID: 3615267189815868941}
   textHab1: {fileID: 6870756230916225222}

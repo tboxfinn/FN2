@@ -137,8 +137,8 @@ public class _tbx_DamageClass : NetworkBehaviour
         textHab3.text = "";
 
         shootInput += ShootingServerRpc;
-        reloadInput += StartReload;
-        cancelReloadInput += CancelReload;
+        reloadInput += StartReloadServerRpc;
+        cancelReloadInput += CancelReloadServerRpc;
     }
 
     public void Update()
@@ -309,8 +309,7 @@ public class _tbx_DamageClass : NetworkBehaviour
         Debug.Log("Habilidad 3- Damage");
     }
 
-    [ServerRpc]
-    public void ShootServerRpc()
+    public void Shoot()
     {
         Debug.Log("Disparo2");
 
@@ -345,7 +344,7 @@ public class _tbx_DamageClass : NetworkBehaviour
 
                 }
 
-                ShootServerRpc();
+                Shoot();
                 gunData.currentAmmo--;
                 gun.timeSinceLastShot = 0;
                 gun.OnGunShot();
@@ -353,7 +352,8 @@ public class _tbx_DamageClass : NetworkBehaviour
         }
     }
 
-    public void StartReload()
+    [ServerRpc]
+    public void StartReloadServerRpc()
     {
         if (!gunData.reloading)
         {
@@ -361,7 +361,8 @@ public class _tbx_DamageClass : NetworkBehaviour
         }
     }
 
-    public void CancelReload()
+    [ServerRpc]
+    public void CancelReloadServerRpc()
     {
         if (gunData.reloading)
         {
