@@ -61,7 +61,7 @@ public class _tbx_UtilityClass : NetworkBehaviour
     public Vector3 mouseWorldPosition;
 
     [Header("BaseReferences")]
-    public Camera cam;
+    public Camera camPlayer;
     public int teamID;
     [SerializeField] public LayerMask aimColliderLayerMask = new LayerMask();
     [SerializeField] public Transform debugTransform;
@@ -195,7 +195,8 @@ public class _tbx_UtilityClass : NetworkBehaviour
 
         //Aim
         Vector2 screenCenterPoint = new Vector2(Screen.width / 2, Screen.height / 2);
-        Ray ray = Camera.main.ScreenPointToRay(screenCenterPoint);
+        Ray ray = camPlayer.ScreenPointToRay(screenCenterPoint);
+
         if (Physics.Raycast(ray, out RaycastHit raycastHit, gunData.maxDistance, aimColliderLayerMask))
         {
             //Va directo al punto de colision

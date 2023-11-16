@@ -61,7 +61,7 @@ public class _tbx_DamageClass : NetworkBehaviour
     public Vector3 mouseWorldPosition;
 
     [Header("BaseReferences")]
-    public Camera cam;
+    public Camera camPlayer;
     public int teamID;
     [SerializeField] public LayerMask aimColliderLayerMask = new LayerMask();
     [SerializeField] public Transform debugTransform;
@@ -90,7 +90,6 @@ public class _tbx_DamageClass : NetworkBehaviour
     public Transform attackPoint;
     public GameObject objectToThrow;
     public Canvas canvas;
-
 
     [Header("Throwing")]
     public float throwForce;
@@ -204,7 +203,8 @@ public class _tbx_DamageClass : NetworkBehaviour
 
         //Aim
         Vector2 screenCenterPoint = new Vector2(Screen.width / 2, Screen.height / 2);
-        Ray ray = Camera.main.ScreenPointToRay(screenCenterPoint);
+        Ray ray = camPlayer.ScreenPointToRay(screenCenterPoint);
+        
         if (Physics.Raycast(ray, out RaycastHit raycastHit, gunData.maxDistance, aimColliderLayerMask))
         {
             //Va directo al punto de colision
@@ -278,7 +278,7 @@ public class _tbx_DamageClass : NetworkBehaviour
         Rigidbody bombaVenRb = bombaVeneno.GetComponent<Rigidbody>();
 
         //Calculate the direction to throw the object in
-        Vector3 forceDirection = cam.transform.forward;
+        Vector3 forceDirection = camPlayer.transform.forward;
 
         RaycastHit hit;
 

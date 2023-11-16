@@ -3343,7 +3343,7 @@ MonoBehaviour:
   isReloading: 0
   raycastDistance: 900
   mouseWorldPosition: {x: 0, y: 0, z: 0}
-  cam: {fileID: 105922113527412202}
+  camPlayer: {fileID: 105922113527412202}
   teamID: 0
   aimColliderLayerMask:
     serializedVersion: 2
