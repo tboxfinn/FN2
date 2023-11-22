@@ -8,6 +8,10 @@ using Unity.Services.Core;
 using Unity.Services.Authentication;
 using System;
 
+#if UNITY_EDITOR
+using ParrelSync;
+#endif
+
 public class _tbx_MainMenuDisplay : MonoBehaviour
 {
     [Header("UI Elements")]
@@ -19,7 +23,13 @@ public class _tbx_MainMenuDisplay : MonoBehaviour
     {
         try
         {
-            await UnityServices.InitializeAsync();
+            var options = new InitializationOptions();
+
+            #if UNITY_EDITOR
+            options.SetProfile(ClonesManager.IsClone() ? ClonesManager.GetArgument() : "PrimaryBuild");
+            #endif
+
+            await UnityServices.InitializeAsync(options);
             await AuthenticationService.Instance.SignInAnonymouslyAsync();
             Debug.Log($"Signed in anonymously, ID: {AuthenticationService.Instance.PlayerId}");
         }

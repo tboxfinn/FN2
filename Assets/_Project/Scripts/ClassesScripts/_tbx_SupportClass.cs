@@ -145,6 +145,8 @@ public class _tbx_SupportClass : NetworkBehaviour
         shootInput += ShootingServerRpc;
         reloadInput += StartReloadServerRpc;
         cancelReloadInput += CancelReloadServerRpc;
+
+        camPlayer = GameObject.Find("CamaraSupport").GetComponent<Camera>(); 
     }
 
 
@@ -216,6 +218,13 @@ public class _tbx_SupportClass : NetworkBehaviour
             debugTransform.position = raycastHit.point;
             mouseWorldPosition = raycastHit.point;
             Debug.DrawLine(ray.origin, raycastHit.point, Color.red);
+        }
+        else if (Physics.Raycast(ray, out RaycastHit raycastHit1, gunData.maxDistance))
+        {
+            //Va directo al punto de colision
+            debugTransform.position = raycastHit1.point;
+            mouseWorldPosition = raycastHit1.point;
+            Debug.DrawLine(ray.origin, raycastHit1.point, Color.yellow);
         }
         else
         {

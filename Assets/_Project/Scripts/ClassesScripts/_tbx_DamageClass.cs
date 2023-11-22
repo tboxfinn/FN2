@@ -8,6 +8,8 @@ using TMPro;
 
 public class _tbx_DamageClass : NetworkBehaviour
 {
+    public Vector3 aimDir;
+
     [Header("Keybinds")]
     public KeyCode Hab1;
     public KeyCode Hab2;
@@ -58,10 +60,10 @@ public class _tbx_DamageClass : NetworkBehaviour
 
     [Header("Raycast")]
     public float raycastDistance;
-    public Vector3 mouseWorldPosition;
+    [SerializeField] private Vector3 mouseWorldPosition;
 
     [Header("BaseReferences")]
-    public Camera camPlayer;
+    private Camera camPlayer;
     public int teamID;
     [SerializeField] public LayerMask aimColliderLayerMask = new LayerMask();
     [SerializeField] public Transform debugTransform;
@@ -138,6 +140,8 @@ public class _tbx_DamageClass : NetworkBehaviour
         shootInput += ShootingServerRpc;
         reloadInput += StartReloadServerRpc;
         cancelReloadInput += CancelReloadServerRpc;
+
+        camPlayer = GameObject.Find("CamaraDamage").GetComponent<Camera>();
     }
 
     public void Update()
@@ -203,6 +207,7 @@ public class _tbx_DamageClass : NetworkBehaviour
 
         //Aim
         Vector2 screenCenterPoint = new Vector2(Screen.width / 2, Screen.height / 2);
+        Debug.Log("Screen Width : " + Screen.width);
         Ray ray = camPlayer.ScreenPointToRay(screenCenterPoint);
         
         if (Physics.Raycast(ray, out RaycastHit raycastHit, gunData.maxDistance, aimColliderLayerMask))
@@ -212,7 +217,14 @@ public class _tbx_DamageClass : NetworkBehaviour
             mouseWorldPosition = raycastHit.point;
             Debug.DrawLine(ray.origin, raycastHit.point, Color.red);
         }
-        else
+        else if (Physics.Raycast(ray, out RaycastHit raycastHit1, gunData.maxDistance))
+        {
+            //Va directo al punto de colision
+            debugTransform.position = raycastHit1.point;
+            mouseWorldPosition = raycastHit1.point;
+            Debug.DrawLine(ray.origin, raycastHit1.point, Color.yellow);
+        }
+        else 
         {
             //Va hasta la distancia maxima y luego lo que dios quiera
             debugTransform.position = ray.GetPoint(gunData.maxDistance);
@@ -224,7 +236,8 @@ public class _tbx_DamageClass : NetworkBehaviour
         CooldownHab(ref currentCooldownHab1, cooldownHab1, ref isHab1OnCooldown, imageHab1, textHab1);
         CooldownHab(ref currentCooldownHab2, cooldownHab2, ref isHab2OnCooldown, imageHab2, textHab2);
         CooldownHab(ref currentCooldownHab3, cooldownHab3, ref isHab3OnCooldown, imageHab3, textHab3);
-        
+
+        aimDir = mouseWorldPosition - spawnBulletPosition.position;
     }
 
     public void CooldownHab(ref float currentCooldown, float maxCooldown, ref bool isOnCooldown, Image skillImage, TMP_Text skillText)
@@ -313,7 +326,7 @@ public class _tbx_DamageClass : NetworkBehaviour
     {
         Debug.Log("Disparo2");
 
-        Vector3 aimDir = mouseWorldPosition - spawnBulletPosition.position;
+        
 
         //Instantiate(pfBulletProjectile, spawnBulletPosition.position, Quaternion.LookRotation(aimDir, Vector3.up));
         //NetworkPrefab
@@ -338,11 +351,11 @@ public class _tbx_DamageClass : NetworkBehaviour
         {
             if (gun.CanShoot())
             {
-                if (Physics.Raycast(gun.muzzle.position, gun.muzzle.forward, out RaycastHit hitInfo, gunData.maxDistance))
+                /*if (Physics.Raycast(gun.muzzle.position, gun.muzzle.forward, out RaycastHit hitInfo, gunData.maxDistance))
                 {
                     Debug.Log(hitInfo.transform.name);
 
-                }
+                }*/
 
                 Shoot();
                 gunData.currentAmmo--;
