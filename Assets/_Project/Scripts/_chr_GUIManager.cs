@@ -1,3 +1,4 @@
+using System.Globalization;
 using System.Threading;
 using System;
 using System.Collections;
@@ -27,6 +28,9 @@ public class _chr_GUIManager : MonoBehaviour
     [Space(15)]
     [Header("Other Stuff")]
     [SerializeField] bool isCoroutineRunning;
+
+    [Space (15)]
+    [SerializeField] private Material areaMat1, areaMat2, areaMat3;
 
     public void OnEnable()
     {
