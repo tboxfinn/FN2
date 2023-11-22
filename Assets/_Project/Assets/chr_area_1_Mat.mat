@@ -62,7 +62,7 @@ Material:
     - _BUILTIN_ZWrite: 0
     - _BUILTIN_ZWriteControl: 0
     - _ColorMask: 15
-    - _Cutoff_height: 35
+    - _Cutoff_height: 26
     - _Edge_Width: -0.25
     - _Noise_Scale: 9.09
     - _Noise_Strenght: 5.9
