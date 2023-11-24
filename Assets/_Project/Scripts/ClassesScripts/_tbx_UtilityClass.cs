@@ -8,6 +8,8 @@ using TMPro;
 
 public class _tbx_UtilityClass : NetworkBehaviour
 {
+    public Vector3 aimDir;
+
     [Header("Keybinds")]
     public KeyCode Hab1;
     public KeyCode Hab2;
@@ -223,7 +225,8 @@ public class _tbx_UtilityClass : NetworkBehaviour
         CooldownHab(ref currentCooldownHab1, cooldownHab1, ref isHab1OnCooldown, imageHab1, textHab1);
         CooldownHab(ref currentCooldownHab2, cooldownHab2, ref isHab2OnCooldown, imageHab2, textHab2);
         CooldownHab(ref currentCooldownHab3, cooldownHab3, ref isHab3OnCooldown, imageHab3, textHab3);
-        
+
+        aimDir = mouseWorldPosition - spawnBulletPosition.position;
     }
 
     public void CooldownHab(ref float currentCooldown, float maxCooldown, ref bool isOnCooldown, Image skillImage, TMP_Text skillText)
@@ -359,7 +362,6 @@ public class _tbx_UtilityClass : NetworkBehaviour
         {
             Debug.Log("Disparo2");
 
-            Vector3 aimDir = mouseWorldPosition - spawnBulletPosition.position;
             //Instantiate(PrefabBalaStun, spawnBulletPosition.position, Quaternion.LookRotation(aimDir, Vector3.up));
             //NetworkPrefab
             GameObject bullet = Instantiate(PrefabBalaStun, spawnBulletPosition.position, Quaternion.LookRotation(aimDir, Vector3.up));

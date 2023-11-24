@@ -326,8 +326,6 @@ public class _tbx_DamageClass : NetworkBehaviour
     {
         Debug.Log("Disparo2");
 
-        
-
         //Instantiate(pfBulletProjectile, spawnBulletPosition.position, Quaternion.LookRotation(aimDir, Vector3.up));
         //NetworkPrefab
         GameObject bullet = Instantiate(pfBulletProjectile, spawnBulletPosition.position, Quaternion.LookRotation(aimDir, Vector3.up));

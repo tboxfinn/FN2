@@ -18,6 +18,11 @@ public class _tbx_BulletController : NetworkBehaviour
 
     }
 
+    private void OnNetworkInstantiate()
+    {
+        
+    }
+
     private void Start()
     {
         bulletRb.velocity = transform.forward * speed;
