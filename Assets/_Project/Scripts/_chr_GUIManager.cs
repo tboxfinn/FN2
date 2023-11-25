@@ -14,13 +14,14 @@ public class _chr_GUIManager : MonoBehaviour
     [Space (15)]
     [SerializeField] private Material areaMat1, areaMat2, areaMat3;
 
-    [Range (4, 24)]
-    public float LifeArea1 = 38;
+    [Range (-10, 10)]
+    public float LifeArea1;
 
-    [Range (4, 24)]
+    [Range (-10, 10)]
     public float LifeArea2;
 
-    [Range (4, 24)]
+    [Range (-10, 10)]
+
     public float LifeArea3;
 
     public void OnEnable()
