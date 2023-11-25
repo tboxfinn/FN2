@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 1
   displayName: Susy
-  icon: {fileID: 21300000, guid: bf23aa8a61e60c148ae7f66c195a2cbf, type: 3}
+  icon: {fileID: 21300000, guid: 7c1a91419f24eb24fb1660b0d09561a5, type: 3}
   introPrefab: {fileID: 6839522791178727076, guid: dcb800a7d9f6a0742b93f99e1d8b2ff1, type: 3}
   gameplayPrefab: {fileID: -465144795946367207, guid: 5da3c29b58a8e8245a07d07f5a7022ba, type: 3}
