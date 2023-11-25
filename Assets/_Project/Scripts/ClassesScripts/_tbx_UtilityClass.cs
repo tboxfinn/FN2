@@ -73,9 +73,12 @@ public class _tbx_UtilityClass : NetworkBehaviour
     [SerializeField] public GunData gunData;
     [SerializeField] public Gun gun;
 
-    public static Action shootInput;
+    [Header("InputCosos")]
+    //public static Action shootInput;
     public static Action reloadInput;
     public static Action cancelReloadInput;
+    public delegate void ShootInputDelegate(Vector3 mouseWorldPosition, Vector3 shootingDirection);
+    public event ShootInputDelegate shootInput;
 
     [Header("Utility Class")]
     public float fuerzaDeTiro;
@@ -167,13 +170,17 @@ public class _tbx_UtilityClass : NetworkBehaviour
             currentCooldownHab3 = cooldownHab3;
             Habilidad3ServerRpc();
         }
-
-        
+  
         //Basic Shoot
         if (Input.GetMouseButton(0) && !gunData.reloading)
         {
-            shootInput?.Invoke();
+            Vector3 shootingDirection = (mouseWorldPosition - spawnBulletPosition.position).normalized;
+            shootInput?.Invoke(mouseWorldPosition, shootingDirection);
             animator.SetLayerWeight(1, Mathf.Lerp(animator.GetLayerWeight(1), 1f, Time.deltaTime * 10f));
+            
+            // Update aimDir on the client side
+            UpdateAimDirectionClientRpc(shootingDirection);
+            
         }else
         {
             animator.SetLayerWeight(1, Mathf.Lerp(animator.GetLayerWeight(1), 0f, Time.deltaTime * 10f));
@@ -226,7 +233,13 @@ public class _tbx_UtilityClass : NetworkBehaviour
         CooldownHab(ref currentCooldownHab2, cooldownHab2, ref isHab2OnCooldown, imageHab2, textHab2);
         CooldownHab(ref currentCooldownHab3, cooldownHab3, ref isHab3OnCooldown, imageHab3, textHab3);
 
-        aimDir = mouseWorldPosition - spawnBulletPosition.position;
+        //aimDir = mouseWorldPosition - spawnBulletPosition.position;
+    }
+
+    [ClientRpc]
+    private void UpdateAimDirectionClientRpc(Vector3 shootingDirection)
+    {
+        aimDir = shootingDirection;
     }
 
     public void CooldownHab(ref float currentCooldown, float maxCooldown, ref bool isOnCooldown, Image skillImage, TMP_Text skillText)
@@ -382,7 +395,7 @@ public class _tbx_UtilityClass : NetworkBehaviour
     }
 
     [ServerRpc]
-    public void ShootingServerRpc()
+    public void ShootingServerRpc(Vector3 clientMouseWorldPosition, Vector3 shootingDirection)
     {
         if (gunData.currentAmmo > 0)
         {
@@ -392,6 +405,7 @@ public class _tbx_UtilityClass : NetworkBehaviour
                 {
                     Debug.Log(hitInfo.transform.name);
                 }
+                aimDir = clientMouseWorldPosition - spawnBulletPosition.position;
 
                 Shoot();
                 gunData.currentAmmo--;
