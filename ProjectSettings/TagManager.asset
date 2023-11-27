@@ -4,10 +4,9 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Graund
-  - Water
-  - ZipLine
-  - wall
+  - Ground
+  - Wall
+  - ZonaCurativa
   layers:
   - Default
   - TransparentFX
@@ -22,7 +21,7 @@ TagManager:
   - Wall
   - Team1
   - Team2
-  - 
+  - No LIght (Canvas)
   - 
   - 
   - 

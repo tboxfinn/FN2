@@ -42,7 +42,7 @@ public class _ply_NetworkMovement : NetworkBehaviour
     }
 
     void Update()
-    {
+    { 
         //Ground Check
         isGrounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
 
@@ -67,17 +67,21 @@ public class _ply_NetworkMovement : NetworkBehaviour
 
     private void MyInput()
     {
-        horizontalInput = Input.GetAxisRaw("Horizontal");
-        verticalInput = Input.GetAxisRaw("Vertical");
-
-        //When jump key is pressed
-        if (Input.GetKey(jumpKey) && readyToJump && isGrounded)
+        // Unicamente se ejecuta cuando este en estado juego, si cauza problemas, quitar este if
+        if(_alx_GameManager.singleton.currentGameState == GameStates.inGame)
         {
-            readyToJump = false;
+            horizontalInput = Input.GetAxisRaw("Horizontal");
+            verticalInput = Input.GetAxisRaw("Vertical");
 
-            Jump();
+            //When jump key is pressed
+            if (Input.GetKey(jumpKey) && readyToJump && isGrounded)
+            {
+                readyToJump = false;
 
-            Invoke(nameof(ResetJump), jumpCooldown);
+                Jump();
+
+                Invoke(nameof(ResetJump), jumpCooldown);
+            }
         }
     }
 

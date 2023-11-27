@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Project/Scenes/_ply_NetcodeScene.unity
     guid: 1dc459698ee67e448a4e0cd2a88b763f
+  - enabled: 1
+    path: Assets/_Project/Scenes/_klz_Probuilder.unity
+    guid: 7ae29cfe9a7d7a14d834204cfb8f9a9f
   m_configObjects: {}
