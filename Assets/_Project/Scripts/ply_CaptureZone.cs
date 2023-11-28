@@ -4,13 +4,14 @@ public class ply_CaptureZone : MonoBehaviour
 {
     public Collider zonaCollider;
     public float tiempoCaptura = 5f;
-    private GameObject jugadorCapturando = null;
     public float progresoCaptura = 0f;
     public bool zonaCapturada;
+    public int cantGente;
 
     private void Start()
     {
         zonaCapturada = false;
+        cantGente = 0;
     }
 
     private void Update()
@@ -20,18 +21,19 @@ public class ply_CaptureZone : MonoBehaviour
             return;
         }
 
-        if (jugadorCapturando != null)
+        if (cantGente == 1)
         {
             progresoCaptura += Time.deltaTime;
 
             if (progresoCaptura >= tiempoCaptura)
             {
-                CapturarZona(jugadorCapturando);
+                CapturarZona();
             }
         }
         else
         {
-            progresoCaptura = Mathf.Max(0f, progresoCaptura - Time.deltaTime);
+            //progresoCaptura = Mathf.Max(0f, progresoCaptura - Time.deltaTime);
+            Debug.Log("Hay más de una persona en la zona");
         }
     }
 
@@ -44,15 +46,7 @@ public class ply_CaptureZone : MonoBehaviour
 
         if (other.CompareTag("Player"))
         {
-            if (jugadorCapturando == null)
-            {
-                jugadorCapturando = other.gameObject;
-                Debug.Log("Capturando");
-            }
-            else if (jugadorCapturando != other.gameObject)
-            {
-                Debug.Log("Ya hay alguien capturando");
-            }
+            cantGente++;
         }
     }
 
@@ -63,17 +57,15 @@ public class ply_CaptureZone : MonoBehaviour
             return;
         }
 
-        if (other.gameObject == jugadorCapturando)
+        if (other.CompareTag("Player"))
         {
-            jugadorCapturando = null;
+            cantGente--;
         }
     }
 
-    private void CapturarZona(GameObject jugador)
+    private void CapturarZona()
     {
-        Debug.Log("Zona capturada completamente por " + jugador.name);
-        progresoCaptura = 0f;
-        //jugadorCapturando = null;
+        Debug.Log("Zona capturada completamente");
         zonaCapturada = true;
     }
 }
