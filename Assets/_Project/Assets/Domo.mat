@@ -59,14 +59,14 @@ Material:
     - _BUILTIN_SrcBlend: 5
     - _BUILTIN_Surface: 1
     - _BUILTIN_ZTest: 2
-    - _BUILTIN_ZWrite: 0
-    - _BUILTIN_ZWriteControl: 2
+    - _BUILTIN_ZWrite: 1
+    - _BUILTIN_ZWriteControl: 1
     - _Cutoff_Height: 14.07
     - _Cutoff_height: 143.3
     - _Edge_Width: 5.3
     - _Noise_Scale: 0.7
     - _Noise_Strenght: 10.03
     m_Colors:
-    - _Edge_Color: {r: 0.31597316, g: 0.4716981, b: 0.042274818, a: 1}
+    - _Edge_Color: {r: 0.50174063, g: 0.7490196, b: 0.0671291, a: 1}
     - _albedo: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
