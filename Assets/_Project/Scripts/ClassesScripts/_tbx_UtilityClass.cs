@@ -384,7 +384,6 @@ public class _tbx_UtilityClass : NetworkBehaviour
         {
             Debug.Log("Disparo1");
 
-            Vector3 aimDir = mouseWorldPosition - spawnBulletPosition.position;
             //Instantiate(pfBulletProjectile, spawnBulletPosition.position, Quaternion.LookRotation(aimDir, Vector3.up));
             //NetworkPrefab
             GameObject bullet = Instantiate(pfBulletProjectile, spawnBulletPosition.position, Quaternion.LookRotation(aimDir, Vector3.up));
@@ -401,11 +400,8 @@ public class _tbx_UtilityClass : NetworkBehaviour
         {
             if (gun.CanShoot())
             {
-                if (Physics.Raycast(gun.muzzle.position, gun.muzzle.forward, out RaycastHit hitInfo, gunData.maxDistance))
-                {
-                    Debug.Log(hitInfo.transform.name);
-                }
-                aimDir = clientMouseWorldPosition - spawnBulletPosition.position;
+
+                aimDir = shootingDirection;
 
                 Shoot();
                 gunData.currentAmmo--;

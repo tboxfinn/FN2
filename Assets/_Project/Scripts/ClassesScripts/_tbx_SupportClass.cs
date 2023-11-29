@@ -193,7 +193,11 @@ public class _tbx_SupportClass : NetworkBehaviour
             Vector3 shootingDirection = (mouseWorldPosition - spawnBulletPosition.position).normalized;
             shootInput?.Invoke(mouseWorldPosition, shootingDirection);
             animator.SetLayerWeight(1, Mathf.Lerp(animator.GetLayerWeight(1), 1f, Time.deltaTime * 10f));
-        }else
+
+            // Update aimDir on the client side
+            UpdateAimDirectionClientRpc(shootingDirection);
+        }
+        else
         {
             animator.SetLayerWeight(1, Mathf.Lerp(animator.GetLayerWeight(1), 0f, Time.deltaTime * 10f));
         }
@@ -412,7 +416,6 @@ public class _tbx_SupportClass : NetworkBehaviour
     {
         Debug.Log("Disparo3");
 
-        Vector3 aimDir = mouseWorldPosition - spawnBulletPosition.position;
         //Instantiate(pfBulletProjectile, spawnBulletPosition.position, Quaternion.LookRotation(aimDir, Vector3.up));
         //NetworkPrefab
         GameObject bullet = Instantiate(pfBulletProjectile, spawnBulletPosition.position, Quaternion.LookRotation(aimDir, Vector3.up));
@@ -440,11 +443,6 @@ public class _tbx_SupportClass : NetworkBehaviour
         {
             if (gun.CanShoot())
             {
-                /*if (Physics.Raycast(gun.muzzle.position, gun.muzzle.forward, out RaycastHit hitInfo, gunData.maxDistance))
-                {
-                    Debug.Log(hitInfo.transform.name);
-
-                }*/
                 aimDir = shootingDirection;
 
                 Shoot();
