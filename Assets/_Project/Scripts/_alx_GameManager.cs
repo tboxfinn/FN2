@@ -10,7 +10,7 @@ public class _alx_GameManager : NetworkBehaviour
     [Header("Estado actual")]
     public GameStates currentGameState;
     [Header("Elementos UI")]
-    public GameObject pausePanel;
+    public GameObject pausePanel, configPanel;
 
     [Header("Lista de clases")]
     // Esta lista se crea en caso de que en un futuro requiramos m�s clases
@@ -93,6 +93,11 @@ public class _alx_GameManager : NetworkBehaviour
         }
     }
 
+    public void SetConfig()
+    {
+        SetNewGameState(GameStates.config);
+    }
+
     // Aqui se puede asignar un nuevo gamestate solo llamando la funcion mediante el singelton
     public void SetNewGameState(GameStates newGameState)
     {
@@ -100,10 +105,16 @@ public class _alx_GameManager : NetworkBehaviour
         {
             case GameStates.inGame:
                 pausePanel.SetActive(false);
+                configPanel.SetActive(false);
             break;
             case GameStates.pause:
                 // Aqui se obtiene el elemento del canvas y se activa en caso de que se ponga en pausa
                 pausePanel.SetActive(true);
+                configPanel.SetActive(false);
+            break;
+            case GameStates.config:
+                pausePanel.SetActive(false);
+                configPanel.SetActive(true);
             break;
             case GameStates.mainMenu: 
                 
@@ -122,6 +133,7 @@ public enum GameStates
     mainMenu,
     pause,
     inGame,
+    config,
 
     // Estos tres tal vez de network behaviour
     playerSelector,
