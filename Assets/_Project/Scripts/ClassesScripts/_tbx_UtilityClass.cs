@@ -147,92 +147,94 @@ public class _tbx_UtilityClass : NetworkBehaviour
     {
         if (!IsOwner) return;
 
-        //Hability1Input
-        if (Input.GetKeyDown(Hab1) && !isHab1OnCooldown)
-        {
-            isHab1OnCooldown = true;
-            currentCooldownHab1 = cooldownHab1;
-            Habilidad1();
-        }
+        if(_alx_GameManager.singleton.currentGameState == GameStates.inGame){
 
-        //Hability2Input
-        if (Input.GetKeyDown(Hab2) && !isHab2OnCooldown)
-        {
-            isHab2OnCooldown = true;
-            currentCooldownHab2 = cooldownHab2;
-            Habilidad2();
-        }
+            //Hability1Input
+            if (Input.GetKeyDown(Hab1) && !isHab1OnCooldown)
+            {
+                isHab1OnCooldown = true;
+                currentCooldownHab1 = cooldownHab1;
+                Habilidad1();
+            }
 
-        //Hability3Input
-        if (Input.GetKeyDown(Hab3) && !isHab3OnCooldown)
-        {
-            isHab3OnCooldown = true;
-            currentCooldownHab3 = cooldownHab3;
-            Habilidad3ServerRpc();
-        }
-  
-        //Basic Shoot
-        if (Input.GetMouseButton(0) && !gunData.reloading)
-        {
-            Vector3 shootingDirection = (mouseWorldPosition - spawnBulletPosition.position).normalized;
-            shootInput?.Invoke(mouseWorldPosition, shootingDirection);
-            animator.SetLayerWeight(1, Mathf.Lerp(animator.GetLayerWeight(1), 1f, Time.deltaTime * 10f));
-            
-            // Update aimDir on the client side
-            UpdateAimDirectionClientRpc(shootingDirection);
-            
-        }else
-        {
-            animator.SetLayerWeight(1, Mathf.Lerp(animator.GetLayerWeight(1), 0f, Time.deltaTime * 10f));
-        }
+            //Hability2Input
+            if (Input.GetKeyDown(Hab2) && !isHab2OnCooldown)
+            {
+                isHab2OnCooldown = true;
+                currentCooldownHab2 = cooldownHab2;
+                Habilidad2();
+            }
 
-        //ReloadInput
-        if (Input.GetKeyDown(ReloadKey))
-        {
-            reloadInput?.Invoke();
-        }
+            //Hability3Input
+            if (Input.GetKeyDown(Hab3) && !isHab3OnCooldown)
+            {
+                isHab3OnCooldown = true;
+                currentCooldownHab3 = cooldownHab3;
+                Habilidad3ServerRpc();
+            }
+    
+            //Basic Shoot
+            if (Input.GetMouseButton(0) && !gunData.reloading)
+            {
+                Vector3 shootingDirection = (mouseWorldPosition - spawnBulletPosition.position).normalized;
+                shootInput?.Invoke(mouseWorldPosition, shootingDirection);
+                animator.SetLayerWeight(1, Mathf.Lerp(animator.GetLayerWeight(1), 1f, Time.deltaTime * 10f));
+                
+                // Update aimDir on the client side
+                UpdateAimDirectionClientRpc(shootingDirection);
+                
+            }else
+            {
+                animator.SetLayerWeight(1, Mathf.Lerp(animator.GetLayerWeight(1), 0f, Time.deltaTime * 10f));
+            }
 
-        if (gunData.currentAmmo <= 0)
-        {
-            reloadInput?.Invoke();
-        }
+            //ReloadInput
+            if (Input.GetKeyDown(ReloadKey))
+            {
+                reloadInput?.Invoke();
+            }
 
-        if (Input.GetKeyDown(CancelReloadKey))
-        {
-            cancelReloadInput?.Invoke();
-        }
+            if (gunData.currentAmmo <= 0)
+            {
+                reloadInput?.Invoke();
+            }
 
-        //Aim
-        Vector2 screenCenterPoint = new Vector2(Screen.width / 2, Screen.height / 2);
-        Ray ray = camPlayer.ScreenPointToRay(screenCenterPoint);
+            if (Input.GetKeyDown(CancelReloadKey))
+            {
+                cancelReloadInput?.Invoke();
+            }
 
-        if (Physics.Raycast(ray, out RaycastHit raycastHit, gunData.maxDistance, aimColliderLayerMask))
-        {
-            //Va directo al punto de colision
-            debugTransform.position = raycastHit.point;
-            mouseWorldPosition = raycastHit.point;
-            Debug.DrawLine(ray.origin, raycastHit.point, Color.red);
-        }
-        else if (Physics.Raycast(ray, out RaycastHit raycastHit1, gunData.maxDistance))
-        {
-            //Va directo al punto de colision
-            debugTransform.position = raycastHit1.point;
-            mouseWorldPosition = raycastHit1.point;
-            Debug.DrawLine(ray.origin, raycastHit1.point, Color.yellow);
-        }
-        else
-        {
-            //Va hasta la distancia maxima y luego lo que dios quiera
-            debugTransform.position = ray.GetPoint(gunData.maxDistance);
-            mouseWorldPosition = ray.GetPoint(gunData.maxDistance);
-            Debug.DrawLine(ray.origin, ray.GetPoint(gunData.maxDistance), Color.green);
-        }
+            //Aim
+            Vector2 screenCenterPoint = new Vector2(Screen.width / 2, Screen.height / 2);
+            Ray ray = camPlayer.ScreenPointToRay(screenCenterPoint);
 
-        //HabilitiesCooldown
-        CooldownHab(ref currentCooldownHab1, cooldownHab1, ref isHab1OnCooldown, imageHab1, textHab1);
-        CooldownHab(ref currentCooldownHab2, cooldownHab2, ref isHab2OnCooldown, imageHab2, textHab2);
-        CooldownHab(ref currentCooldownHab3, cooldownHab3, ref isHab3OnCooldown, imageHab3, textHab3);
+            if (Physics.Raycast(ray, out RaycastHit raycastHit, gunData.maxDistance, aimColliderLayerMask))
+            {
+                //Va directo al punto de colision
+                debugTransform.position = raycastHit.point;
+                mouseWorldPosition = raycastHit.point;
+                Debug.DrawLine(ray.origin, raycastHit.point, Color.red);
+            }
+            else if (Physics.Raycast(ray, out RaycastHit raycastHit1, gunData.maxDistance))
+            {
+                //Va directo al punto de colision
+                debugTransform.position = raycastHit1.point;
+                mouseWorldPosition = raycastHit1.point;
+                Debug.DrawLine(ray.origin, raycastHit1.point, Color.yellow);
+            }
+            else
+            {
+                //Va hasta la distancia maxima y luego lo que dios quiera
+                debugTransform.position = ray.GetPoint(gunData.maxDistance);
+                mouseWorldPosition = ray.GetPoint(gunData.maxDistance);
+                Debug.DrawLine(ray.origin, ray.GetPoint(gunData.maxDistance), Color.green);
+            }
 
+            //HabilitiesCooldown
+            CooldownHab(ref currentCooldownHab1, cooldownHab1, ref isHab1OnCooldown, imageHab1, textHab1);
+            CooldownHab(ref currentCooldownHab2, cooldownHab2, ref isHab2OnCooldown, imageHab2, textHab2);
+            CooldownHab(ref currentCooldownHab3, cooldownHab3, ref isHab3OnCooldown, imageHab3, textHab3);
+        }
         //aimDir = mouseWorldPosition - spawnBulletPosition.position;
     }
 

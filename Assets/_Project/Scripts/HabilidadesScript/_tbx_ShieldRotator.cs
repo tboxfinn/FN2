@@ -10,6 +10,9 @@ public class _tbx_ShieldRotator : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Rotate(Vector3.up, rotationSpeed * Time.deltaTime);
+        if(_alx_GameManager.singleton.currentGameState == GameStates.inGame){
+            transform.Rotate(Vector3.up, rotationSpeed * Time.deltaTime);
+        }
+        
     }
 }
