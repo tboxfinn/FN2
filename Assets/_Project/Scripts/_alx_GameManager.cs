@@ -112,11 +112,13 @@ public class _alx_GameManager : NetworkBehaviour
             case GameStates.inGame:
                 pausePanel.SetActive(false);
                 configPanel.SetActive(false);
+                // Aqui vuelve a desaparecer el cursor
             break;
             case GameStates.pause:
                 // Aqui se obtiene el elemento del canvas y se activa en caso de que se ponga en pausa
                 pausePanel.SetActive(true);
                 configPanel.SetActive(false);
+                // Aqui deberia de aparecer el cursor
             break;
             case GameStates.config: 
                 pausePanel.SetActive(false);
