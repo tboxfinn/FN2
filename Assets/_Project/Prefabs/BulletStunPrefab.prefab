@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 2632394376462001526}
   m_Layer: 12
   m_Name: BulletStunPrefab
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -19,8 +19,8 @@ public class _tbx_SupportClass : NetworkBehaviour
     public KeyCode ActionKey;
 
     [Header("Stats")]
-    public float health;
-    public float maxHealth;
+    [SerializeField] private NetworkVariable<float> health = new NetworkVariable<float>(100f, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    [SerializeField] private NetworkVariable<float> maxHealth = new NetworkVariable<float>(150f, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
     [Header("Habilidad1")]
     //public Sprite spriteHab1;
@@ -129,7 +129,7 @@ public class _tbx_SupportClass : NetworkBehaviour
         actualBullets = magazineSize;
 
         //Stats
-        health = maxHealth;
+        health.Value = maxHealth.Value;
         
         Hab1 = KeyCode.Alpha1;
         Hab2 = KeyCode.Alpha2;
@@ -193,7 +193,11 @@ public class _tbx_SupportClass : NetworkBehaviour
             Vector3 shootingDirection = (mouseWorldPosition - spawnBulletPosition.position).normalized;
             shootInput?.Invoke(mouseWorldPosition, shootingDirection);
             animator.SetLayerWeight(1, Mathf.Lerp(animator.GetLayerWeight(1), 1f, Time.deltaTime * 10f));
-        }else
+
+            // Update aimDir on the client side
+            UpdateAimDirectionClientRpc(shootingDirection);
+        }
+        else
         {
             animator.SetLayerWeight(1, Mathf.Lerp(animator.GetLayerWeight(1), 0f, Time.deltaTime * 10f));
         }
@@ -412,7 +416,6 @@ public class _tbx_SupportClass : NetworkBehaviour
     {
         Debug.Log("Disparo3");
 
-        Vector3 aimDir = mouseWorldPosition - spawnBulletPosition.position;
         //Instantiate(pfBulletProjectile, spawnBulletPosition.position, Quaternion.LookRotation(aimDir, Vector3.up));
         //NetworkPrefab
         GameObject bullet = Instantiate(pfBulletProjectile, spawnBulletPosition.position, Quaternion.LookRotation(aimDir, Vector3.up));
@@ -440,11 +443,6 @@ public class _tbx_SupportClass : NetworkBehaviour
         {
             if (gun.CanShoot())
             {
-                /*if (Physics.Raycast(gun.muzzle.position, gun.muzzle.forward, out RaycastHit hitInfo, gunData.maxDistance))
-                {
-                    Debug.Log(hitInfo.transform.name);
-
-                }*/
                 aimDir = shootingDirection;
 
                 Shoot();
@@ -472,5 +470,53 @@ public class _tbx_SupportClass : NetworkBehaviour
             StopCoroutine(gun.Reload());
             gunData.reloading = false;
         }
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Bullet"))
+        {
+            Debug.Log("Bullet hit");
+            Destroy(other.gameObject);
+            TakeDamage(gunData.damage);
+        }
+    }
+
+    public void TakeDamage(float damage)
+    {
+        health.Value -= damage;
+        UpdateHealthBar();
+        if (health.Value <= 0)
+        {
+            Die();
+        }
+    }
+
+    public void UpdateHealthBar()
+    {
+        //healthBar.value = health.Value / maxHealth.Value;
+        Debug.Log("Health: " + health.Value);
+    }
+
+    public void Die()
+    {
+        // Find all spawn points
+        GameObject[] spawnPoints = GameObject.FindGameObjectsWithTag("SpawnPoint");
+
+        if (spawnPoints.Length == 0)
+    {
+        Debug.LogError("No spawn points found");
+        return;
+    }
+
+        // Select a random spawn point
+        Transform spawnPoint = spawnPoints[UnityEngine.Random.Range(0, spawnPoints.Length)].transform;
+
+        // Teleport the player to the spawn point
+        transform.position = spawnPoint.position;
+
+        // Reset the player's health
+        health.Value = maxHealth.Value;
+        UpdateHealthBar();
     }
 }
