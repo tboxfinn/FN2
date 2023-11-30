@@ -19,8 +19,8 @@ public class _tbx_UtilityClass : NetworkBehaviour
     public KeyCode ActionKey;
 
     [Header("Stats")]
-    public float health;
-    public float maxHealth;
+    [SerializeField] private NetworkVariable<float> health = new NetworkVariable<float>(100f, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    [SerializeField] private NetworkVariable<float> maxHealth = new NetworkVariable<float>(150f, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
     [Header("Habilidad1")]
     //public Sprite spriteHab1;
@@ -118,7 +118,7 @@ public class _tbx_UtilityClass : NetworkBehaviour
         velocidadDeTiroInicial = gunData.fireRate;
         
         //Stats
-        health = maxHealth;
+        health.Value = maxHealth.Value;
         
         Hab1 = KeyCode.Alpha1;
         Hab2 = KeyCode.Alpha2;
@@ -428,5 +428,53 @@ public class _tbx_UtilityClass : NetworkBehaviour
             StopCoroutine(gun.Reload());
             gunData.reloading = false;
         }
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Bullet"))
+        {
+            Debug.Log("Bullet hit");
+            Destroy(other.gameObject);
+            TakeDamage(gunData.damage);
+        }
+    }
+
+    public void TakeDamage(float damage)
+    {
+        health.Value -= damage;
+        UpdateHealthBar();
+        if (health.Value <= 0)
+        {
+            Die();
+        }
+    }
+
+    public void UpdateHealthBar()
+    {
+        //healthBar.value = health.Value / maxHealth.Value;
+        Debug.Log("Health: " + health.Value);
+    }
+
+    public void Die()
+    {
+        // Find all spawn points
+        GameObject[] spawnPoints = GameObject.FindGameObjectsWithTag("SpawnPoint");
+
+        if (spawnPoints.Length == 0)
+    {
+        Debug.LogError("No spawn points found");
+        return;
+    }
+
+        // Select a random spawn point
+        Transform spawnPoint = spawnPoints[UnityEngine.Random.Range(0, spawnPoints.Length)].transform;
+
+        // Teleport the player to the spawn point
+        transform.position = spawnPoint.position;
+
+        // Reset the player's health
+        health.Value = maxHealth.Value;
+        UpdateHealthBar();
     }
 }

@@ -993,7 +993,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1451348422005149179}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.1614959, y: 0.6618903, z: -0.14915805, w: 0.7166395}
+  m_LocalRotation: {x: 0.1366919, y: 0.71621686, z: -0.14644724, w: 0.6685073}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2134,7 +2134,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3494043834218092331}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.14662874, y: 0.6648357, z: -0.13542669, w: 0.7198286}
+  m_LocalRotation: {x: 0.12282627, y: 0.7190945, z: -0.13159207, w: 0.67119324}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3088,8 +3088,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5025545192353103337}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.15979253, y: 0.66224295, z: -0.14758484, w: 0.7170212}
-  m_LocalPosition: {x: 0.48229098, y: 1.2465932, z: -0.041187227}
+  m_LocalRotation: {x: 0.13510299, y: 0.71656287, z: -0.14474493, w: 0.6688302}
+  m_LocalPosition: {x: -3.2487328, y: 2.8176289, z: 0.29312152}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3230,6 +3230,7 @@ GameObject:
   - component: {fileID: 7397481260740561987}
   - component: {fileID: 4494720157661374610}
   - component: {fileID: 561121509614778849}
+  - component: {fileID: 917262897712611500}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -3306,6 +3307,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70039297bad4c034898a0d1d330dde7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  aimDir: {x: 0, y: 0, z: 0}
   Hab1: 49
   Hab2: 50
   Hab3: 51
@@ -3343,7 +3345,6 @@ MonoBehaviour:
   isReloading: 0
   raycastDistance: 900
   mouseWorldPosition: {x: 0, y: 0, z: 0}
-  camPlayer: {fileID: 0}
   teamID: 0
   aimColliderLayerMask:
     serializedVersion: 2
@@ -3440,6 +3441,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6c0be61502bb534f922ebb746851216, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!136 &917262897712611500
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5235829807520490465}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5648945353652668194
 GameObject:
   m_ObjectHideFlags: 0
@@ -4279,7 +4303,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7760640659556373264}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.13174985, y: 0.6674877, z: -0.121684566, w: 0.7226998}
+  m_LocalRotation: {x: 0.108955644, y: 0.7216558, z: -0.116731524, w: 0.673584}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

@@ -408,4 +408,52 @@ public class _tbx_DamageClass : NetworkBehaviour
     {
         Debug.Log("TestClientRpc");
     }
+    
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Bullet"))
+        {
+            Debug.Log("Bullet hit");
+            Destroy(other.gameObject);
+            TakeDamage(gunData.damage);
+        }
+    }
+
+    public void TakeDamage(float damage)
+    {
+        health.Value -= damage;
+        UpdateHealthBar();
+        if (health.Value <= 0)
+        {
+            Die();
+        }
+    }
+
+    public void UpdateHealthBar()
+    {
+        //healthBar.value = health.Value / maxHealth.Value;
+        Debug.Log("Health: " + health.Value);
+    }
+
+    public void Die()
+    {
+        // Find all spawn points
+        GameObject[] spawnPoints = GameObject.FindGameObjectsWithTag("SpawnPoint");
+
+        if (spawnPoints.Length == 0)
+    {
+        Debug.LogError("No spawn points found");
+        return;
+    }
+
+        // Select a random spawn point
+        Transform spawnPoint = spawnPoints[UnityEngine.Random.Range(0, spawnPoints.Length)].transform;
+
+        // Teleport the player to the spawn point
+        transform.position = spawnPoint.position;
+
+        // Reset the player's health
+        health.Value = maxHealth.Value;
+        UpdateHealthBar();
+    }
 }
