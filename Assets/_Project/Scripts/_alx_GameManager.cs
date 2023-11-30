@@ -104,6 +104,10 @@ public class _alx_GameManager : NetworkBehaviour
         SetNewGameState(GameStates.config);
     }
 
+    public void ExitGame(){
+        // Para salir desde la pausa
+    }
+
     // Aqui se puede asignar un nuevo gamestate solo llamando la funcion mediante el singelton
     public void SetNewGameState(GameStates newGameState)
     {
@@ -113,12 +117,14 @@ public class _alx_GameManager : NetworkBehaviour
                 pausePanel.SetActive(false);
                 configPanel.SetActive(false);
                 // Aqui vuelve a desaparecer el cursor
+                Cursor.visible = false;
             break;
             case GameStates.pause:
                 // Aqui se obtiene el elemento del canvas y se activa en caso de que se ponga en pausa
                 pausePanel.SetActive(true);
                 configPanel.SetActive(false);
                 // Aqui deberia de aparecer el cursor
+                Cursor.visible = true;
             break;
             case GameStates.config: 
                 pausePanel.SetActive(false);
