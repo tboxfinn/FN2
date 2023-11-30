@@ -151,7 +151,7 @@ public class _tbx_SupportClass : NetworkBehaviour
         reloadInput += StartReloadServerRpc;
         cancelReloadInput += CancelReloadServerRpc;
 
-        camPlayer = GameObject.Find("CamaraSupport").GetComponent<Camera>(); 
+        camPlayer = GameObject.Find("CamaraSupport").GetComponent<Camera>();
     }
 
 
@@ -165,9 +165,12 @@ public class _tbx_SupportClass : NetworkBehaviour
             //Hability1Input
             if (Input.GetKeyDown(Hab1) && !isHab1OnCooldown)
             {
-                isHab1OnCooldown = true;
-                currentCooldownHab1 = cooldownHab1;
-                Habilidad1();
+                if (!isHab3OnCooldown)
+                {
+                    isHab1OnCooldown = true;
+                    currentCooldownHab1 = cooldownHab1;
+                    Habilidad1();
+                }
             }
 
             //Hability2Input
@@ -181,9 +184,12 @@ public class _tbx_SupportClass : NetworkBehaviour
             //Hability3Input
             if (Input.GetKeyDown(Hab3) && !isHab3OnCooldown)
             {
-                isHab3OnCooldown = true;
-                currentCooldownHab3 = cooldownHab3;
-                Habilidad3();
+                if (!isHab1OnCooldown)
+                {
+                    isHab3OnCooldown = true;
+                    currentCooldownHab3 = cooldownHab3;
+                    Habilidad3();
+                }                
             }
 
             timeSinceLastShot += Time.deltaTime;
