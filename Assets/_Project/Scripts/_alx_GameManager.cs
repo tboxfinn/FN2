@@ -123,7 +123,7 @@ public class _alx_GameManager : NetworkBehaviour
                 // Aqui se obtiene el elemento del canvas y se activa en caso de que se ponga en pausa
                 pausePanel.SetActive(true);
                 configPanel.SetActive(false);
-                // Aqui deberia de aparecer el cursor
+                // AQUI AYUDAME TBOOOOOOX, NO SE QUE COÑO HICISTE
                 Cursor.visible = true;
             break;
             case GameStates.config: 
