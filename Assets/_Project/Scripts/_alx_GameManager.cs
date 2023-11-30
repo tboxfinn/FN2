@@ -10,11 +10,11 @@ public class _alx_GameManager : NetworkBehaviour
     [Header("Estado actual")]
     public GameStates currentGameState;
     [Header("Elementos UI")]
-    public GameObject pausePanel;
+    public GameObject pausePanel, configPanel;
 
-    [Header("Lista de clases")]
+    [Header("Lista de clases (Ahorita dejarlo en 0)")]
     // Esta lista se crea en caso de que en un futuro requiramos m�s clases
-    public List<GameObject> listaClases = new List<GameObject>();
+    public List<GameObject> clases = new List<GameObject>();
 
 
     private void Awake()
@@ -56,10 +56,10 @@ public class _alx_GameManager : NetworkBehaviour
 
     public void SetClassUtility()
     {
-        for (int i=0;i<listaClases.Count;i++)
+        for (int i=0;i<clases.Count;i++)
         {
             // Checa cual es utility
-            if (listaClases[i].gameObject.CompareTag("Utility"))
+            if (clases[i].gameObject.CompareTag("Utility"))
             {
                 // Aqu� instancia el prefab
 
@@ -69,10 +69,10 @@ public class _alx_GameManager : NetworkBehaviour
 
     public void SetClassAsault()
     {
-        for (int i = 0; i < listaClases.Count; i++)
+        for (int i = 0; i < clases.Count; i++)
         {
             // Checa cual es utility
-            if (listaClases[i].gameObject.CompareTag("Asault"))
+            if (clases[i].gameObject.CompareTag("Asault"))
             {
                 // Aqu� instancia el prefab
 
@@ -82,15 +82,19 @@ public class _alx_GameManager : NetworkBehaviour
 
     public void SetClassSuport()
     {
-        for (int i = 0; i < listaClases.Count; i++)
+        for (int i = 0; i < clases.Count; i++)
         {
             // Checa cual es utility
-            if (listaClases[i].gameObject.CompareTag("Suport"))
+            if (clases[i].gameObject.CompareTag("Suport"))
             {
                 // Aqu� instancia el prefab
 
             }
         }
+    }
+
+    public void OpenConfig(){
+        SetNewGameState(GameStates.config);
     }
 
     // Aqui se puede asignar un nuevo gamestate solo llamando la funcion mediante el singelton
@@ -100,13 +104,16 @@ public class _alx_GameManager : NetworkBehaviour
         {
             case GameStates.inGame:
                 pausePanel.SetActive(false);
+                configPanel.SetActive(false);
             break;
             case GameStates.pause:
                 // Aqui se obtiene el elemento del canvas y se activa en caso de que se ponga en pausa
                 pausePanel.SetActive(true);
+                configPanel.SetActive(false);
             break;
-            case GameStates.mainMenu: 
-                
+            case GameStates.config: 
+                pausePanel.SetActive(false);
+                configPanel.SetActive(true);
             break;
         }
 
@@ -122,6 +129,7 @@ public enum GameStates
     mainMenu,
     pause,
     inGame,
+    config,
 
     // Estos tres tal vez de network behaviour
     playerSelector,
