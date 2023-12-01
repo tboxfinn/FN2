@@ -52,11 +52,11 @@ public class _alx_GameManager : NetworkBehaviour
                 SetNewGameState(GameStates.inGame);
             }
         }
-        else if (currentGameState == GameStates.defeat)
+        else if (currentGameState == GameStates.config)
         {
             if(Input.GetKeyDown(KeyCode.Escape))
             {
-                SetNewGameState(GameStates.inGame);
+                SetNewGameState(GameStates.pause);
             }
         }
     }
