@@ -15,6 +15,7 @@ public class _chr_FreeCam : MonoBehaviour
     public GameObject Telon;
  
     public TypeCam typeCam;
+    int camara = 1;
 
     void Start()
     {
@@ -44,8 +45,8 @@ public class _chr_FreeCam : MonoBehaviour
         TimerCambio -= 1 * Time.deltaTime;
 
         if(TimerCambio <= 0){
-            int Camaraaleatoria ++;
-            switch(Camaraaleatoria){
+            camara ++;
+            switch(camara){
                 case 1:
                     CambioCamara(TypeCam.Cam1);
                 break;
@@ -63,10 +64,10 @@ public class _chr_FreeCam : MonoBehaviour
                 break;
 
                 case >= 5:
-                    Camaraaleatoria = 1;
+                    camara = 0;
                 break;
             }
-            TimerCambio = UnityEngine.Random.Range(5, 7);
+            TimerCambio = UnityEngine.Random.Range(5, 8);
         }
         
 
