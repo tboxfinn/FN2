@@ -2223,6 +2223,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 482727565}
+    - target: {fileID: 7178158134613070588, guid: bc316fdd3c5023f4ab2b84d9827e3b7a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7296922058670517134, guid: bc316fdd3c5023f4ab2b84d9827e3b7a, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -2812,6 +2816,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 864810994}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &828248721
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3273,6 +3289,11 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &864810994 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7178158134613070588, guid: bc316fdd3c5023f4ab2b84d9827e3b7a, type: 3}
+  m_PrefabInstance: {fileID: 746759063}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &922400583
 Mesh:
   m_ObjectHideFlags: 0
@@ -6554,6 +6575,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   connectingPanel: {fileID: 2671004271419951928}
   menuPanel: {fileID: 5271059731539071656}
+  screenCanvasMenu: {fileID: 864810994}
   joinCodeInputField: {fileID: 0}
 --- !u!224 &4772103259069859839
 RectTransform:
@@ -6872,5 +6894,5 @@ SceneRoots:
   - {fileID: 132178191}
   - {fileID: 723090755}
   - {fileID: 724108337}
-  - {fileID: 8275783135508712884}
   - {fileID: 746759063}
+  - {fileID: 8275783135508712884}

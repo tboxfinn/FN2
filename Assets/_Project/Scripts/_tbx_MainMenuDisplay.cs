@@ -17,6 +17,7 @@ public class _tbx_MainMenuDisplay : MonoBehaviour
     [Header("UI Elements")]
     [SerializeField] private GameObject connectingPanel;
     [SerializeField] private GameObject menuPanel;
+    [SerializeField] private GameObject screenCanvasMenu;
     [SerializeField] private TMP_InputField joinCodeInputField;
 
     private async void Start()
@@ -41,22 +42,25 @@ public class _tbx_MainMenuDisplay : MonoBehaviour
 
         connectingPanel.SetActive(false);
         menuPanel.SetActive(true);
+        screenCanvasMenu.SetActive(true);
     }
 
     public void StartHost()
     {
         _tbx_HostManager.Instance.StartHost();
+        screenCanvasMenu.SetActive(false);
         
     }
 
     public void StartServer()
     {
         _tbx_HostManager.Instance.StartServer();
-
+        screenCanvasMenu.SetActive(false);
     }
 
     public async void StartClient()
     {
         await _tbx_ClientManager.Instance.StartClient(joinCodeInputField.text);
+        screenCanvasMenu.SetActive(false);
     }
 }
