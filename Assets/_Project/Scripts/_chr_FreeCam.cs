@@ -44,7 +44,7 @@ public class _chr_FreeCam : MonoBehaviour
         TimerCambio -= 1 * Time.deltaTime;
 
         if(TimerCambio <= 0){
-            int Camaraaleatoria = UnityEngine.Random.Range(1, 5);
+            int Camaraaleatoria ++;
             switch(Camaraaleatoria){
                 case 1:
                     CambioCamara(TypeCam.Cam1);
@@ -60,6 +60,10 @@ public class _chr_FreeCam : MonoBehaviour
 
                 case 4:
                     CambioCamara(TypeCam.Cam4);
+                break;
+
+                case >= 5:
+                    Camaraaleatoria = 1;
                 break;
             }
             TimerCambio = UnityEngine.Random.Range(5, 7);
