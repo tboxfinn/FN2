@@ -1595,7 +1595,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2617373380208560353}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.076245144, y: 0.57531047, z: -0.053981736, w: 0.8125827}
+  m_LocalRotation: {x: 0.07624514, y: 0.57531047, z: -0.05398174, w: 0.8125827}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1677,7 +1677,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2746539156653107487}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.10415432, y: 0.57311285, z: -0.0737415, w: 0.8094787}
+  m_LocalRotation: {x: 0.104154326, y: 0.5731129, z: -0.07374152, w: 0.8094787}
   m_LocalPosition: {x: 0.103073835, y: 1.2629404, z: -0.31590736}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2968,14 +2968,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7860cafac7102f84e8cc02233f554f4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  aimDir: {x: 0, y: 0, z: 0}
   Hab1: 49
   Hab2: 50
   Hab3: 51
   ReloadKey: 114
   CancelReloadKey: 116
   ActionKey: 101
-  health: 100
-  maxHealth: 100
+  health:
+    m_InternalValue: 100
+  maxHealth:
+    m_InternalValue: 150
   imageHab1Normal: {fileID: 6436913576496758340}
   imageHab1: {fileID: 2119851397150991434}
   textHab1: {fileID: 5624231177560084202}
@@ -3055,6 +3058,9 @@ MonoBehaviour:
   isStunned: 0
   orientation: {fileID: 8935857131803062732}
   anim: {fileID: 7442458133259294839}
+  whatIsZone:
+    serializedVersion: 2
+    m_Bits: 16384
   state: 0
   text_speed: {fileID: 0}
   text_ySpeed: {fileID: 0}
@@ -5226,7 +5232,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9189058723912467128}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.10975209, y: 0.5725889, z: -0.07770472, w: 0.80873877}
+  m_LocalRotation: {x: 0.10975209, y: 0.572589, z: -0.077704735, w: 0.80873877}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

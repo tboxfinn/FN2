@@ -334,6 +334,8 @@ public class _tbx_SupportClass : NetworkBehaviour
             playerMovementScript.moveSpeed += 6;
             // Start a coroutine to reset the values after a delay
             StartCoroutine(ResetMovementValues());
+
+            cantidadHabilidad1Actual--;
         }
     
         else
@@ -359,6 +361,8 @@ public class _tbx_SupportClass : NetworkBehaviour
             playerMovementScript.moveSpeed += 6;
             // Start a coroutine to reset the values after a delay
             StartCoroutine(ResetMovementValues());
+
+            cantidadHabilidad1Actual--;
         }
     }
 
