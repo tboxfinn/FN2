@@ -163,13 +163,13 @@ public class _tbx_SupportClass : NetworkBehaviour
         if(_alx_GameManager.singleton.currentGameState == GameStates.inGame){
 
             //Hability1Input
-            if (Input.GetKeyDown(Hab1) && !isHab1OnCooldown)
+            if (Input.GetKeyDown(Hab1) && !isHab3OnCooldown)
             {
-                if (!isHab3OnCooldown)
+                if (!isHab1OnCooldown)
                 {
                     isHab1OnCooldown = true;
                     currentCooldownHab1 = cooldownHab1;
-                    Habilidad1();
+                    Habilidad3();
                 }
             }
 
@@ -182,13 +182,13 @@ public class _tbx_SupportClass : NetworkBehaviour
             }
 
             //Hability3Input
-            if (Input.GetKeyDown(Hab3) && !isHab3OnCooldown)
+            if (Input.GetKeyDown(Hab3) && !isHab1OnCooldown)
             {
-                if (!isHab1OnCooldown)
+                if (!isHab3OnCooldown)
                 {
                     isHab3OnCooldown = true;
                     currentCooldownHab3 = cooldownHab3;
-                    Habilidad3();
+                    Habilidad1();
                 }                
             }
 
