@@ -1392,6 +1392,94 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1674521285268074231, guid: c24b31962638031409ad85f803b5a873, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1674521285268074231, guid: c24b31962638031409ad85f803b5a873, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1674521285268074231, guid: c24b31962638031409ad85f803b5a873, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 458964918}
+    - target: {fileID: 1674521285268074231, guid: c24b31962638031409ad85f803b5a873, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1674521285268074231, guid: c24b31962638031409ad85f803b5a873, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ReanudarGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 1674521285268074231, guid: c24b31962638031409ad85f803b5a873, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: _alx_GameManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1674521285268074231, guid: c24b31962638031409ad85f803b5a873, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 2294055179084955103, guid: c24b31962638031409ad85f803b5a873, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2294055179084955103, guid: c24b31962638031409ad85f803b5a873, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2294055179084955103, guid: c24b31962638031409ad85f803b5a873, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 458964918}
+    - target: {fileID: 2294055179084955103, guid: c24b31962638031409ad85f803b5a873, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2294055179084955103, guid: c24b31962638031409ad85f803b5a873, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ExitGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 2294055179084955103, guid: c24b31962638031409ad85f803b5a873, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: _alx_GameManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2294055179084955103, guid: c24b31962638031409ad85f803b5a873, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 2985729331913070440, guid: c24b31962638031409ad85f803b5a873, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6197492027407625491, guid: c24b31962638031409ad85f803b5a873, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6197492027407625491, guid: c24b31962638031409ad85f803b5a873, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6197492027407625491, guid: c24b31962638031409ad85f803b5a873, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 458964918}
+    - target: {fileID: 6197492027407625491, guid: c24b31962638031409ad85f803b5a873, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6197492027407625491, guid: c24b31962638031409ad85f803b5a873, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OpenConfig
+      objectReference: {fileID: 0}
+    - target: {fileID: 6197492027407625491, guid: c24b31962638031409ad85f803b5a873, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: _alx_GameManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6197492027407625491, guid: c24b31962638031409ad85f803b5a873, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 7304840391419092905, guid: c24b31962638031409ad85f803b5a873, type: 3}
       propertyPath: m_LocalPosition.x
       value: 286.2077

@@ -104,8 +104,13 @@ public class _alx_GameManager : NetworkBehaviour
         SetNewGameState(GameStates.config);
     }
 
+    public void ReanudarGame(){
+        SetNewGameState(GameStates.inGame);
+    }
+
     public void ExitGame(){
         // Para salir desde la pausa
+        Application.Quit();
     }
 
     // Aqui se puede asignar un nuevo gamestate solo llamando la funcion mediante el singelton
