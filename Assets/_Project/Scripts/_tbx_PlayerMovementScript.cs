@@ -47,6 +47,10 @@ public class _tbx_PlayerMovementScript : NetworkBehaviour
     //find the animator component attached to the GameObject you are intending to animate.
     public Animator anim;
 
+    [Header("Zone Check")]
+    public LayerMask whatIsZone;
+    bool isInZone;
+
     Rigidbody rb;
 
     public MovementState state;
@@ -84,7 +88,15 @@ public class _tbx_PlayerMovementScript : NetworkBehaviour
             //Show the raycast on the scene view
             Debug.DrawRay(transform.position, Vector3.down * (playerHeight * 0.5f + 0.2f), Color.red);
 
-            if(!IsOwner)
+            //Zone Check
+            isInZone = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsZone);
+            Debug.DrawRay(transform.position, Vector3.down * (playerHeight * 0.5f + 0.2f), Color.red);
+            if (isInZone)
+            {
+                Debug.Log("Está en la zona");
+            }
+
+            if (!IsOwner)
             {
                 return;
             }
@@ -117,7 +129,7 @@ public class _tbx_PlayerMovementScript : NetworkBehaviour
         verticalInput = Input.GetAxisRaw("Vertical");
 
         //When jump key is pressed
-        if (Input.GetKey(jumpKey) && readyToJump && isGrounded)
+        if (Input.GetKey(jumpKey) && readyToJump && isGrounded || Input.GetKey(jumpKey) && readyToJump && isInZone)
         {
             readyToJump = false;
 
@@ -129,7 +141,7 @@ public class _tbx_PlayerMovementScript : NetworkBehaviour
 
     private void StateHandler()
     {
-        if (isGrounded)
+        if (isGrounded || isInZone)
         {
             float velocityMagnitude = rb.velocity.magnitude;
 
@@ -173,16 +185,16 @@ public class _tbx_PlayerMovementScript : NetworkBehaviour
             }
         }
         //On ground
-        else if(isGrounded)
+        else if(isGrounded || isInZone)
         {
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
         }
         //In air
-        else if (!isGrounded)
+        else if (!isGrounded && !isInZone)
         {
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force);
         }
-        else if (OnSlope() && !isGrounded)
+        else if (OnSlope() && !isGrounded && !isInZone)
         {
             rb.AddForce(Vector3.down * 80f, ForceMode.Force);
         }
