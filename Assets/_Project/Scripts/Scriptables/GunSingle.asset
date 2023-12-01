@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GunSingle
   m_EditorClassIdentifier: 
   name: GunSingle
-  damage: 1
+  damage: 12
   maxDistance: 100
   currentAmmo: 31
   magSize: 45

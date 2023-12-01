@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Baton
   m_EditorClassIdentifier: 
   name: Baton
-  damage: 2
+  damage: 15
   maxDistance: 100
   currentAmmo: 8
   magSize: 31

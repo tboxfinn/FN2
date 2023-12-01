@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Blaster
   m_EditorClassIdentifier: 
   name: Blaster
-  damage: 3
+  damage: 18
   maxDistance: 100
   currentAmmo: 18
   magSize: 25
