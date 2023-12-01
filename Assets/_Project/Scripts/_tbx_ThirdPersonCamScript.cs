@@ -83,33 +83,35 @@ public class _tbx_ThirdPersonCamScript : NetworkBehaviour
             return;
         }
         
-        // Switch camera style based on keybinds
-        if (Input.GetKeyDown(KeyCamera1)) SwitchCameraStyle(CameraStyle.Basic);
-        if (Input.GetKeyDown(KeyCamera2)) SwitchCameraStyle(CameraStyle.Combat);
-        if (Input.GetKeyDown(KeyCamera3)) SwitchCameraStyle(CameraStyle.Topdown);
+        if(_alx_GameManager.singleton.currentGameState == GameStates.inGame){
+            // Switch camera style based on keybinds
+            if (Input.GetKeyDown(KeyCamera1)) SwitchCameraStyle(CameraStyle.Basic);
+            if (Input.GetKeyDown(KeyCamera2)) SwitchCameraStyle(CameraStyle.Combat);
+            if (Input.GetKeyDown(KeyCamera3)) SwitchCameraStyle(CameraStyle.Topdown);
 
-        // Rotate orientation to face player
-        Vector3 viewDir = player.position - new Vector3(transform.position.x, player.position.y, transform.position.z);
-        orientation.forward = viewDir;
+            // Rotate orientation to face player
+            Vector3 viewDir = player.position - new Vector3(transform.position.x, player.position.y, transform.position.z);
+            orientation.forward = viewDir;
 
-        // Rotate player object based on camera style
-        if(currentStyle == CameraStyle.Basic || currentStyle == CameraStyle.Topdown)
-        {
-            float horizontalInput = Input.GetAxisRaw("Horizontal");
-            float verticalInput = Input.GetAxisRaw("Vertical");
-            Vector3 inputDir = orientation.forward * verticalInput + orientation.right * horizontalInput;
-
-            if (inputDir != Vector3.zero)
+            // Rotate player object based on camera style
+            if(currentStyle == CameraStyle.Basic || currentStyle == CameraStyle.Topdown)
             {
-                playerObj.forward = Vector3.Slerp(playerObj.forward, inputDir.normalized, Time.deltaTime * rotationSpeed);
-            }
-        }
-        else if (currentStyle == CameraStyle.Combat)
-        {
-            Vector3 dirToCombatLookAt = combatLookAt.position - new Vector3(transform.position.x, combatLookAt.position.y, transform.position.z);
-            orientation.forward = dirToCombatLookAt;
+                float horizontalInput = Input.GetAxisRaw("Horizontal");
+                float verticalInput = Input.GetAxisRaw("Vertical");
+                Vector3 inputDir = orientation.forward * verticalInput + orientation.right * horizontalInput;
 
-            playerObj.forward = dirToCombatLookAt.normalized;
+                if (inputDir != Vector3.zero)
+                {
+                    playerObj.forward = Vector3.Slerp(playerObj.forward, inputDir.normalized, Time.deltaTime * rotationSpeed);
+                }
+            }
+            else if (currentStyle == CameraStyle.Combat)
+            {
+                Vector3 dirToCombatLookAt = combatLookAt.position - new Vector3(transform.position.x, combatLookAt.position.y, transform.position.z);
+                orientation.forward = dirToCombatLookAt;
+
+                playerObj.forward = dirToCombatLookAt.normalized;
+            }
         }
     }
 

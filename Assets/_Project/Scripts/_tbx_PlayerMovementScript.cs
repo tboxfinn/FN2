@@ -78,25 +78,27 @@ public class _tbx_PlayerMovementScript : NetworkBehaviour
 
     void Update()
     {
-        //Ground Check
-        isGrounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
-        //Show the raycast on the scene view
-        Debug.DrawRay(transform.position, Vector3.down * (playerHeight * 0.5f + 0.2f), Color.red);
+        if(_alx_GameManager.singleton.currentGameState == GameStates.inGame){
+            //Ground Check
+            isGrounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
+            //Show the raycast on the scene view
+            Debug.DrawRay(transform.position, Vector3.down * (playerHeight * 0.5f + 0.2f), Color.red);
 
-        if(!IsOwner)
-        {
-            return;
+            if(!IsOwner)
+            {
+                return;
+            }
+
+            MyInput();
+            SpeedControl();
+            StateHandler();
+
+            //Manejar el drag
+            if (isGrounded)
+                rb.drag = groundDrag;
+            else
+                rb.drag = 0f;
         }
-
-        MyInput();
-        SpeedControl();
-        StateHandler();
-
-        //Manejar el drag
-        if (isGrounded)
-            rb.drag = groundDrag;
-        else
-            rb.drag = 0f;
     }
 
     void FixedUpdate()

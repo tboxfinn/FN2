@@ -118,6 +118,7 @@ public class _alx_GameManager : NetworkBehaviour
                 configPanel.SetActive(false);
                 // Aqui vuelve a desaparecer el cursor
                 Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Locked;
             break;
             case GameStates.pause:
                 // Aqui se obtiene el elemento del canvas y se activa en caso de que se ponga en pausa
@@ -125,6 +126,7 @@ public class _alx_GameManager : NetworkBehaviour
                 configPanel.SetActive(false);
                 // AQUI AYUDAME TBOOOOOOX, NO SE QUE COÑO HICISTE
                 Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
             break;
             case GameStates.config: 
                 pausePanel.SetActive(false);
