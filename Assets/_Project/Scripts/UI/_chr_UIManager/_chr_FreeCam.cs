@@ -12,8 +12,6 @@ public class _chr_FreeCam : MonoBehaviour
     public float movementSpeed = 10f;
     public float fastMovementSpeed = 100f;
     public float TimerCambio;
-    public GameObject Telon;
- 
     public TypeCam typeCam;
     int camara = 1;
 

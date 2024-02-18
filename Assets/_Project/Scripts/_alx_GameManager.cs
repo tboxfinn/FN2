@@ -9,8 +9,6 @@ public class _alx_GameManager : NetworkBehaviour
 
     [Header("Estado actual")]
     public GameStates currentGameState;
-    [Header("Elementos UI")]
-    public GameObject pausePanel, configPanel;
 
     [Header("Lista de clases (Ahorita dejarlo en 0)")]
     // Esta lista se crea en caso de que en un futuro requiramos m�s clases
@@ -38,27 +36,7 @@ public class _alx_GameManager : NetworkBehaviour
 
     private void Update() 
     {
-        if (currentGameState == GameStates.inGame)
-        {
-            if(Input.GetKeyDown(KeyCode.Escape))
-            {
-                SetNewGameState(GameStates.pause);
-            }
-        }
-        else if (currentGameState == GameStates.pause)
-        {
-            if(Input.GetKeyDown(KeyCode.Escape))
-            {
-                SetNewGameState(GameStates.inGame);
-            }
-        }
-        else if (currentGameState == GameStates.config)
-        {
-            if(Input.GetKeyDown(KeyCode.Escape))
-            {
-                SetNewGameState(GameStates.pause);
-            }
-        }
+
     }
 
     public void SetClassUtility()
@@ -100,14 +78,6 @@ public class _alx_GameManager : NetworkBehaviour
         }
     }
 
-    public void OpenConfig(){
-        SetNewGameState(GameStates.config);
-    }
-
-    public void ReanudarGame(){
-        SetNewGameState(GameStates.inGame);
-    }
-
     public void ExitGame(){
         // Para salir desde la pausa
         Application.Quit();
@@ -118,28 +88,64 @@ public class _alx_GameManager : NetworkBehaviour
     {
         switch (newGameState)
         {
-            case GameStates.inGame:
-                pausePanel.SetActive(false);
-                configPanel.SetActive(false);
-                // Aqui vuelve a desaparecer el cursor
-                Cursor.visible = false;
-                Cursor.lockState = CursorLockMode.Locked;
+            case GameStates.mainMenu:
+            _chr_GUIManager.instance.Estados.ChangeState(E1_Menu.instance);
             break;
+
             case GameStates.pause:
-                // Aqui se obtiene el elemento del canvas y se activa en caso de que se ponga en pausa
-                pausePanel.SetActive(true);
-                configPanel.SetActive(false);
-                // AQUI AYUDAME TBOOOOOOX, NO SE QUE COÑO HICISTE
-                Cursor.visible = true;
-                Cursor.lockState = CursorLockMode.None;
+            _chr_GUIManager.instance.Estados.ChangeState(E2_Pause.instance);
             break;
-            case GameStates.config: 
-                pausePanel.SetActive(false);
-                configPanel.SetActive(true);
+
+            case GameStates.inGame:
+            _chr_GUIManager.instance.Estados.ChangeState(E3_Game.instance);
+            break;
+
+            case GameStates.config:
+            _chr_GUIManager.instance.Estados.ChangeState(E4_Config.instance);
+            break;
+
+            case GameStates.playerSelector:
+            _chr_GUIManager.instance.Estados.ChangeState(E5_PlayerSelector.instance);
+            break;
+
+            case GameStates.defeat:
+            _chr_GUIManager.instance.Estados.ChangeState(E6_Defeat.instance);
+            break;
+
+            case GameStates.gameOver:
+            _chr_GUIManager.instance.Estados.ChangeState(E7_GameOver.instance);
             break;
         }
-
         currentGameState = newGameState;
+    }
+
+    
+    public void MainMenu(){
+        SetNewGameState(GameStates.mainMenu);
+    }
+
+    public void PauseGame(){
+        SetNewGameState(GameStates.pause);
+    }
+
+    public void InGame(){
+        SetNewGameState(GameStates.inGame);
+    }
+
+    public void Config(){
+        SetNewGameState(GameStates.config);
+    }
+
+    public void PlayerSelector(){
+        SetNewGameState(GameStates.playerSelector);
+    }
+
+    public void Defeat(){
+        SetNewGameState(GameStates.defeat);
+    }
+
+    public void GameOver(){
+        SetNewGameState(GameStates.gameOver);
     }
 
 }

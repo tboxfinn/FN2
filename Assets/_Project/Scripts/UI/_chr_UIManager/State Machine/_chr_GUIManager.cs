@@ -14,16 +14,17 @@ public class _chr_GUIManager : MonoBehaviour
 
     [Header ("UI Manager")]
     public StateMachine<_chr_GUIManager> Estados;
+    public static _chr_GUIManager instance;
 
     [SerializeField] string EstadoActual = null;
     [Header ("Paneles")]
-    [SerializeField] GameObject MainMenuPanel;
-    [SerializeField] GameObject PauseGamePanel;
-    [SerializeField] GameObject InGamePanel;
-    [SerializeField] GameObject ConfigPanel;
-    [SerializeField] GameObject PlayerSelectorPanel;
-    [SerializeField] GameObject DefeatPanel;
-    [SerializeField] GameObject GameOverPanel;
+    public GameObject MainMenuPanel;
+    public GameObject PauseGamePanel;
+    public GameObject InGamePanel;
+    public GameObject ConfigPanel;
+    public GameObject PlayerSelectorPanel;
+    public GameObject DefeatPanel;
+    public GameObject GameOverPanel;
 
     [Header ("Materiales UI")]
     [Space (15)]
@@ -46,15 +47,31 @@ public class _chr_GUIManager : MonoBehaviour
         
     }
 
+    void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+            
+        else if (instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        DontDestroyOnLoad(this.gameObject);
+    }
+
     void Start()
     {
-        
+        Estados = new StateMachine<_chr_GUIManager>(this);
+        Estados.SetCurrentState(E1_Menu.instance);
     }
 
     void Update()
     {
         //Ui Manager
-        EstadoActual = _alx_GameManager.singleton.currentGameState.ToString();
+//        EstadoActual = _alx_GameManager.singleton.currentGameState.ToString();
+        Estados.Updating();
 
 
         //Materiales UI
@@ -64,22 +81,12 @@ public class _chr_GUIManager : MonoBehaviour
     }
 
     public void DesactivarPaneles(){
-        
-    }
-
-    public void MainMenu(){
-
-    }
-
-    public void PauseGame(){
-
-    }
-
-    public void InGame(){
-
-    }
-
-    public void Config(){
-        
+        MainMenuPanel.SetActive(false);
+        PauseGamePanel.SetActive(false);
+        InGamePanel.SetActive(false);
+        ConfigPanel.SetActive(false);
+        PlayerSelectorPanel.SetActive(false);
+        DefeatPanel.SetActive(false);
+        GameOverPanel.SetActive(false);
     }
 }
