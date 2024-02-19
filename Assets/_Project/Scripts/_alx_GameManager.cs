@@ -137,6 +137,9 @@ public class _alx_GameManager : NetworkBehaviour
                 pausePanel.SetActive(false);
                 configPanel.SetActive(true);
             break;
+            case GameStates.gameOver:
+                // Mostrar un panel para regresar al menu o iniciar nueva partida
+            break;
         }
 
         currentGameState = newGameState;
