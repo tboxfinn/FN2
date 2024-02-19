@@ -22,10 +22,13 @@ public class E2_Pause : State<_chr_GUIManager>
     public override void Enter(_chr_GUIManager entity)
     {
         //Activa los paneles que se utilizarán y desactiva los que ya no se van a utilizar
+        entity.DesactivarPaneles();
+        entity.ExtensionPausePanel.SetActive(true);
+        entity.PauseGamePanel.SetActive(true);
 
         //Aqui aparece el cursor
-                Cursor.visible = true;
-                Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
     }
 
     public override void Excute(_chr_GUIManager entity)

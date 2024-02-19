@@ -20,6 +20,7 @@ public class _chr_GUIManager : MonoBehaviour
     [Header ("Paneles")]
     public GameObject MainMenuPanel;
     public GameObject PauseGamePanel;
+    public GameObject ExtensionPausePanel;
     public GameObject InGamePanel;
     public GameObject ConfigPanel;
     public GameObject PlayerSelectorPanel;
@@ -41,6 +42,8 @@ public class _chr_GUIManager : MonoBehaviour
     [Range (-10, 10)]
 
     public float LifeArea3;
+
+    //[Header ("Extras")]
 
     public void OnEnable()
     {
@@ -78,11 +81,14 @@ public class _chr_GUIManager : MonoBehaviour
         areaMat1.SetFloat("_Cutoff_height", LifeArea1);
         areaMat2.SetFloat("_Cutoff_height", LifeArea2);
         areaMat3.SetFloat("_Cutoff_height", LifeArea3);
+
+        
     }
 
     public void DesactivarPaneles(){
         MainMenuPanel.SetActive(false);
         PauseGamePanel.SetActive(false);
+        ExtensionPausePanel.SetActive(false);
         InGamePanel.SetActive(false);
         ConfigPanel.SetActive(false);
         PlayerSelectorPanel.SetActive(false);

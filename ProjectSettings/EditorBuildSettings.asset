@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/_Project/Scenes/_chr_MenuScene.unity
+    guid: 638d0ffc6233e2048a7b3a9f5c8966a2
+  - enabled: 1
     path: Assets/_Project/Scenes/_tbx_Selection.unity
     guid: 84085fc44e9433946b1bbb7ab8265197
   - enabled: 1
@@ -20,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Project/Scenes/_klz_Probuilder.unity
     guid: 7ae29cfe9a7d7a14d834204cfb8f9a9f
+  - enabled: 1
+    path: Assets/_Project/Scenes/_chr_scene.unity
+    guid: ec6c8e53e61b7e64fa01d0bd66e38109
   m_configObjects: {}

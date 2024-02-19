@@ -23,9 +23,9 @@ public class E5_PlayerSelector : State<_chr_GUIManager>
     public override void Enter(_chr_GUIManager entity)
     {
         //Activa los paneles que se utilizarán y desactiva los que ya no se van a utilizar
+        SceneManager.LoadScene("_tbx_Characterselect");
         entity.DesactivarPaneles();
         entity.PlayerSelectorPanel.SetActive(true);
-        SceneManager.LoadScene("_tbx_Characterselect");
     }
 
     public override void Excute(_chr_GUIManager entity)

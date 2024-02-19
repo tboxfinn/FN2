@@ -23,15 +23,15 @@ public class E1_Menu : State<_chr_GUIManager>
     public override void Enter(_chr_GUIManager entity)
     {
         //Activa los paneles que se utilizarán y desactiva los que ya no se van a utilizar
+        SceneManager.LoadScene("_chr_MenuScene");
         entity.DesactivarPaneles();
         entity.MainMenuPanel.SetActive(true);
-        SceneManager.LoadScene("_chr_MenuScene");
     }
 
     public override void Excute(_chr_GUIManager entity)
     {
         if(Input.GetKeyDown(KeyCode.Space)){
-            entity.Estados.ChangeState(E5_PlayerSelector.instance);
+            entity.Estados.ChangeState(E3_Game.instance);
         }
     }
 
