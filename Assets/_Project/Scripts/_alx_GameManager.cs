@@ -115,9 +115,7 @@ public class _alx_GameManager : NetworkBehaviour
             case GameStates.gameOver:
             _chr_GUIManager.instance.Estados.ChangeState(E7_GameOver.instance);
             break;
-            case GameStates.gameOver:
-                // Mostrar un panel para regresar al menu o iniciar nueva partida
-            break;
+
         }
         currentGameState = newGameState;
     }
