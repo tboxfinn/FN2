@@ -53,6 +53,10 @@ public class E3_Game : State<_chr_GUIManager>
         else if(Input.GetKeyUp(KeyCode.Space)){
             CamShake.ShakeItOff = false;
         }
+
+        if(Input.GetKeyDown(KeyCode.E)){
+            GameObject damage = DamagePool.instance.RequestDamage();
+        }
     }
 
     public override void Exit(_chr_GUIManager entity)

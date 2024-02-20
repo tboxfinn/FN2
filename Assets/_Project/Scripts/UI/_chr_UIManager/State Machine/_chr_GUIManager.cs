@@ -43,7 +43,8 @@ public class _chr_GUIManager : MonoBehaviour
 
     public float LifeArea3;
 
-    //[Header ("Extras")]
+    [Header ("Extras")]
+    public float MagnitudCamShake;
 
     public void OnEnable()
     {

@@ -5,15 +5,14 @@ using UnityEngine;
 public class _chr_CamShake : MonoBehaviour
 {
     public bool ShakeItOff;
-    public float mag = 0.2f;
 
     void Update()
     {
         if(ShakeItOff == true){
             Vector3 originalPos = transform.localPosition;
-            float x = Random.Range(-1, 1) * mag;
-            float y = Random.Range(-1, 1) * mag;
-            float z = Random.Range(-1, 1) * mag;
+            float x = Random.Range(-1, 1) * _chr_GUIManager.instance.MagnitudCamShake;
+            float y = Random.Range(-1, 1) * _chr_GUIManager.instance.MagnitudCamShake;
+            float z = Random.Range(-1, 1) * _chr_GUIManager.instance.MagnitudCamShake;
             transform.localPosition =  new Vector3(x, y, z);
         }
         else if(ShakeItOff == false){
