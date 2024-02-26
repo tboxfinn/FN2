@@ -68,42 +68,42 @@ public class _tbx_PlayerMovementScript_NoMulti : MonoBehaviour
 
         readyToJump = true;
 
-        /*if (IsOwner)
-        {
-            GetComponent<NetworkTransform>().enabled = true;
-        }
-        else
-        {
-            GetComponent<NetworkTransform>().enabled = false;
-        }*/
     }
 
     void Update()
     {
-        if(_alx_GameManager.singleton.currentGameState == GameStates.inGame){
-            //Ground Check
-            isGrounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
-            //Show the raycast on the scene view
-            Debug.DrawRay(transform.position, Vector3.down * (playerHeight * 0.5f + 0.2f), Color.red);
+        //Ground Check
+        isGrounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
+        //Show the raycast on the scene view
+        Debug.DrawRay(transform.position, Vector3.down * (playerHeight * 0.5f + 0.2f), Color.red);
 
-            //Zone Check
-            isInZone = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsZone);
-            Debug.DrawRay(transform.position, Vector3.down * (playerHeight * 0.5f + 0.2f), Color.red);
-            if (isInZone)
+        //Zone Check
+        isInZone = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsZone);
+        Debug.DrawRay(transform.position, Vector3.down * (playerHeight * 0.5f + 0.2f), Color.red);
+        if (isInZone)
+        {
+            Debug.Log("Est� en la zona");
+        }
+
+
+        MyInput();
+        SpeedControl();
+        StateHandler();
+
+        //Manejar el drag
+        if (isGrounded)
+        {
+            rb.drag = groundDrag;
+        }
+        else
+        {
+            rb.drag = 0f;
+            
+            if (rb.velocity.y < 0)
             {
-                Debug.Log("Est� en la zona");
+                rb.AddForce(Vector3.down * 10f, ForceMode.Acceleration);
             }
-
-
-            MyInput();
-            SpeedControl();
-            StateHandler();
-
-            //Manejar el drag
-            if (isGrounded)
-                rb.drag = groundDrag;
-            else
-                rb.drag = 0f;
+            
         }
     }
 
