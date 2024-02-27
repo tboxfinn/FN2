@@ -8,6 +8,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.Timeline;
+using TMPro;
 
 public class _chr_GUIManager : MonoBehaviour
 {
@@ -15,6 +16,9 @@ public class _chr_GUIManager : MonoBehaviour
     [Header ("UI Manager")]
     public StateMachine<_chr_GUIManager> Estados;
     public static _chr_GUIManager instance;
+
+    [Header ("UI Manager Values")]
+    public bool IsWindowed;
 
     [SerializeField] string EstadoActual = null;
     [Header ("Paneles")]
@@ -26,6 +30,10 @@ public class _chr_GUIManager : MonoBehaviour
     public GameObject PlayerSelectorPanel;
     public GameObject DefeatPanel;
     public GameObject GameOverPanel;
+
+    [Header ("Componentes")]
+    public TextMeshProUGUI WindowedStatus;
+    public TMP_Dropdown resolucion;
 
     [Header ("Materiales UI")]
     [Space (15)]
@@ -83,7 +91,49 @@ public class _chr_GUIManager : MonoBehaviour
         areaMat2.SetFloat("_Cutoff_height", LifeArea2);
         areaMat3.SetFloat("_Cutoff_height", LifeArea3);
 
+        //UI Manager Values
+
         
+    }
+
+    public void MainMenu(){
+       // _alx_GameManager.singleton.SetNewGameState(GameStates.mainMenu);
+        Estados.ChangeState(E1_Menu.instance);
+    }
+
+    public void PauseGame(){
+        //_alx_GameManager.singleton.SetNewGameState(GameStates.pause);
+        Estados.ChangeState(E2_Pause.instance);
+    }
+
+    public void InGame(){
+        //_alx_GameManager.singleton.SetNewGameState(GameStates.inGame);
+        Estados.ChangeState(E3_Game.instance); 
+    }
+
+    public void Config(){
+        //_alx_GameManager.singleton.SetNewGameState(GameStates.config);
+        Estados.ChangeState(E4_Config.instance);
+    }
+
+    public void PlayerSelector(){
+        _alx_GameManager.singleton.SetNewGameState(GameStates.playerSelector);
+    }
+
+    public void Defeat(){
+        _alx_GameManager.singleton.SetNewGameState(GameStates.defeat);
+    }
+
+    public void GameOver(){
+        _alx_GameManager.singleton.SetNewGameState(GameStates.gameOver);
+    }
+
+    public void WindowedState(){
+        if(WindowedStatus.text == ("PANTALLA COMPLETA:  ON")){
+            WindowedStatus.text = "PANTALLA COMPLETA:  OFF";
+        } else {
+            WindowedStatus.text = "PANTALLA COMPLETA:  ON";
+        }
     }
 
     public void DesactivarPaneles(){

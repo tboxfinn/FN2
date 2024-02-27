@@ -119,36 +119,6 @@ public class _alx_GameManager : NetworkBehaviour
         }
         currentGameState = newGameState;
     }
-
-    
-    public void MainMenu(){
-        SetNewGameState(GameStates.mainMenu);
-    }
-
-    public void PauseGame(){
-        SetNewGameState(GameStates.pause);
-    }
-
-    public void InGame(){
-        SetNewGameState(GameStates.inGame);
-    }
-
-    public void Config(){
-        SetNewGameState(GameStates.config);
-    }
-
-    public void PlayerSelector(){
-        SetNewGameState(GameStates.playerSelector);
-    }
-
-    public void Defeat(){
-        SetNewGameState(GameStates.defeat);
-    }
-
-    public void GameOver(){
-        SetNewGameState(GameStates.gameOver);
-    }
-
 }
 
 public enum GameStates

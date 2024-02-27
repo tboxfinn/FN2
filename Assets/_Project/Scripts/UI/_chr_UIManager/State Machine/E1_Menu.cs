@@ -33,6 +33,9 @@ public class E1_Menu : State<_chr_GUIManager>
         if(Input.GetKeyDown(KeyCode.Space)){
             entity.Estados.ChangeState(E3_Game.instance);
         }
+        if(Input.GetKeyDown(KeyCode.Escape)){
+            entity.Estados.ChangeState(E4_Config.instance);
+        }
     }
 
     public override void Exit(_chr_GUIManager entity)
