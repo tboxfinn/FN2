@@ -36,27 +36,15 @@ public class E4_Config : State<_chr_GUIManager>
         switch(entity.resolucion.value){
             //resolución 1920 X 1080X (Recomendar pantalla completa)
             case 0:
-                if(entity.WindowedStatus.text == "ON"){
-                    Screen.SetResolution(1920, 1080, false);
-                } else {
-                    Screen.SetResolution(1920, 1080, true);
-                }
+                Screen.SetResolution(1920, 1080, entity.IsWindowed);
             break;
             //resolución 1280 X 720 (Recomendado)
             case 1:
-                if(entity.WindowedStatus.text == "ON"){
-                    Screen.SetResolution(1280, 720, false);
-                } else {
-                    Screen.SetResolution(1280, 720, true);
-                }
+                Screen.SetResolution(1280, 720, entity.IsWindowed);
             break;
             //resolución 720 X 405
             case 2:
-                if(entity.WindowedStatus.text == "ON"){
-                    Screen.SetResolution(720, 405, false);
-                } else {
-                    Screen.SetResolution(720, 405, true);
-                }
+                Screen.SetResolution(720, 405, entity.IsWindowed);
             break;
         }
 

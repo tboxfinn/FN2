@@ -129,10 +129,11 @@ public class _chr_GUIManager : MonoBehaviour
     }
 
     public void WindowedState(){
-        if(WindowedStatus.text == ("PANTALLA COMPLETA:  ON")){
-            WindowedStatus.text = "PANTALLA COMPLETA:  OFF";
-        } else {
-            WindowedStatus.text = "PANTALLA COMPLETA:  ON";
+        IsWindowed = !IsWindowed;
+        if(IsWindowed == true){
+            //WindowedStatus.text = "PANTALLA COMPLETA:  OFF";
+        } else if (IsWindowed == false){
+            //WindowedStatus.text = "PANTALLA COMPLETA:  ON";
         }
     }
 
