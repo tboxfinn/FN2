@@ -7,16 +7,25 @@ public class Spawner : MonoBehaviour
     public GameObject objetoPrefab;
     public Transform[] posicionesSpawn;
 
+    public float spawnTime = 3f;
+
     void Start()
     {
-        SpawnObject();
+        InvokeRepeating("SpawnObject", 0f, spawnTime);
     }
 
     void SpawnObject()
     {
-        int indicePosicion = Random.Range(0, posicionesSpawn.Length);
-        Transform posicionSpawn = posicionesSpawn[indicePosicion];
+        if (objetoPrefab != null && posicionesSpawn.Length > 0)
+        {
+            int indicePosicion = Random.Range(0, posicionesSpawn.Length);
+            Transform posicionSpawn = posicionesSpawn[indicePosicion];
 
-        Instantiate(objetoPrefab, posicionSpawn.position, Quaternion.identity);
+            Instantiate(objetoPrefab, posicionSpawn.position, Quaternion.identity);
+        }
+        else
+        {
+            Debug.LogError("Prefab no asignado o posiciones de spawn no configuradas en el spawner.");
+        }
     }
 }
