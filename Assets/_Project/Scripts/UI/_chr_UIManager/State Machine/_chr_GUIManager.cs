@@ -18,7 +18,7 @@ public class _chr_GUIManager : MonoBehaviour
     public static _chr_GUIManager instance;
 
     [Header ("UI Manager Values")]
-    public bool IsWindowed;
+    public bool IsScreenWindowed;
 
     [SerializeField] string EstadoActual = null;
     [Header ("Paneles")]
@@ -129,12 +129,7 @@ public class _chr_GUIManager : MonoBehaviour
     }
 
     public void WindowedState(){
-        IsWindowed = !IsWindowed;
-        if(IsWindowed == true){
-            //WindowedStatus.text = "PANTALLA COMPLETA:  OFF";
-        } else if (IsWindowed == false){
-            //WindowedStatus.text = "PANTALLA COMPLETA:  ON";
-        }
+        IsScreenWindowed = !IsScreenWindowed;
     }
 
     public void DesactivarPaneles(){

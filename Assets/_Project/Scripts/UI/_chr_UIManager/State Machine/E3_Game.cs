@@ -32,14 +32,14 @@ public class E3_Game : State<_chr_GUIManager>
         Cursor.lockState = CursorLockMode.Locked;
 
         //Cambia la escena
-        SceneManager.LoadScene("_chr_Scene");
+        //SceneManager.LoadScene("_chr_Scene");
 
         
     }
 
     public override void Excute(_chr_GUIManager entity)
     {
-        for (int i = 0; i < 1 ; i++){
+        /*for (int i = 0; i < 1 ; i++){
             CamShake = GameObject.Find("CamHolder").GetComponent<_chr_CamShake>();
         }
         
@@ -57,6 +57,7 @@ public class E3_Game : State<_chr_GUIManager>
         if(Input.GetKeyDown(KeyCode.E)){
             GameObject damage = DamagePool.instance.RequestDamage();
         }
+        */
     }
 
     public override void Exit(_chr_GUIManager entity)
