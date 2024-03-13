@@ -23,7 +23,7 @@ public class E1_Menu : State<_chr_GUIManager>
     public override void Enter(_chr_GUIManager entity)
     {
         //Activa los paneles que se utilizarán y desactiva los que ya no se van a utilizar
-        SceneManager.LoadScene("_tbx_Selection");
+        //SceneManager.LoadScene("_tbx_Selection");
         entity.DesactivarPaneles();
         //entity.MainMenuPanel.SetActive(true);
     }
