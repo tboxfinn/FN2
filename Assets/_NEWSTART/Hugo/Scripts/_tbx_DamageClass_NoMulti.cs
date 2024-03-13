@@ -92,6 +92,7 @@ public class _tbx_DamageClass_NoMulti : MonoBehaviour
     public Transform camTransform;
     public Transform attackPoint;
     public GameObject objectToThrow;
+    public Gradient ObjectScaner;
     public Canvas canvas;
 
     [Header("Throwing")]

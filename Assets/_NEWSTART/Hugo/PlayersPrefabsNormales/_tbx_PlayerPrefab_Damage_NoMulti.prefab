@@ -3322,7 +3322,7 @@ MonoBehaviour:
   initialJumpForce: 0
   camTransform: {fileID: 1273384813363259494}
   attackPoint: {fileID: 9221322773578777377}
-  objectToThrow: {fileID: 7462755728064330100, guid: 6ca1883832da93b41b23652846c7daee, type: 3}
+  objectToThrow: {fileID: 4578666717161153102, guid: 15ba15eca5b171e4b8569ba7925426aa, type: 3}
   canvas: {fileID: 6909258562585734378}
   throwForce: 0
   throwUpwardForce: 0
