@@ -36,7 +36,18 @@ public class _alx_GameManager : NetworkBehaviour
 
     private void Update() 
     {
-
+        if(currentGameState == GameStates.inGame){
+            if(Input.GetKeyDown(KeyCode.Escape)){
+                SetNewGameState(GameStates.pause);
+            }
+        }
+        else if (currentGameState == GameStates.pause)
+        {
+            if(Input.GetKeyDown(KeyCode.Escape))
+            {
+                SetNewGameState(GameStates.inGame);
+            }
+        }
     }
 
     public void SetClassUtility()
