@@ -92,10 +92,12 @@ public class _tbx_DamageClass_NoMulti : MonoBehaviour
     public Transform camTransform;
     public Transform attackPoint;
     public GameObject objectToThrow;
+    public GameObject objectScaner;
     public Canvas canvas;
 
     [Header("Throwing")]
-    public float throwForce;
+    public float throwForceHab1;
+    public float throwForceHab3;
     public float throwUpwardForce;
 
     public ulong ClientID { get; private set; }
@@ -299,7 +301,7 @@ public class _tbx_DamageClass_NoMulti : MonoBehaviour
         }
 
         //Add force to the bombaVeneno
-        Vector3 forceToAdd = forceDirection * throwForce + transform.up * throwUpwardForce;
+        Vector3 forceToAdd = forceDirection * throwForceHab1 + transform.up * throwUpwardForce;
 
         bombaVenRb.AddForce(forceToAdd, ForceMode.Impulse);
     }
@@ -317,7 +319,27 @@ public class _tbx_DamageClass_NoMulti : MonoBehaviour
 
     public void Habilidad3()
     {
-        Debug.Log("Habilidad 3- Damage");
+        Debug.Log("Habilidad 3- RadarRastreador");
+        // Create a new object
+        GameObject radarRastreador = Instantiate(objectScaner, attackPoint.position, camTransform.rotation);
+
+        // Get the rigidbody of the new object
+        Rigidbody radarRastreadorRb = radarRastreador.GetComponent<Rigidbody>();
+
+        //Calculate the direction to throw the object in
+        Vector3 forceDirection = camPlayer.transform.forward;
+
+        RaycastHit hit;
+
+        if (Physics.Raycast(camTransform.position, camTransform.forward, out hit,500f))
+        {
+            forceDirection = (hit.point - attackPoint.position).normalized;
+        }
+
+        //Add force to the bombaVeneno
+        Vector3 forceToAdd = forceDirection * throwForceHab3 + transform.up * throwUpwardForce;
+
+        radarRastreadorRb.AddForce(forceToAdd, ForceMode.Impulse);
     }
 
     public void Shoot()
