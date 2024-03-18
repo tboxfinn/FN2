@@ -9,6 +9,7 @@ TagManager:
   - ZonaCurativa
   - Bullet
   - SpawnPoint
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -25,7 +26,7 @@ TagManager:
   - Team2
   - No LIght (Canvas)
   - Zona
-  - 
+  - Enemy
   - 
   - 
   - 
