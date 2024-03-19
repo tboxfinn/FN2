@@ -98,7 +98,8 @@ public class _tbx_DamageClass_NoMulti : MonoBehaviour
     [Header("Throwing")]
     public float throwForceHab1;
     public float throwForceHab3;
-    public float throwUpwardForce;
+    public float throwUpwardForceHab1;
+    public float throwUpwardForceHab3;
 
     public ulong ClientID { get; private set; }
 
@@ -206,7 +207,7 @@ public class _tbx_DamageClass_NoMulti : MonoBehaviour
 
         //Aim
         Vector2 screenCenterPoint = new Vector2(Screen.width / 2, Screen.height / 2);
-        Debug.Log("Screen Width : " + Screen.width);
+        
         Ray ray = camPlayer.ScreenPointToRay(screenCenterPoint);
         
         if (Physics.Raycast(ray, out RaycastHit raycastHit, gunData.maxDistance, aimColliderLayerMask))
@@ -301,7 +302,7 @@ public class _tbx_DamageClass_NoMulti : MonoBehaviour
         }
 
         //Add force to the bombaVeneno
-        Vector3 forceToAdd = forceDirection * throwForceHab1 + transform.up * throwUpwardForce;
+        Vector3 forceToAdd = forceDirection * throwForceHab1 + transform.up * throwUpwardForceHab1;
 
         bombaVenRb.AddForce(forceToAdd, ForceMode.Impulse);
     }
@@ -337,7 +338,7 @@ public class _tbx_DamageClass_NoMulti : MonoBehaviour
         }
 
         //Add force to the bombaVeneno
-        Vector3 forceToAdd = forceDirection * throwForceHab3 + transform.up * throwUpwardForce;
+        Vector3 forceToAdd = forceDirection * throwForceHab3 + transform.up * throwUpwardForceHab3;
 
         radarRastreadorRb.AddForce(forceToAdd, ForceMode.Impulse);
     }
