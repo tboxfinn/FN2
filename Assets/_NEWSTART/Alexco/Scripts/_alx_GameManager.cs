@@ -48,6 +48,8 @@ public class _alx_GameManager : NetworkBehaviour
                 SetNewGameState(GameStates.inGame);
             }
         }
+
+        Debug.LogWarning("Estado actual del juego: "+currentGameState);
     }
 
     public void SetClassUtility()
