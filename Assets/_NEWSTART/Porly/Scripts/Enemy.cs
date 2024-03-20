@@ -23,7 +23,6 @@ public class Enemy : MonoBehaviour
         target = GameObject.Find("Player");
     }
 
-    // Update is called once per frame
     void Update()
     {
         comportamientoEnemigo();        
@@ -73,6 +72,7 @@ public class Enemy : MonoBehaviour
             }
             else
             {
+                Debug.Log("Atacando");
                 atacando = true;
             }
         }
