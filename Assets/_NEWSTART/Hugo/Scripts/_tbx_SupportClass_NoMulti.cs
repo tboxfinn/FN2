@@ -3,8 +3,9 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections.Generic;
 
-public class _tbx_DamageClass_NoMulti : MonoBehaviour
+public class _tbx_SupportClass_NoMulti : MonoBehaviour
 {
     public Vector3 aimDir;
 
@@ -58,10 +59,10 @@ public class _tbx_DamageClass_NoMulti : MonoBehaviour
 
     [Header("Raycast")]
     public float raycastDistance;
-    [SerializeField] private Vector3 mouseWorldPosition;
+    public Vector3 mouseWorldPosition;
 
     [Header("BaseReferences")]
-    private Camera camPlayer;
+    public Camera camPlayer;
     public int teamID;
     [SerializeField] public LayerMask aimColliderLayerMask = new LayerMask();
     [SerializeField] public Transform debugTransform;
@@ -78,28 +79,31 @@ public class _tbx_DamageClass_NoMulti : MonoBehaviour
     public delegate void ShootInputDelegate(Vector3 mouseWorldPosition, Vector3 shootingDirection);
     public event ShootInputDelegate shootInput;
 
-    // Reference to the player movement script
     public _tbx_PlayerMovementScript_NoMulti playerMovementScript_NoMulti;
 
-    [Header("Cosas Inicio")]
-    // Duration of the effect in seconds
     public float effectDuration;
-    // Initial values of moveSpeed and jumpForce
+
     [SerializeField] private float initialMoveSpeed;
-    [SerializeField] private float initialJumpForce;
 
     [Header("References")]
-    public Transform camTransform;
-    public Transform attackPoint;
-    public GameObject objectToThrow;
-    public GameObject objectScaner;
+    public float fuerzaDeTiroH2;
+    public float distanciaSpawnHabilidad2;
+    public List<GameObject> habilidad2Objects = new List<GameObject>();
+    public GameObject prefabHabilidad2;
+    public int cantidadMaxHabilidad2;
+    private int cantidadHabilidad2Actual = 0;
+    public GameObject player;
+    public GameObject playerObj;
     public Canvas canvas;
 
-    [Header("Throwing")]
-    public float throwForceHab1;
-    public float throwForceHab3;
-    public float throwUpwardForceHab1;
-    public float throwUpwardForceHab3;
+    public float fuerzaDeTiroH1;
+    public float distanciaSpawnHabilidad1;
+    public List<GameObject> habilidad1Objects = new List<GameObject>();
+    public GameObject prefabHabilidad1;
+    public int cantidadMaxHabilidad1;
+    private int cantidadHabilidad1Actual = 0;
+
+    public _ply_PlayerHealth playerHealth;
 
     public ulong ClientID { get; private set; }
 
@@ -114,10 +118,9 @@ public class _tbx_DamageClass_NoMulti : MonoBehaviour
 
         canvas.GetComponent<Canvas>().enabled = true;
 
-        // Save the initial values of moveSpeed and jumpForce
+        //Save the initial value of moveSpeed
         initialMoveSpeed = playerMovementScript_NoMulti.moveSpeed;
-        initialJumpForce = playerMovementScript_NoMulti.jumpForce;
-
+        
         //Set the bullets to the magazine size
         actualBullets = magazineSize;
 
@@ -144,18 +147,22 @@ public class _tbx_DamageClass_NoMulti : MonoBehaviour
         reloadInput += StartReload;
         cancelReloadInput += CancelReload;
 
-        camPlayer = GameObject.Find("CamaraDamage").GetComponent<Camera>();
+        camPlayer = GameObject.Find("CamaraSupport").GetComponent<Camera>();
     }
+
 
     public void Update()
     {
 
         //Hability1Input
-        if (Input.GetKeyDown(Hab1) && !isHab1OnCooldown)
+        if (Input.GetKeyDown(Hab1) && !isHab3OnCooldown)
         {
-            isHab1OnCooldown = true;
-            currentCooldownHab1 = cooldownHab1;
-            Habilidad1();
+            if (!isHab1OnCooldown)
+            {
+                isHab1OnCooldown = true;
+                currentCooldownHab1 = cooldownHab1;
+                Habilidad1();
+            }
         }
 
         //Hability2Input
@@ -167,25 +174,28 @@ public class _tbx_DamageClass_NoMulti : MonoBehaviour
         }
 
         //Hability3Input
-        if (Input.GetKeyDown(Hab3) && !isHab3OnCooldown)
+        if (Input.GetKeyDown(Hab3) && !isHab1OnCooldown)
         {
-            isHab3OnCooldown = true;
-            currentCooldownHab3 = cooldownHab3;
-            Habilidad3();
+            if (!isHab3OnCooldown)
+            {
+                isHab3OnCooldown = true;
+                currentCooldownHab3 = cooldownHab3;
+                Habilidad3();
+            }                
         }
 
         timeSinceLastShot += Time.deltaTime;
         //Basic Shoot
         if (Input.GetMouseButton(0) && !gunData.reloading)
-        {   
+        {
             Vector3 shootingDirection = (mouseWorldPosition - spawnBulletPosition.position).normalized;
             shootInput?.Invoke(mouseWorldPosition, shootingDirection);
             animator.SetLayerWeight(1, Mathf.Lerp(animator.GetLayerWeight(1), 1f, Time.deltaTime * 10f));
-            
+
             // Update aimDir on the client side
             UpdateAimDirection(shootingDirection);
-            
-        }else
+        }
+        else
         {
             animator.SetLayerWeight(1, Mathf.Lerp(animator.GetLayerWeight(1), 0f, Time.deltaTime * 10f));
         }
@@ -208,9 +218,9 @@ public class _tbx_DamageClass_NoMulti : MonoBehaviour
 
         //Aim
         Vector2 screenCenterPoint = new Vector2(Screen.width / 2, Screen.height / 2);
-        
+
         Ray ray = camPlayer.ScreenPointToRay(screenCenterPoint);
-        
+
         if (Physics.Raycast(ray, out RaycastHit raycastHit, gunData.maxDistance, aimColliderLayerMask))
         {
             //Va directo al punto de colision
@@ -225,7 +235,7 @@ public class _tbx_DamageClass_NoMulti : MonoBehaviour
             mouseWorldPosition = raycastHit1.point;
             Debug.DrawLine(ray.origin, raycastHit1.point, Color.yellow);
         }
-        else 
+        else
         {
             //Va hasta la distancia maxima y luego lo que dios quiera
             debugTransform.position = ray.GetPoint(gunData.maxDistance);
@@ -237,9 +247,6 @@ public class _tbx_DamageClass_NoMulti : MonoBehaviour
         CooldownHab(ref currentCooldownHab1, cooldownHab1, ref isHab1OnCooldown, imageHab1, textHab1);
         CooldownHab(ref currentCooldownHab2, cooldownHab2, ref isHab2OnCooldown, imageHab2, textHab2);
         CooldownHab(ref currentCooldownHab3, cooldownHab3, ref isHab3OnCooldown, imageHab3, textHab3);
-        
-        //aimDir = mouseWorldPosition - spawnBulletPosition.position;
-    
     }
 
     private void UpdateAimDirection(Vector3 shootingDirection)
@@ -280,84 +287,135 @@ public class _tbx_DamageClass_NoMulti : MonoBehaviour
             }
         }
     }
-    
+
     public void Habilidad1()
     {
-        Debug.Log("Habilidad 1- Bomba Veneno");
-        // Create a new object
-        GameObject bombaVeneno = Instantiate(objectToThrow, attackPoint.position, camTransform.rotation);
-
-        // Get the rigidbody of the new object
-        Rigidbody bombaVenRb = bombaVeneno.GetComponent<Rigidbody>();
-
-        //Calculate the direction to throw the object in
-        Vector3 forceDirection = camPlayer.transform.forward;
-
-        RaycastHit hit;
-
-        if (Physics.Raycast(camTransform.position, camTransform.forward, out hit,500f))
+        Debug.Log("Lanzar bomba de humo");
+        if (cantidadHabilidad1Actual < cantidadMaxHabilidad1)
         {
-            forceDirection = (hit.point - attackPoint.position).normalized;
+            // Spawn a new ability object in front of the player
+            GameObject newHabilidad1Object = Instantiate(prefabHabilidad1, playerObj.transform.position + playerObj.transform.forward * distanciaSpawnHabilidad1, Quaternion.identity);
+
+            Rigidbody newHabilidad1ObjectRigidbody = newHabilidad1Object.GetComponent<Rigidbody>();
+
+            // Apply force to the ability object
+            newHabilidad1ObjectRigidbody.AddForce(playerObj.transform.forward * fuerzaDeTiroH1, ForceMode.Impulse);
+
+            // Add the new object to the list of spawned objects
+            habilidad1Objects.Add(newHabilidad1Object);
+
+            // Increment the current number of ability objects
+            cantidadHabilidad1Actual++;
+            Destroy(newHabilidad1Object, 5f);
+
+            // Increase player movement speed
+            playerMovementScript_NoMulti.moveSpeed += 6;
+            // Start a coroutine to reset the values after a delay
+            StartCoroutine(ResetMovementValues());
+
+            cantidadHabilidad1Actual--;
         }
+    
+        else
+        {
+            // Destroy the first spawned object of this type and remove it from the list
+            GameObject firstHabilidad1Object = habilidad1Objects[0];
+            habilidad1Objects.RemoveAt(0);
+            Destroy(firstHabilidad1Object);
 
-        //Add force to the bombaVeneno
-        Vector3 forceToAdd = forceDirection * throwForceHab1 + transform.up * throwUpwardForceHab1;
+            // Spawn a new ability object in front of the player
+            GameObject newHabilidad1Object = Instantiate(prefabHabilidad1, playerObj.transform.position + playerObj.transform.forward * distanciaSpawnHabilidad1, Quaternion.identity);
 
-        bombaVenRb.AddForce(forceToAdd, ForceMode.Impulse);
+            Rigidbody newHabilidad1ObjectRigidbody = newHabilidad1Object.GetComponent<Rigidbody>();
+
+            // Apply force to the ability object
+            newHabilidad1ObjectRigidbody.AddForce(playerObj.transform.forward * fuerzaDeTiroH1, ForceMode.Impulse);
+
+            // Add the new object to the list of spawned objects
+            habilidad2Objects.Add(newHabilidad1Object);
+
+            // Increase player movement speed
+            playerMovementScript_NoMulti.moveSpeed += 6;
+            // Start a coroutine to reset the values after a delay
+            StartCoroutine(ResetMovementValues());
+
+            cantidadHabilidad1Actual--;
+        }
     }
 
     public void Habilidad2()
     {
-        Debug.Log("Habilidad 2- SpeedBoost");
-        // Increase damage, player movement speed, and jump height
-        playerMovementScript_NoMulti.moveSpeed += 6;
-        playerMovementScript_NoMulti.jumpForce += 10;
+        Debug.Log("Spawnear Baliza de curaci�n");
+        if (cantidadHabilidad2Actual < cantidadMaxHabilidad2)
+        {
+            // Spawn a new ability object in front of the player
+            GameObject newHabilidad2Object = Instantiate(prefabHabilidad2, playerObj.transform.position + playerObj.transform.forward * distanciaSpawnHabilidad2, Quaternion.identity);
 
-        // Start a coroutine to reset the values after a delay
-        StartCoroutine(ResetMovementValues());
+            Rigidbody newHabilidad1ObjectRigidbody = newHabilidad2Object.GetComponent<Rigidbody>();
+
+            // Apply force to the ability object
+            newHabilidad1ObjectRigidbody.AddForce(playerObj.transform.forward * fuerzaDeTiroH2, ForceMode.Impulse);
+
+            // Add the new object to the list of spawned objects
+            habilidad2Objects.Add(newHabilidad2Object);
+
+            // Increment the current number of ability objects
+            cantidadHabilidad2Actual++;
+            Destroy(newHabilidad2Object, 5f);
+        }
+        else
+        {
+            // Destroy the first spawned object of this type and remove it from the list
+            GameObject firstHabilidad2Object = habilidad2Objects[0];
+            habilidad2Objects.RemoveAt(0);
+            Destroy(firstHabilidad2Object);
+
+            // Spawn a new ability object in front of the player
+            GameObject newHabilidad2Object = Instantiate(prefabHabilidad2, playerObj.transform.position + playerObj.transform.forward * distanciaSpawnHabilidad2, Quaternion.identity);
+        
+            Rigidbody newHabilidad2ObjectRigidbody = newHabilidad2Object.GetComponent<Rigidbody>();
+
+            // Apply force to the ability object
+            newHabilidad2ObjectRigidbody.AddForce(playerObj.transform.forward * fuerzaDeTiroH2, ForceMode.Impulse);
+
+            // Add the new object to the list of spawned objects
+            habilidad2Objects.Add(newHabilidad2Object);
+        }
     }
 
     public void Habilidad3()
     {
-        Debug.Log("Habilidad 3- RadarRastreador");
-        // Create a new object
-        GameObject radarRastreador = Instantiate(objectScaner, attackPoint.position, camTransform.rotation);
+        Debug.Log("Agrandar");
 
-        // Get the rigidbody of the new object
-        Rigidbody radarRastreadorRb = radarRastreador.GetComponent<Rigidbody>();
+        Debug.Log("Reduce speed");
+        // Reduce player movement speed
+        playerMovementScript_NoMulti.moveSpeed -= 2;
+        // Start a coroutine to reset the values after a delay
+        StartCoroutine(ResetMovementValues());
 
-        //Calculate the direction to throw the object in
-        Vector3 forceDirection = camPlayer.transform.forward;
-
-        RaycastHit hit;
-
-        if (Physics.Raycast(camTransform.position, camTransform.forward, out hit,500f))
-        {
-            forceDirection = (hit.point - attackPoint.position).normalized;
-        }
-
-        //Add force to the bombaVeneno
-        Vector3 forceToAdd = forceDirection * throwForceHab3 + transform.up * throwUpwardForceHab3;
-
-        radarRastreadorRb.AddForce(forceToAdd, ForceMode.Impulse);
+        //Increase health and scale
+        playerHealth.IncreaseHealth();
     }
 
     public void Shoot()
     {
-        Debug.Log("Disparo2");
+        Debug.Log("Disparo3");
 
         Instantiate(pfBulletProjectile, spawnBulletPosition.position, Quaternion.LookRotation(aimDir, Vector3.up));
-        
     }
 
-    // Coroutine to reset the movement values after a delay
+    private void HandleHealthChanged(int newHealth, Vector3 newScale)
+    {
+        Debug.Log("Vida actual: " + newHealth);
+        Debug.Log("Nueva escala: " + newScale);
+    }
+
     private IEnumerator ResetMovementValues()
     {
         yield return new WaitForSeconds(effectDuration);
 
-        // Reset the moveSpeed and jumpForce properties of the playerMovementScript
+        // Reset the moveSpeed property of the playerMovementScript
         playerMovementScript_NoMulti.moveSpeed = initialMoveSpeed;
-        playerMovementScript_NoMulti.jumpForce = initialJumpForce;
     }
 
     public void Shooting(Vector3 clientMouseWorldPosition, Vector3 shootingDirection)
@@ -366,11 +424,6 @@ public class _tbx_DamageClass_NoMulti : MonoBehaviour
         {
             if (gun.CanShoot())
             {
-                /*if (Physics.Raycast(gun.muzzle.position, gun.muzzle.forward, out RaycastHit hitInfo, gunData.maxDistance))
-                {
-                    Debug.Log(hitInfo.transform.name);
-
-                }*/
                 aimDir = shootingDirection;
 
                 Shoot();
@@ -381,7 +434,6 @@ public class _tbx_DamageClass_NoMulti : MonoBehaviour
         }
     }
 
-    
     public void StartReload()
     {
         if (!gunData.reloading)
@@ -390,7 +442,6 @@ public class _tbx_DamageClass_NoMulti : MonoBehaviour
         }
     }
 
-    
     public void CancelReload()
     {
         if (gunData.reloading)
@@ -400,7 +451,6 @@ public class _tbx_DamageClass_NoMulti : MonoBehaviour
         }
     }
 
-    
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Bullet"))
