@@ -24,7 +24,7 @@ public class _chr_GUIManager : MonoBehaviour
     [Header ("Paneles")]
     public GameObject MainMenuPanel;
     public GameObject PauseGamePanel;
-    public GameObject ExtensionPausePanel;
+    //public GameObject ExtensionPausePanel;
     public GameObject InGamePanel;
     public GameObject ConfigPanel;
     public GameObject PlayerSelectorPanel;
@@ -34,6 +34,7 @@ public class _chr_GUIManager : MonoBehaviour
     [Header ("Componentes")]
     public TextMeshProUGUI WindowedStatus;
     public TMP_Dropdown resolucion;
+    public _chr_CamShake CamShake;
 
     [Header ("Materiales UI")]
     [Space (15)]
@@ -132,10 +133,15 @@ public class _chr_GUIManager : MonoBehaviour
         IsScreenWindowed = !IsScreenWindowed;
     }
 
+    //Acciones
+    public void DañoRecibido(){
+        DamagePool.instance.RequestDamage();
+    }
+
     public void DesactivarPaneles(){
         MainMenuPanel.SetActive(false);
         PauseGamePanel.SetActive(false);
-        ExtensionPausePanel.SetActive(false);
+        //ExtensionPausePanel.SetActive(false);
         InGamePanel.SetActive(false);
         ConfigPanel.SetActive(false);
         PlayerSelectorPanel.SetActive(false);

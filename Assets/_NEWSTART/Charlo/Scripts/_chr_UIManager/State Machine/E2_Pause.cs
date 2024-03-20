@@ -23,7 +23,7 @@ public class E2_Pause : State<_chr_GUIManager>
     {
         //Activa los paneles que se utilizarán y desactiva los que ya no se van a utilizar
         entity.DesactivarPaneles();
-        entity.ExtensionPausePanel.SetActive(true);
+        //entity.ExtensionPausePanel.SetActive(true);
         entity.PauseGamePanel.SetActive(true);
 
         //Aqui aparece el cursor
