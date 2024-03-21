@@ -18,8 +18,6 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
-        //ani = GetComponent<Animator>();
-
         target = GameObject.Find("Player");
     }
 
